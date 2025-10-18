@@ -6,44 +6,44 @@
 # Sprint 1 Backlog UserStories go below
 
 --------------------------------------------------------------------------
-TYPE     : BUG BUG1.001 : UTORID : NotStarted
+TYPE     : BUG BUG1.001 : UTORID : nguy3971
 NAME     : Icons instead of text for drawing mode selection
 PRIORITY : 1 
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 2 hours   ACTUAL :
 ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG1.002 : UTORID : NotStarted
+TYPE     : BUG BUG1.002 : UTORID : suleym11
 NAME     : Drawing selection mode not indicated
 PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 1 hour   ACTUAL :
 ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
            is currently selected. Is there a way
            to highlight the currently selected mode?
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG1.005 : UTORID : NotStarted
+TYPE     : BUG BUG1.005 : UTORID : kamins64
 NAME     : Squiggle is broken
 PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 6 hours    ACTUAL :
 ISSUE    : Squiggles are connected to each other by a straight line. Each drag
                    of the mouse should be a separate squiggle. Possibly
            the issue is with the representation of the squiggles in the Model.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG1.006 : UTORID : NotStarted
+TYPE     : BUG BUG1.006 : UTORID : kamins64
 NAME     : Circle drawing is broken
 PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 4 hours    ACTUAL :
 ISSUE    : The first click should specify the center of the circle, with
            a drag for the radius. This is not the case in the current
            implementation.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.002 : UTORID : NotStarted
+TYPE     : USER STORY US1.002 : UTORID : phammi36
 NAME     : Draw Circle Feedback
 PRIORITY : 2
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 8 hours   ACTUAL :
 AS A     : user
 I WANT   : As a user is specifying a Circle, during the drag, a 'current'
            circle should be on display. As the user drags, the 'current'
@@ -54,20 +54,20 @@ SO THAT  : I can see the circle I am about to build on release of the mouse
            button.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.003 : UTORID : NotStarted
+TYPE     : USER STORY US1.003 : UTORID : suleym11
 NAME     : Draw Rectangle
 PRIORITY : 2
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 4 hours    ACTUAL :
 AS A     : user
 I WANT   : To click on one corner of a rectangle, drag, and release to
                    specify two corners of a rectangle to be drawn in the current style.
 SO THAT  : I can add rectangles to my canvas
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.004 : UTORID : NotStarted
+TYPE     : USER STORY US1.004 : UTORID : nguy3971
 NAME     : Draw Rectangle Feedback
 PRIORITY : 2
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 4 hours    ACTUAL :
 AS A     : user
 I WANT   : Similarly to Draw Circle Feedback, display the rectangle in mid construction.
 SO THAT  : I can see the rectangle I am about to build on release of the mouse button.
