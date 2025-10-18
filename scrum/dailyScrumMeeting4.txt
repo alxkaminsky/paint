@@ -1,5 +1,6 @@
 # Fill in, commit and push each day.
-Member name:      email:     utorid:   
+Member name: Alex Kaminsky     email: alex.kaminsky@mail.utoronto.ca    utorid: kamins64
+
 
 Oct 15,2025
 	What I did yesterday:

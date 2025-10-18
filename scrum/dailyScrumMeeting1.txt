@@ -1,5 +1,6 @@
 # Fill in, commit and push each day.
-Member name:      email:     utorid:   
+Member name: Minh Pham     email: mt.pham@mail.utoronto.ca     utorid: phammi36
+
 
 Oct 15,2025
 	What I did yesterday:
