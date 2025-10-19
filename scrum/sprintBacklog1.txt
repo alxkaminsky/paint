@@ -64,10 +64,10 @@ I WANT   : To click on one corner of a rectangle, drag, and release to
 SO THAT  : I can add rectangles to my canvas
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.004 : UTORID : nguy3971
+TYPE     : USER STORY US1.004 : UTORID : kamins64
 NAME     : Draw Rectangle Feedback
 PRIORITY : 2
-ESTIMATE : 4 hours    ACTUAL :
+ESTIMATE : 4 hours    ACTUAL : 2 hours
 AS A     : user
 I WANT   : Similarly to Draw Circle Feedback, display the rectangle in mid construction.
 SO THAT  : I can see the rectangle I am about to build on release of the mouse button.

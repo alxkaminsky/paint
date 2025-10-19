@@ -48,23 +48,23 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
             case "Circle":
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Circle");
-                     Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
-                        this.circle=new Circle(centre, 0);
+                    Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    this.circle=new Circle(centre, 0);
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
 
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_MOVED)) {
 
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
                     if(this.circle!=null){
-                                // Problematic notion of radius and centre!!
-                                double deltaX = this.circle.getCentre().x-mouseEvent.getX();
-                                double deltaY = this.circle.getCentre().y-mouseEvent.getY();
-                                double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-                                this.circle.setRadius(radius);
-                                this.model.addCircle(this.circle);
-                                System.out.println("Added Circle");
-                                this.circle=null;
-                        }
+                        // Problematic notion of radius and centre!!
+                        double deltaX = this.circle.getCentre().x-mouseEvent.getX();
+                        double deltaY = this.circle.getCentre().y-mouseEvent.getY();
+                        double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+                        this.circle.setRadius(radius);
+                        this.model.addCircle(this.circle);
+                        System.out.println("Added Circle");
+                        this.circle=null;
+                    }
                 }
 
                 break;
@@ -73,11 +73,11 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                     System.out.println("Started Rectangle");
                     Point start_point = new Point(mouseEvent.getX(), mouseEvent.getY());
                     this.rectangle=new Rectangle(start_point, start_point);
+                    this.model.setPreviewRectangle(this.rectangle);
                 }
-                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){}
-
-                else if (mouseEventType.equals(MouseEvent.MOUSE_MOVED)){}
-
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){
+                     this.model.updatePreviewRectangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)){
                     if(this.rectangle!=null){
                         Point endPoint =  new Point(mouseEvent.getX(), mouseEvent.getY());
@@ -87,6 +87,7 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                             System.out.println("Added Rectangle");
                         }
                         this.rectangle=null;
+                        this.model.setPreviewRectangle(null);
                     }
                 }
             case "Square": break;
@@ -105,34 +106,39 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
     @Override
     public void update(Observable o, Object arg) {
 
-                GraphicsContext g2d = this.getGraphicsContext2D();
-                g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-                // Draw Lines
-                ArrayList<ArrayList<Point>> lines = this.model.getPoints();
+        GraphicsContext g2d = this.getGraphicsContext2D();
+        g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
+        // Draw Lines
+        ArrayList<ArrayList<Point>> lines = this.model.getPoints();
 
-                g2d.setFill(Color.RED);
+        g2d.setFill(Color.RED);
 
-                for(ArrayList<Point> line: lines){
-                    for(int i=0;i<line.size()-1; i++) {
-                        Point p1=line.get(i);
-                        Point p2=line.get(i+1);
-                        g2d.strokeLine(p1.x,p1.y,p2.x,p2.y);
-                    }
-                }
+        for(ArrayList<Point> line: lines){
+            for(int i=0;i<line.size()-1; i++) {
+                Point p1=line.get(i);
+                Point p2=line.get(i+1);
+                g2d.strokeLine(p1.x,p1.y,p2.x,p2.y);
+            }
+        }
 
-                // Draw Circles
-                ArrayList<Circle> circles = this.model.getCircles();
+        // Draw Circles
+        ArrayList<Circle> circles = this.model.getCircles();
+        ArrayList<Rectangle> rectangles = this.model.getRectangles();
+        Rectangle preview = this.model.getPreviewRectangle();
 
-                g2d.setFill(Color.GREEN);
-                for(Circle c: this.model.getCircles()){
-                        double radius = c.getRadius();
-                        double x = c.getCentre().x - radius;
-                        double y = c.getCentre().y - radius;
-                        g2d.fillOval(x, y, 2 * radius, 2 * radius);
-                }
+        g2d.setFill(Color.GREEN);
+        for(Circle c: circles){
+            double radius = c.getRadius();
+            double x = c.getCentre().x - radius;
+            double y = c.getCentre().y - radius;
+            g2d.fillOval(x, y, 2 * radius, 2 * radius);
+        }
 
-                for(Rectangle r: this.model.getRectangles()){
-                   g2d.fillRect(r.getLeftCornerX(), r.getLeftCornerY(), r.getWidth(), r.getHeight());
-                }
+        g2d.setFill(Color.BLUE);
+        for(Rectangle r: rectangles){
+            g2d.fillRect(r.getLeftCornerX(), r.getLeftCornerY(), r.getWidth(), r.getHeight());
+        }
+        g2d.setFill(Color.rgb(0, 0, 225, 0.25));
+        g2d.fillRect(preview.getLeftCornerX(), preview.getLeftCornerY(), preview.getWidth(), preview.getHeight());
     }
 }
