@@ -50,7 +50,13 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                      Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
                         this.circle=new Circle(centre, 0);
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
-
+                    if (this.circle != null) {
+                        double deltaX = this.circle.getCentre().x-mouseEvent.getX();
+                        double deltaY = this.circle.getCentre().y-mouseEvent.getY();
+                        double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+                        this.circle.setRadius(radius);
+                        this.model.addVisualiserCircle(this.circle); //Updating visualiser, calling update()
+                    }
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_MOVED)) {
 
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
@@ -103,5 +109,17 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                         double y = c.getCentre().y - radius;
                         g2d.fillOval(x, y, 2 * radius, 2 * radius);
                 }
+
+                // Draw Visualiser Circle
+                Circle vis = this.model.getVisualiserCircle();
+
+                g2d.setFill(Color.GREEN);
+                if (vis != null) {
+                    double radius = vis.getRadius();
+                    double x = vis.getCentre().x - radius;
+                    double y = vis.getCentre().y - radius;
+                    g2d.fillOval(x, y, 2 * radius, 2 * radius);
+                }
+
     }
 }
