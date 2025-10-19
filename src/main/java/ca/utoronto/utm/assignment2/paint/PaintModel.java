@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class PaintModel extends Observable {
-        private ArrayList<Point> points=new ArrayList<Point>();
+        private ArrayList<ArrayList<Point>> points=new ArrayList<ArrayList<Point>>();
         private ArrayList<Circle> circles=new ArrayList<Circle>();
 
+        public PaintModel() {
+            newLine();
+        }
 
         public void addPoint(Point p){
-                this.points.add(p);
-                this.setChanged();
-                this.notifyObservers();
+            points.getLast().add(p);
+            this.setChanged();
+            this.notifyObservers();
         }
-        public ArrayList<Point> getPoints(){
+        public void newLine(){
+            points.add(new ArrayList<Point>());
+        }
+        public ArrayList<ArrayList<Point>> getPoints(){
                 return points;
         }
 

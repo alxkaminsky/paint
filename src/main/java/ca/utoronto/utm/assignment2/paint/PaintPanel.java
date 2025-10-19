@@ -73,6 +73,9 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                 if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
                     this.model.addPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
                 }
+                if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
+                    model.newLine();
+                }
                 break;
             case "Polyline": break;
             default: break;
@@ -84,13 +87,16 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                 GraphicsContext g2d = this.getGraphicsContext2D();
                 g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
                 // Draw Lines
-                ArrayList<Point> points = this.model.getPoints();
+                ArrayList<ArrayList<Point>> lines = this.model.getPoints();
 
                 g2d.setFill(Color.RED);
-                for(int i=0;i<points.size()-1; i++){
-                        Point p1=points.get(i);
-                        Point p2=points.get(i+1);
+
+                for(ArrayList<Point> line: lines){
+                    for(int i=0;i<line.size()-1; i++) {
+                        Point p1=line.get(i);
+                        Point p2=line.get(i+1);
                         g2d.strokeLine(p1.x,p1.y,p2.x,p2.y);
+                    }
                 }
 
                 // Draw Circles
