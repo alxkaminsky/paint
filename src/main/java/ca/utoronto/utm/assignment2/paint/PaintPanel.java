@@ -15,6 +15,7 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
     private PaintModel model;
 
     public Circle circle; // This is VERY UGLY, should somehow fix this!!
+    public Rectangle rectangle;
 
     public PaintPanel(PaintModel model) {
         super(300, 300);
@@ -67,7 +68,27 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                 }
 
                 break;
-            case "Rectangle": break;
+            case "Rectangle":
+                if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
+                    System.out.println("Started Rectangle");
+                    Point start_point = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    this.rectangle=new Rectangle(start_point, start_point);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){}
+
+                else if (mouseEventType.equals(MouseEvent.MOUSE_MOVED)){}
+
+                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)){
+                    if(this.rectangle!=null){
+                        Point endPoint =  new Point(mouseEvent.getX(), mouseEvent.getY());
+                        this.rectangle.setEndPoint(endPoint);
+                        if (this.rectangle.getHeight() > 0 && this.rectangle.getWidth() > 0){
+                            this.model.addRectangle(this.rectangle);
+                            System.out.println("Added Rectangle");
+                        }
+                        this.rectangle=null;
+                    }
+                }
             case "Square": break;
             case "Squiggle":
                 if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
@@ -108,6 +129,10 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                         double x = c.getCentre().x - radius;
                         double y = c.getCentre().y - radius;
                         g2d.fillOval(x, y, 2 * radius, 2 * radius);
+                }
+
+                for(Rectangle r: this.model.getRectangles()){
+                   g2d.fillRect(r.getLeftCornerX(), r.getLeftCornerY(), r.getWidth(), r.getHeight());
                 }
     }
 }
