@@ -6,6 +6,7 @@ import java.util.Observable;
 public class PaintModel extends Observable {
         private ArrayList<Point> points=new ArrayList<Point>();
         private ArrayList<Circle> circles=new ArrayList<Circle>();
+        private Circle visualiserCircle=null;
 
 
         public void addPoint(Point p){
@@ -24,5 +25,13 @@ public class PaintModel extends Observable {
         }
         public ArrayList<Circle> getCircles(){
                 return circles;
+        }
+        public void addVisualiserCircle(Circle c){
+            this.visualiserCircle = c;
+            this.setChanged();
+            this.notifyObservers();
+        }
+        public Circle getVisualiserCircle(){
+            return visualiserCircle;
         }
 }
