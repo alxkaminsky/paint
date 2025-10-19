@@ -25,7 +25,7 @@ ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
 TYPE     : BUG BUG1.005 : UTORID : kamins64
 NAME     : Squiggle is broken
 PRIORITY : 1
-ESTIMATE : 6 hours    ACTUAL :
+ESTIMATE : 6 hours    ACTUAL : 2 hours
 ISSUE    : Squiggles are connected to each other by a straight line. Each drag
                    of the mouse should be a separate squiggle. Possibly
            the issue is with the representation of the squiggles in the Model.
