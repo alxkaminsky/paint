@@ -17,7 +17,6 @@ public class Paint extends Application {
         public void start(Stage stage) throws Exception {
 
                 this.model = new PaintModel();
-
                 // View + Controller
                 this.view = new View(model, stage);
         }

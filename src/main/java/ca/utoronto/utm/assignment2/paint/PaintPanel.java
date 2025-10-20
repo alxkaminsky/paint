@@ -49,31 +49,25 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Circle");
                     Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    this.circle=new Circle(centre, 0);
+                    this.circle=new Circle(centre, centre);
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
                     if (this.circle != null) {
-                        double deltaX = this.circle.getCentre().x-mouseEvent.getX();
-                        double deltaY = this.circle.getCentre().y-mouseEvent.getY();
-                        double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-                        this.circle.setRadius(radius);
+                        Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
+                        circle.setEnd(end);
                         this.model.setVisualiserCircle(this.circle); //Updating visualiser, calling update()
                     }
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_MOVED)) {
 
                 } else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
                     if(this.circle!=null){
-                                // Problematic notion of radius and centre!!
-                                double deltaX = this.circle.getCentre().x-mouseEvent.getX();
-                                double deltaY = this.circle.getCentre().y-mouseEvent.getY();
-                                double radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-                                this.circle.setRadius(radius);
-                                this.model.addCircle(this.circle);
-                                System.out.println("Added Circle");
-                                this.circle=null;
-                                this.model.setVisualiserCircle(null);
+                            Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
+                            circle.setEnd(end);
+                            this.model.addCircle(this.circle);
+                            System.out.println("Added Circle");
+                            this.circle=null;
+                            this.model.setVisualiserCircle(null);
                         }
                 }
-
                 break;
             case "Rectangle":
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {

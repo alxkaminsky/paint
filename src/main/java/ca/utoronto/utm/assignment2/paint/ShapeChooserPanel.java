@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.Node;
+import javafx.scene.paint.Color;
 
 public class ShapeChooserPanel extends GridPane implements EventHandler<ActionEvent> {
 
@@ -64,24 +66,23 @@ public class ShapeChooserPanel extends GridPane implements EventHandler<ActionEv
                 polylineButton.setOnAction(this);
                 polylineButton.setUserData("Polyline");
 
-//                String[] buttonLabels = { "Circle", "Rectangle", "Square", "Squiggle", "Polyline" };
-//
-//                int row = 0;
-//                for (String label : buttonLabels) {
-//                        Button button = new Button(label);
-//                        button.setMinWidth(100);
-//                        this.add(button, 0, row);
-//                        row++;
-//                        button.setOnAction(this);
-//                }
+                ((Button) this.getChildren().get(0)).setStyle("-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;");
         }
 
         @Override
         public void handle(ActionEvent event) {
-                Button button = (Button) event.getSource();
-                String command = (String) button.getUserData();
-                view.setMode(command);
-                System.out.println(command);
+            Button clicked = (Button) event.getSource();
+            String command = (String) clicked.getUserData();
+
+            view.setMode(command);
+            System.out.println(command);
+
+            for (Node node : this.getChildren()) {
+                if (node instanceof Button b) {
+                    b.setStyle("");
+                }
+            }
+            clicked.setStyle("-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;");
         }
 }
 
