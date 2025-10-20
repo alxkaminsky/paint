@@ -10,80 +10,50 @@ import javafx.scene.paint.Color;
 
 public class ShapeChooserPanel extends GridPane implements EventHandler<ActionEvent> {
 
-        private View view;
+    private View view;
+    private final String HIGHLIGHT_STYLE = "-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;";
 
-        public ShapeChooserPanel(View view) {
+    public ShapeChooserPanel(View view) {
 
-                this.view = view;
-
-                Button circleButton = new Button();
-                Image circleIcon = new Image(getClass().getResourceAsStream("/icons/circle.png"));
-                ImageView circleIconView = new ImageView(circleIcon);
-                circleIconView.setFitWidth(50);
-                circleIconView.setFitHeight(50);
-                circleButton.setGraphic(circleIconView);
-                this.add(circleButton, 0, 0);
-                circleButton.setOnAction(this);
-                circleButton.setUserData("Circle");
-
-                Button rectangleButton = new Button();
-                Image rectangleIcon = new Image(getClass().getResourceAsStream("/icons/rectangle.png"));
-                ImageView rectangleIconView = new ImageView(rectangleIcon);
-                rectangleIconView.setFitWidth(50);
-                rectangleIconView.setFitHeight(50);
-                rectangleButton.setGraphic(rectangleIconView);
-                this.add(rectangleButton, 0, 1);
-                rectangleButton.setOnAction(this);
-                rectangleButton.setUserData("Rectangle");
-
-                Button squareButton = new Button();
-                Image squareIcon = new Image(getClass().getResourceAsStream("/icons/square.png"));
-                ImageView squareIconView = new ImageView(squareIcon);
-                squareIconView.setFitWidth(50);
-                squareIconView.setFitHeight(50);
-                squareButton.setGraphic(squareIconView);
-                this.add(squareButton, 0, 2);
-                squareButton.setOnAction(this);
-                squareButton.setUserData("Square");
-
-                Button squiggleButton = new Button();
-                Image squiggleIcon = new Image(getClass().getResourceAsStream("/icons/squiggle.png"));
-                ImageView squiggleIconView = new ImageView(squiggleIcon);
-                squiggleIconView.setFitWidth(50);
-                squiggleIconView.setFitHeight(50);
-                squiggleButton.setGraphic(squiggleIconView);
-                this.add(squiggleButton, 0, 3);
-                squiggleButton.setOnAction(this);
-                squiggleButton.setUserData("Squiggle");
-
-                Button polylineButton = new Button();
-                Image polylineIcon = new Image(getClass().getResourceAsStream("/icons/polyline.png"));
-                ImageView polylineIconView = new ImageView(polylineIcon);
-                polylineIconView.setFitWidth(50);
-                polylineIconView.setFitHeight(50);
-                polylineButton.setGraphic(polylineIconView);
-                this.add(polylineButton, 0, 4);
-                polylineButton.setOnAction(this);
-                polylineButton.setUserData("Polyline");
-
-                ((Button) this.getChildren().get(0)).setStyle("-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;");
+        this.view = view;
+        String[] shapeNames = {"Circle", "Rectangle", "Square", "Squiggle", "Polyline"};
+        for (int i = 0; i < shapeNames.length; i++) {
+            createShapeButton(shapeNames[i], i);
         }
+        getChildren().getFirst().setStyle(HIGHLIGHT_STYLE);
+    }
 
-        @Override
-        public void handle(ActionEvent event) {
-            Button clicked = (Button) event.getSource();
-            String command = (String) clicked.getUserData();
+    private void createShapeButton(String shapeName, int gridRow) {
+        Button button = new Button();
 
-            view.setMode(command);
-            System.out.println(command);
+        // Construct the path to the icon dynamically
+        String iconPath = "/icons/" + shapeName.toLowerCase() + ".png";
+        Image icon = new Image(getClass().getResourceAsStream(iconPath));
+        ImageView iconView = new ImageView(icon);
 
-            for (Node node : this.getChildren()) {
-                if (node instanceof Button b) {
-                    b.setStyle("");
-                }
+        // Apply all the common settings
+        iconView.setFitWidth(50);
+        iconView.setFitHeight(50);
+        button.setGraphic(iconView);
+        button.setUserData(shapeName);
+        button.setOnAction(this);
+
+        this.add(button, 0, gridRow);
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+        Button clicked = (Button) event.getSource();
+        String command = (String) clicked.getUserData();
+
+        view.setMode(command);
+        System.out.println(command);
+
+        for (Node node : getChildren()) {
+            if (node instanceof Button b) {
+                b.setStyle("");
             }
-            clicked.setStyle("-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;");
         }
+        clicked.setStyle(HIGHLIGHT_STYLE);
+    }
 }
-
-

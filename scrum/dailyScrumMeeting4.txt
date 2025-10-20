@@ -13,24 +13,24 @@ Oct 16,2025
 	Obstacles I face:
 
 Oct 17,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Formed group
+	What I will do today: Organize group meeting for planning sprint1
+	Obstacles I face: Finding what platform to use for communication
 
 Oct 18,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Organized group meeting for planning of sprint1
+	What I will do today: Patch BUG1.006
+	Obstacles I face: Figuring out optimal patch method for BUG1.006
 
 Oct 19,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Patched BUG1.006
+	What I will do today: Complete US1.004 and merge all changes with the group
+	Obstacles I face: Resolving all merge conflicts
 
 Oct 20,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Completed US1.004 and merged everything to master
+	What I will do today: Code cleanup, prep sprint1 for submission. There is nothing more to do for this sprint.
+	Obstacles I face: Finding the optimal, clean, solutions
 
 Oct 21,2025
 	What I did yesterday:

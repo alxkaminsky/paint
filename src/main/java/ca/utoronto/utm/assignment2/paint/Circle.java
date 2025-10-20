@@ -20,7 +20,7 @@ public class Circle {
                 return radius;
         }
 
-        public void setEnd(Point end){
+        public void setEndPoint(Point end){
             this.end = end;
             calculateRadius();
         }

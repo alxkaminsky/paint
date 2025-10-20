@@ -20,20 +20,20 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
     public PaintPanel(PaintModel model) {
         super(300, 300);
         this.model=model;
-        this.model.addObserver(this);
+        model.addObserver(this);
 
-        this.addEventHandler(MouseEvent.MOUSE_PRESSED, this);
-        this.addEventHandler(MouseEvent.MOUSE_RELEASED, this);
-        this.addEventHandler(MouseEvent.MOUSE_MOVED, this);
-        this.addEventHandler(MouseEvent.MOUSE_CLICKED, this);
-        this.addEventHandler(MouseEvent.MOUSE_DRAGGED, this);
+        addEventHandler(MouseEvent.MOUSE_PRESSED, this);
+        addEventHandler(MouseEvent.MOUSE_RELEASED, this);
+        addEventHandler(MouseEvent.MOUSE_MOVED, this);
+        addEventHandler(MouseEvent.MOUSE_CLICKED, this);
+        addEventHandler(MouseEvent.MOUSE_DRAGGED, this);
     }
     /**
      *  Controller aspect of this
      */
     public void setMode(String mode){
         this.mode=mode;
-        System.out.println(this.mode);
+        System.out.println(mode);
     }
 
     @Override
@@ -44,57 +44,48 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
         EventType<MouseEvent> mouseEventType = (EventType<MouseEvent>) mouseEvent.getEventType();
 
         // "Circle", "Rectangle", "Square", "Squiggle", "Polyline"
-        switch(this.mode){
+        switch(mode){
             case "Circle":
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Circle");
                     Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    this.circle=new Circle(centre, centre);
-                } else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
-                    if (this.circle != null) {
-                        Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
-                        circle.setEnd(end);
-                        this.model.setVisualiserCircle(this.circle); //Updating visualiser, calling update()
+                    circle=new Circle(centre, centre);
+                    model.setPreviewCircle(circle);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
+                    Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    model.updatePreviewCircle(end);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
+                    if (circle != null) {
+                        model.addCircle(circle);
+                        System.out.println("Added Circle");
+                        model.setPreviewCircle(null);
                     }
-                } else if (mouseEventType.equals(MouseEvent.MOUSE_MOVED)) {
-
-                } else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
-                    if(this.circle!=null){
-                            Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
-                            circle.setEnd(end);
-                            this.model.addCircle(this.circle);
-                            System.out.println("Added Circle");
-                            this.circle=null;
-                            this.model.setVisualiserCircle(null);
-                        }
                 }
                 break;
             case "Rectangle":
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Rectangle");
-                    Point start_point = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    this.rectangle=new Rectangle(start_point, start_point);
-                    this.model.setPreviewRectangle(this.rectangle);
+                    Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    rectangle=new Rectangle(startPoint, startPoint);
+                    model.setPreviewRectangle(rectangle);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){
-                     this.model.updatePreviewRectangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                     model.updatePreviewRectangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)){
-                    if(this.rectangle!=null){
-                        Point endPoint =  new Point(mouseEvent.getX(), mouseEvent.getY());
-                        this.rectangle.setEndPoint(endPoint);
-                        if (this.rectangle.getHeight() > 0 && this.rectangle.getWidth() > 0){
-                            this.model.addRectangle(this.rectangle);
-                            System.out.println("Added Rectangle");
-                        }
-                        this.rectangle=null;
-                        this.model.setPreviewRectangle(null);
+                    if(rectangle!=null){
+                        model.addRectangle(rectangle);
+                        System.out.println("Added Rectangle");
+                        model.setPreviewRectangle(null);
                     }
                 }
+                break;
             case "Square": break;
             case "Squiggle":
                 if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
-                    this.model.addPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                    model.addPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
                 }
                 if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
                     model.newLine();
@@ -107,13 +98,17 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
     @Override
     public void update(Observable o, Object arg) {
 
-        GraphicsContext g2d = this.getGraphicsContext2D();
-        g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-        // Draw Lines
-        ArrayList<ArrayList<Point>> lines = this.model.getPoints();
+        GraphicsContext g2d = getGraphicsContext2D();
+        g2d.clearRect(0, 0, getWidth(), getHeight());
+
+        ArrayList<ArrayList<Point>> lines = model.getPoints();
+        ArrayList<Circle> circles = model.getCircles();
+        ArrayList<Rectangle> rectangles = model.getRectangles();
+        Rectangle previewRect = model.getPreviewRectangle();
+        Circle previewCirc = model.getPreviewCircle();
+
 
         g2d.setFill(Color.RED);
-
         for(ArrayList<Point> line: lines){
             for(int i=0;i<line.size()-1; i++) {
                 Point p1=line.get(i);
@@ -122,11 +117,6 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
             }
         }
 
-        // Draw Circles
-        ArrayList<Circle> circles = this.model.getCircles();
-        ArrayList<Rectangle> rectangles = this.model.getRectangles();
-        Rectangle preview = this.model.getPreviewRectangle();
-
         g2d.setFill(Color.GREEN);
         for(Circle c: circles){
             double radius = c.getRadius();
@@ -134,14 +124,10 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
             double y = c.getCentre().y - radius;
             g2d.fillOval(x, y, 2 * radius, 2 * radius);
         }
-
-        // Draw Visualizer Circle
-        Circle vis = this.model.getVisualiserCircle();
-
-        if (vis != null) {
-            double radius = vis.getRadius();
-            double x = vis.getCentre().x - radius;
-            double y = vis.getCentre().y - radius;
+        if (previewCirc != null) {
+            double radius = previewCirc.getRadius();
+            double x = previewCirc.getCentre().x - radius;
+            double y = previewCirc.getCentre().y - radius;
             g2d.strokeOval(x, y,2*radius, 2*radius);
             g2d.setFill(Color.rgb(0, 255, 0, 0.25));
             g2d.fillOval(x, y, 2 * radius, 2 * radius);
@@ -151,12 +137,11 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
         for(Rectangle r: rectangles){
             g2d.fillRect(r.getLeftCornerX(), r.getLeftCornerY(), r.getWidth(), r.getHeight());
         }
+        if(previewRect !=null){
+            g2d.strokeRect(previewRect.getLeftCornerX(), previewRect.getLeftCornerY(), previewRect.getWidth(), previewRect.getHeight());
 
-        if(preview!=null){
-            g2d.strokeRect(preview.getLeftCornerX(), preview.getLeftCornerY(), preview.getWidth(), preview.getHeight());
-
-            g2d.setFill(Color.rgb(0, 0, 225, 0.25));
-            g2d.fillRect(preview.getLeftCornerX(), preview.getLeftCornerY(), preview.getWidth(), preview.getHeight());
+            g2d.setFill(Color.rgb(0, 0, 255, 0.25));
+            g2d.fillRect(previewRect.getLeftCornerX(), previewRect.getLeftCornerY(), previewRect.getWidth(), previewRect.getHeight());
         }
     }
 }

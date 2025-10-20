@@ -32,7 +32,6 @@ public class Rectangle {
 
     public double getWidth(){return width;}
     public double getHeight(){return height;}
-
     public double getLeftCornerX(){return upLeftCorner.x;}
     public double getLeftCornerY(){return upLeftCorner.y;}
 

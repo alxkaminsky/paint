@@ -9,14 +9,14 @@
 TYPE     : BUG BUG1.001 : UTORID : nguy3971
 NAME     : Icons instead of text for drawing mode selection
 PRIORITY : 1 
-ESTIMATE : 2 hours   ACTUAL :
+ESTIMATE : 4 hours   ACTUAL : 4 hours
 ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : BUG BUG1.002 : UTORID : suleym11
 NAME     : Drawing selection mode not indicated
 PRIORITY : 1
-ESTIMATE : 1 hour   ACTUAL :
+ESTIMATE : 1 hour   ACTUAL : 1 hour
 ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
            is currently selected. Is there a way
            to highlight the currently selected mode?
@@ -57,7 +57,7 @@ SO THAT  : I can see the circle I am about to build on release of the mouse
 TYPE     : USER STORY US1.003 : UTORID : suleym11
 NAME     : Draw Rectangle
 PRIORITY : 2
-ESTIMATE : 4 hours    ACTUAL :
+ESTIMATE : 4 hours    ACTUAL : 3 hours
 AS A     : user
 I WANT   : To click on one corner of a rectangle, drag, and release to
                    specify two corners of a rectangle to be drawn in the current style.

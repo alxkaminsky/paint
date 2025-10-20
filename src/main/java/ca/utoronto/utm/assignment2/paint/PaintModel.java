@@ -8,7 +8,7 @@ public class PaintModel extends Observable {
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
         private Rectangle previewRectangle;
-        private Circle visualiserCircle=null;
+        private Circle previewCircle;
 
         public PaintModel() {
             newLine();
@@ -16,47 +16,56 @@ public class PaintModel extends Observable {
 
         public void addPoint(Point p){
             points.getLast().add(p);
-            this.setChanged();
-            this.notifyObservers();
+            setChanged();
+            notifyObservers();
         }
-        public void newLine(){
-            points.add(new ArrayList<Point>());
-        }
+        public void newLine(){points.add(new ArrayList<Point>());}
+
         public ArrayList<ArrayList<Point>> getPoints(){
                 return points;
         }
 
         public void addCircle(Circle c){
-                this.circles.add(c);
-                this.setChanged();
-                this.notifyObservers();
+                circles.add(c);
+                setChanged();
+                notifyObservers();
         }
 
         public ArrayList<Circle> getCircles(){return circles;}
-        // getter for Visualiser Circle
-        public Circle getVisualiserCircle(){
-            return visualiserCircle;
+
+        public Circle getPreviewCircle(){return previewCircle;}
+
+        public void setPreviewCircle(Circle c){
+            previewCircle = c;
+            setChanged();
+            notifyObservers();
         }
-        public void setVisualiserCircle(Circle c){
-            this.visualiserCircle=c;
-            this.setChanged();
-            this.notifyObservers();
+
+        public void updatePreviewCircle(Point endPoint){
+            previewCircle.setEndPoint(endPoint);
+            setChanged();
+            notifyObservers();
         }
 
         public void addRectangle(Rectangle r){
-            this.rectangles.add(r);
-            this.setChanged();
-            this.notifyObservers();
+            rectangles.add(r);
+            setChanged();
+            notifyObservers();
         }
 
         public ArrayList<Rectangle> getRectangles(){return rectangles;}
+
         public Rectangle getPreviewRectangle(){return previewRectangle;}
-        public void setPreviewRectangle(Rectangle r){this.previewRectangle=r;}
+
+        public void setPreviewRectangle(Rectangle r){
+            previewRectangle=r;
+            setChanged();
+            notifyObservers();
+        }
+
         public void updatePreviewRectangle(Point endPoint) {
-            if (this.previewRectangle != null) {
-                this.previewRectangle.setEndPoint(endPoint);
-                this.setChanged();
-                this.notifyObservers();
-            }
+            previewRectangle.setEndPoint(endPoint);
+            setChanged();
+            notifyObservers();
         }
 }
