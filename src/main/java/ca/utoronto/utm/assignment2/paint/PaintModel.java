@@ -8,6 +8,7 @@ public class PaintModel extends Observable {
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
         private Rectangle previewRectangle;
+        private Circle visualiserCircle=null;
 
         public PaintModel() {
             newLine();
@@ -31,9 +32,16 @@ public class PaintModel extends Observable {
                 this.notifyObservers();
         }
 
-        public ArrayList<Circle> getCircles(){
-        return circles;
-    }
+        public ArrayList<Circle> getCircles(){return circles;}
+        // getter for Visualiser Circle
+        public Circle getVisualiserCircle(){
+            return visualiserCircle;
+        }
+        public void setVisualiserCircle(Circle c){
+            this.visualiserCircle=c;
+            this.setChanged();
+            this.notifyObservers();
+        }
 
         public void addRectangle(Rectangle r){
             this.rectangles.add(r);
@@ -51,4 +59,4 @@ public class PaintModel extends Observable {
                 this.notifyObservers();
             }
         }
-    }
+}
