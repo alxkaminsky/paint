@@ -112,6 +112,7 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                 }
 
                 // Draw Visualizer Circle
+                // Edit to reflect phammi36 in master log
                 Circle vis = this.model.getVisualiserCircle();
 
                 if (vis != null) {
