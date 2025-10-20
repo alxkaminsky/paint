@@ -7,6 +7,7 @@ public class PaintModel extends Observable {
         private ArrayList<ArrayList<Point>> points=new ArrayList<ArrayList<Point>>();
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+        private Rectangle previewRectangle;
 
         public PaintModel() {
             newLine();
@@ -41,4 +42,13 @@ public class PaintModel extends Observable {
         }
 
         public ArrayList<Rectangle> getRectangles(){return rectangles;}
-}
+        public Rectangle getPreviewRectangle(){return previewRectangle;}
+        public void setPreviewRectangle(Rectangle r){this.previewRectangle=r;}
+        public void updatePreviewRectangle(Point endPoint) {
+            if (this.previewRectangle != null) {
+                this.previewRectangle.setEndPoint(endPoint);
+                this.setChanged();
+                this.notifyObservers();
+            }
+        }
+    }

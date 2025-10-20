@@ -3,45 +3,45 @@ package ca.utoronto.utm.assignment2.paint;
 public class Rectangle {
     private Point startPoint;
     private Point endPoint;
-    private double leftCornerX;
-    private double leftCornerY;
+    private Point upLeftCorner;
     private double width;
     private double height;
 
     public Rectangle(Point start, Point end) {
-        this.startPoint = start;
-        this.endPoint = end;
-        this.width = Math.abs(this.endPoint.x - this.startPoint.x);
-        this.height = Math.abs(this.endPoint.y - this.startPoint.y);
-        this.leftCornerX = Math.min(this.startPoint.x, this.endPoint.x);
-        this.leftCornerY = Math.min(this.startPoint.y, this.endPoint.y);
+        startPoint = start;
+        endPoint = end;
+        width = Math.abs(endPoint.x - startPoint.x);
+        height = Math.abs(endPoint.y - startPoint.y);
+        upLeftCorner = new Point(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y));
     }
 
 
     public void setStartPoint(Point start) {
-        this.startPoint = start;
+        startPoint = start;
         updateHeight();
         updateWidth();
     }
     public void setEndPoint(Point end) {
-        this.endPoint = end;
+        endPoint = end;
         updateWidth();
         updateHeight();
     }
 
     private void updateHeight(){
-        this.height = Math.abs(this.endPoint.y - this.startPoint.y);
-        this.leftCornerY = Math.min(this.startPoint.y, this.endPoint.y);
+        height = Math.abs(endPoint.y - startPoint.y);
+        double currX = upLeftCorner.x;
+        upLeftCorner = new Point(currX, Math.min(startPoint.y, endPoint.y));
     }
 
     private void updateWidth(){
-        this.width = Math.abs(this.endPoint.x - this.startPoint.x);
-        this.leftCornerX = Math.min(this.startPoint.x, this.endPoint.x);
+        width = Math.abs(endPoint.x - startPoint.x);
+        double currY = upLeftCorner.y;
+        upLeftCorner = new Point(Math.min(startPoint.x, endPoint.x), currY);
     }
 
-    public double getWidth(){return this.width;}
-    public double getHeight(){return this.height;}
+    public double getWidth(){return width;}
+    public double getHeight(){return height;}
 
-    public double getLeftCornerX(){return this.leftCornerX;}
-    public double getLeftCornerY(){return this.leftCornerY;}
+    public double getLeftCornerX(){return upLeftCorner.x;}
+    public double getLeftCornerY(){return upLeftCorner.y;}
 }
