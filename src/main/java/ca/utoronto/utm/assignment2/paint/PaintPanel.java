@@ -111,7 +111,7 @@ public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Obse
                         g2d.fillOval(x, y, 2 * radius, 2 * radius);
                 }
 
-                // Draw Visualiser Circle
+                // Draw Visualizer Circle
                 Circle vis = this.model.getVisualiserCircle();
 
                 if (vis != null) {

@@ -31,6 +31,7 @@ public class PaintModel extends Observable {
             this.setChanged();
             this.notifyObservers();
         }
+        // getter for Visualiser Circle
         public Circle getVisualiserCircle(){
             return visualiserCircle;
         }
