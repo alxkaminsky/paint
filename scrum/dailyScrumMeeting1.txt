@@ -13,34 +13,38 @@ Oct 16,2025
 	Obstacles I face:
 
 Oct 17,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Joined a repo and connected the members, created members.txt
+	What I will do today: Agreeing with members to join a conference call to divide task and estimate tasks' time
+	Obstacles I face: Nothing. They are all my great friends. I enjoyed and appreciated the fact that I can work with them.
 
 Oct 18,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Divided the tasks amongst members
+	What I will do today: Get a good grasp of javafx and MVC
+	Obstacles I face: A lot of extends and implements from Java and not dev written classes, so a lot of reading
 
 Oct 19,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Get familiar with what I have to deal with
+	What I will do today: Get a good grasp of the project architecture, define M, V, and C.
+	Obstacles I face: It took me a while
 
 Oct 20,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Started looking at the code
+	What I will do today: Patched US1.002, later I joined the rest to discuss optimal solution for this US. We all
+	agreed it would be the objectively most challenging task by far
+	Obstacles I face: Merging the code proved to be very difficult. Upon reviewing the git log I didn't even see credit
+	for my part. It was because Alex merged my code into his local main, then his main with the remote main.
 
 Oct 21,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Patched US1.002 and attempted to merge
+	What I will do today: Fix the merge so my credit will be reflected on master log. I made a small change by adding a
+	comment
+	Obstacles I face: Problem with merge again. We accidentaly tracked the cache files, which means I couldn't pull or
+	merge without untracking and deleting them first.
 
 Oct 22,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Fixed the problematic merge problem
+	What I will do today: Reviewed the code base one last time as Alex and Max offered to clean up the code base
+	Obstacles I face: Nothing. My friends did a great job.
 
 Oct 23,2025
 	What I did yesterday:
