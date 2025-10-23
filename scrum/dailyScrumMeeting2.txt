@@ -14,33 +14,33 @@ Oct 16,2025
 
 Oct 17,2025
 	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I will do today:Formed a group and had first group call
+	Obstacles I face:Start familiriazing with the assignment
 
 Oct 18,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:group call
+	What I will do today:will assign a user story and a bug
+	Obstacles I face:none
 
 Oct 19,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:saw the task
+	What I will do today:start working on the user story
+	Obstacles I face:rectangle class from the user story
 
 Oct 20,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:rectanle class
+	What I will do today:start working on the bug
+	Obstacles I face:None
 
 Oct 21,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:started working on the bug
+	What I will do today:complete the bug
+	Obstacles I face:merging
 
 Oct 22,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:merged branches
+	What I will do today:review the code for clarity
+	Obstacles I face:None
 
 Oct 23,2025
 	What I did yesterday:
