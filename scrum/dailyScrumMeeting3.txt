@@ -13,29 +13,30 @@ Oct 16,2025
 	Obstacles I face:
 
 Oct 17,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Sign up the group on course webpage
+	What I will do today: Attending the first meeting, assign and receive BUG/US for sprint 1
+	Obstacles I face: Choose the social media platform that we can use to communicate
 
 Oct 18,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Attending the first meeting, assign and receive BUG/US for sprint 1
+	What I will do today: Received and start working on my BUG/US
+	Obstacles I face: Estimating the completion duration for each task and assign the
+                      workload to each member equally
 
 Oct 19,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Received and start working on my BUG/US
+	What I will do today: Keep working on my BUG/US
+	Obstacles I face: How to replace text button to icon button
 
 Oct 20,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Keep working on my BUG/US
+	What I will do today: Import icon and make it functional
+	Obstacles I face: Figure it out how to import icon and make it clickable
 
 Oct 21,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Import icon and make it functional
+	What I will do today: Complete BUG1.001 and merged with remote repo and I'm done with sprint 1
+	Obstacles I face: How to merge without creating conflict
 
 Oct 22,2025
 	What I did yesterday:
