@@ -14,40 +14,71 @@
 # Please change the status of the user story/bug to 
 #     NotStarted,InProgress, Incomplete,Complete
 # as appropriate.
-
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.002 : UTORID : phammi36
-NAME     : Draw Circle Feedback
-PRIORITY : 2 
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL : 5 hours
+TYPE     : USER STORY US2.001 : UTORID :
+NAME     : Draw Square
+PRIORITY : 2
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
 AS A     : user
-I WANT   : As a user is specifying a Circle, during the drag, a 'current'
-           circle should be on display. As the user drags, the 'current'
-           circle changes in real time so that a circle is drawn with
-           centre at users initial circle click, with radius out to
-           the current dragged mouse position.
-SO THAT  : I can see the circle I am about to build on release of the mouse
+I WANT   : To click on one corner of a square, drag, and release to
+		   specify two corners of a square to be drawn in the current style.
+SO THAT  : I can add squares to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.002 :
+NAME     : Draw Triangle
+PRIORITY : 2
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+AS A     : user
+I WANT   : To click on an initial (absolute) point, drag, and release to
+		   specify two points of an equilateral triangle to be drawn in the current style.
+SO THAT  : I can add triangles to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.003 :
+NAME     : Draw Oval
+PRIORITY : 1
+ESTIMATE : 2 hours ACTUAL : 2 hours
+AS A     : user
+I WANT   : To click the center of the oval, drag, and release to specify
+           a circle to be drawn in the current style.
+SO THAT  : I can add ovals to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.004 : nguy3971
+NAME     : Draw Square Feedback
+PRIORITY : 2
+ESTIMATE : 3 hours  ACTUAL :
+AS A     : user
+I WANT   : As a user is specifying a Square, during the drag, a 'current'
+           square should be on display. As the user drags, the 'current'
+           square changes in real time so that a square is drawn reflects the
+           square that would have been made if the user releases the mouse at
+           the given instant
+SO THAT  : I can see the square I am about to build on release of the mouse
            button.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.003 : UTORID : NotStarted 
-NAME     : Draw Rectangle
+TYPE     : USER STORY US2.005 : phammi36
+NAME     : Draw Triangle Feedback
 PRIORITY : 2
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 3 hours  ACTUAL :
 AS A     : user
-I WANT   : To click on one corner of a rectangle, drag, and release to 
-		   specify two corners of a rectangle to be drawn in the current style.
-SO THAT  : I can add rectangles to my canvas
+I WANT   : Similar to US2.004, a 'current' triangle should be drawn concurrent
+           in real time to input.
+SO THAT  : I can see the triangle I am about to build on release of the mouse button.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US1.004 : UTORID : NotStarted 
-NAME     : Draw Rectangle Feedback
+TYPE     : USER STORY US2.006 : suleym11
+NAME     : Draw Oval Feedback
 PRIORITY : 2
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ESTIMATE : 3 hours ACTUAL :
 AS A     : user
-I WANT   : Similarly to Draw Circle Feedback, display the rectangle in mid construction.
-SO THAT  : I can see the rectangle I am about to build on release of the mouse button.
+I WANT   : Similar to US2.004, a 'current' oval should be drawn concurrent
+           in real time to input
+SO THAT  : I can see the oval I am about to build on release of the mouse button.
 --------------------------------------------------------------------------
+
 --------------------------------------------------------------------------
 TYPE     : USER STORY US?.005 : UTORID : NotStarted 
 NAME     : Color selector
@@ -119,23 +150,21 @@ I WANT   : To be able to select the current line thickness, to be applied
 SO THAT  : 
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG1.001 : UTORID : NotStarted 
-NAME     : Icons instead of text for drawing mode selection
-PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
-ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
+TYPE     : BUG BUG2.001 : phammi36
+NAME     : Triangle mode cannot be selected
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+ISSUE    :  Cannot select Triangle mode for drawing since the button is not present.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG1.002 : UTORID : NotStarted 
-NAME     : Drawing selection mode not indicated
-PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
-ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
-           is currently selected. Is there a way
-           to highlight the currently selected mode?
+TYPE     : BUG BUG2.002 : suleym11
+NAME     : Oval mode cannot be selected
+PRIORITY : 2
+ESTIMATE : 1 hour  ACTUAL :
+ISSUE    : Cannot select Oval mode for drawing since the button is not present.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG?.003 : UTORID : NotStarted 
+TYPE     : BUG BUG2.003 : UTORID : NotStarted
 NAME     : Architecture behind choosing selection mode is poor
 PRIORITY : 3
 ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
@@ -157,24 +186,6 @@ ISSUE    : Having a list of different types of drawable things in the
            Consider some design patterns, or change of responsibility
            here.
 --------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG1.005 : UTORID : NotStarted 
-NAME     : Squiggle is broken
-PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
-ISSUE    : Squiggles are connected to each other by a straight line. Each drag
-		   of the mouse should be a separate squiggle. Possibly
-           the issue is with the representation of the squiggles in the Model.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG1.006 : UTORID : NotStarted 
-NAME     : Circle drawing is broken
-PRIORITY : 1
-ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
-ISSUE    : The first click should specify the center of the circle, with
-           a drag for the radius. This is not the case in the current
-           implementation.
---------------------------------------------------------------------------
 
 # COMPLETED USER STORIES/BUGS BELOW ###########################################
 --------------------------------------------------------------------------
@@ -187,6 +198,74 @@ I WANT   : To click the center of the circle, drag, and release to specify
            a circle to be drawn in the current style.
 SO THAT  : I can add circles to my canvas
 --------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US1.002 : UTORID : phammi36 : Complete
+NAME     : Draw Circle Feedback
+PRIORITY : 2
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL : 5 hours
+AS A     : user
+I WANT   : As a user is specifying a Circle, during the drag, a 'current'
+           circle should be on display. As the user drags, the 'current'
+           circle changes in real time so that a circle is drawn with
+           centre at users initial circle click, with radius out to
+           the current dragged mouse position.
+SO THAT  : I can see the circle I am about to build on release of the mouse
+           button.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US1.003 : UTORID : suleym11 : Complete
+NAME     : Draw Rectangle
+PRIORITY : 2
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+AS A     : user
+I WANT   : To click on one corner of a rectangle, drag, and release to
+		   specify two corners of a rectangle to be drawn in the current style.
+SO THAT  : I can add rectangles to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US1.004 : UTORID : kamins64 : Complete
+NAME     : Draw Rectangle Feedback
+PRIORITY : 2
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+AS A     : user
+I WANT   : Similarly to Draw Circle Feedback, display the rectangle in mid construction.
+SO THAT  : I can see the rectangle I am about to build on release of the mouse button.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.001 : UTORID : nguy3971 : Complete
+NAME     : Icons instead of text for drawing mode selection
+PRIORITY : 1
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.002 : UTORID : suleym11 : Complete
+NAME     : Drawing selection mode not indicated
+PRIORITY : 1
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
+           is currently selected. Is there a way
+           to highlight the currently selected mode?
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.005 : UTORID : kamins64 : Complete
+NAME     : Squiggle is broken
+PRIORITY : 1
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ISSUE    : Squiggles are connected to each other by a straight line. Each drag
+		   of the mouse should be a separate squiggle. Possibly
+           the issue is with the representation of the squiggles in the Model.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.006 : UTORID : kamins64 : Complete
+NAME     : Circle drawing is broken
+PRIORITY : 1
+ESTIMATE : (1 hour, 2 hours, 4 hours, 1 day, 2 days, 4 days)    ACTUAL :
+ISSUE    : The first click should specify the center of the circle, with
+           a drag for the radius. This is not the case in the current
+           implementation.
+--------------------------------------------------------------------------
+
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
 

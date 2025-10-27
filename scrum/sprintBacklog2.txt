@@ -4,3 +4,92 @@
 
 # Sprint 2 Oct 24-Oct 30, 2025
 # Sprint 2 Backlog UserStories go below
+--------------------------------------------------------------------------
+TYPE     : BUG BUG2.001 : phammi36
+NAME     : Triangle mode cannot be selected
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+ISSUE    :  Cannot select Triangle mode for drawing since the button is not present.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG2.002 : suleym11
+NAME     : Oval mode cannot be selected
+PRIORITY : 2
+ESTIMATE : 1 hour  ACTUAL :
+ISSUE    : Cannot select Oval mode for drawing since the button is not present.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG2.003 : kamins64
+NAME     : Architecture behind choosing selection mode is poor
+PRIORITY : 3
+ESTIMATE : 6 hours   ACTUAL :
+ISSUE    : Code is not modular and is difficult to expand. Need a better
+           architecture behind selecting a drawing mode, and handling
+           the drawing events. Consider some design patterns here.
+           Refactor ShapeChooserPanel and PaintPanel to get rid of the
+           'if' blocks in the PaintPanel mouse event code.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.001 : nguy3971
+NAME     : Draw Square
+PRIORITY : 2
+ESTIMATE : 2 hours    ACTUAL :
+AS A     : user
+I WANT   : To click on one corner of a square, drag, and release to
+		   specify two corners of a square to be drawn in the current style.
+SO THAT  : I can add squares to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.002 : phammi36
+NAME     : Draw Triangle
+PRIORITY : 2
+ESTIMATE : 2 hours    ACTUAL :
+AS A     : user
+I WANT   : To click on an initial (absolute) point, drag, and release to
+		   specify two points of an equilateral triangle to be drawn in the current style.
+SO THAT  : I can add triangles to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.003 : suleym11
+NAME     : Draw Oval
+PRIORITY : 2
+ESTIMATE : 2 hours ACTUAL :
+AS A     : user
+I WANT   : To click the center of the oval, drag, and release to specify
+           a circle to be drawn in the current style.
+SO THAT  : I can add ovals to my canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.004 : nguy3971
+NAME     : Draw Square Feedback
+PRIORITY : 2
+ESTIMATE : 3 hours  ACTUAL :
+AS A     : user
+I WANT   : As a user is specifying a Square, during the drag, a 'current'
+           square should be on display. As the user drags, the 'current'
+           square changes in real time so that a square is drawn reflects the
+           square that would have been made if the user releases the mouse at
+           the given instant
+SO THAT  : I can see the square I am about to build on release of the mouse
+           button.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.005 : phammi36
+NAME     : Draw Triangle Feedback
+PRIORITY : 2
+ESTIMATE : 3 hours  ACTUAL :
+AS A     : user
+I WANT   : Similar to US2.004, a 'current' triangle should be drawn concurrent
+           in real time to input.
+SO THAT  : I can see the triangle I am about to build on release of the mouse button.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US2.006 : suleym11
+NAME     : Draw Oval Feedback
+PRIORITY : 2
+ESTIMATE : 3 hours ACTUAL :
+AS A     : user
+I WANT   : Similar to US2.004, a 'current' oval should be drawn concurrent
+           in real time to input
+SO THAT  : I can see the oval I am about to build on release of the mouse button.
+--------------------------------------------------------------------------
