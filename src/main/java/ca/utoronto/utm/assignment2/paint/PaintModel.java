@@ -86,7 +86,7 @@ public class PaintModel extends Observable {
         }
         
         public void updatePreviewRightTriangle(Point endPoint) {
-            previewRightTriangle.setEndPoint(endPoint);
+            previewRightTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
             setChanged();
             notifyObservers();
         }
