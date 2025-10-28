@@ -1,99 +1,28 @@
 package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.canvas.Canvas;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PaintPanel extends Canvas implements EventHandler<MouseEvent>, Observer {
-    private String mode="Circle";
-    private PaintModel model;
+public class PaintPanel extends Canvas implements Observer {
 
-    public Circle circle; // This is VERY UGLY, should somehow fix this!!
-    public Rectangle rectangle;
+    private PaintModel model;
+    private PaintPanelHandler paintPanelHandler;
 
     public PaintPanel(PaintModel model) {
         super(300, 300);
-        this.model=model;
+        this.model = model;
+        paintPanelHandler = new PaintPanelHandler(model);
         model.addObserver(this);
 
-        addEventHandler(MouseEvent.MOUSE_PRESSED, this);
-        addEventHandler(MouseEvent.MOUSE_RELEASED, this);
-        addEventHandler(MouseEvent.MOUSE_MOVED, this);
-        addEventHandler(MouseEvent.MOUSE_CLICKED, this);
-        addEventHandler(MouseEvent.MOUSE_DRAGGED, this);
-    }
-    /**
-     *  Controller aspect of this
-     */
-    public void setMode(String mode){
-        this.mode=mode;
-        System.out.println(mode);
-    }
-
-    @Override
-    public void handle(MouseEvent mouseEvent) {
-        // Later when we learn about inner classes...
-        // https://docs.oracle.com/javafx/2/events/DraggablePanelsExample.java.htm
-
-        EventType<MouseEvent> mouseEventType = (EventType<MouseEvent>) mouseEvent.getEventType();
-
-        // "Circle", "Rectangle", "Square", "Squiggle", "Polyline"
-        switch(mode){
-            case "Circle":
-                if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
-                    System.out.println("Started Circle");
-                    Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    circle=new Circle(centre, centre);
-                    model.setPreviewCircle(circle);
-                }
-                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
-                    Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    model.updatePreviewCircle(end);
-                }
-                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
-                    if (circle != null) {
-                        model.addCircle(circle);
-                        System.out.println("Added Circle");
-                        model.setPreviewCircle(null);
-                    }
-                }
-                break;
-            case "Rectangle":
-                if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
-                    System.out.println("Started Rectangle");
-                    Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    rectangle=new Rectangle(startPoint, startPoint);
-                    model.setPreviewRectangle(rectangle);
-                }
-                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){
-                     model.updatePreviewRectangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
-                }
-                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)){
-                    if(rectangle!=null){
-                        model.addRectangle(rectangle);
-                        System.out.println("Added Rectangle");
-                        model.setPreviewRectangle(null);
-                    }
-                }
-                break;
-            case "Square": break;
-            case "Squiggle":
-                if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
-                    model.addPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
-                }
-                if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
-                    model.newLine();
-                }
-                break;
-            case "Polyline": break;
-            default: break;
-        }
+        addEventHandler(MouseEvent.MOUSE_PRESSED, paintPanelHandler);
+        addEventHandler(MouseEvent.MOUSE_RELEASED, paintPanelHandler);
+        addEventHandler(MouseEvent.MOUSE_MOVED, paintPanelHandler);
+        addEventHandler(MouseEvent.MOUSE_CLICKED, paintPanelHandler);
+        addEventHandler(MouseEvent.MOUSE_DRAGGED, paintPanelHandler);
     }
     @Override
     public void update(Observable o, Object arg) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class PaintModel extends Observable {
+        private String mode = "Circle";
         private ArrayList<ArrayList<Point>> points=new ArrayList<ArrayList<Point>>();
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
@@ -13,6 +14,10 @@ public class PaintModel extends Observable {
         public PaintModel() {
             newLine();
         }
+
+        public String getMode() {return mode;}
+
+        public void setMode(String mode) {this.mode = mode;}
 
         public void addPoint(Point p){
             points.getLast().add(p);
