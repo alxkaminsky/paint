@@ -8,20 +8,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
-public class ShapeChooserPanel extends GridPane implements EventHandler<ActionEvent> {
+public class ShapeChooserPanel extends GridPane{
 
-    private View view;
-    private final String HIGHLIGHT_STYLE = "-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;";
+    private PaintModel model;
+    protected final String HIGHLIGHT_STYLE = "-fx-background-color: rgb(0,174,255,0.25); -fx-text-fill: white;";
 
-    public ShapeChooserPanel(View view) {
-
-        this.view = view;
+    public ShapeChooserPanel(PaintModel model) {
+        this.model = model;
         String[] shapeNames = {"Circle", "Rectangle", "Square", "Squiggle", "Polyline"};
         for (int i = 0; i < shapeNames.length; i++) {
             createShapeButton(shapeNames[i], i);
         }
         getChildren().getFirst().setStyle(HIGHLIGHT_STYLE);
     }
+
+    public PaintModel getModel() {return model;}
 
     private void createShapeButton(String shapeName, int gridRow) {
         Button button = new Button();
@@ -30,30 +31,15 @@ public class ShapeChooserPanel extends GridPane implements EventHandler<ActionEv
         String iconPath = "/icons/" + shapeName.toLowerCase() + ".png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
         ImageView iconView = new ImageView(icon);
+        ShapeChooserPanelHandler handler = new ShapeChooserPanelHandler(this);
 
         // Apply all the common settings
         iconView.setFitWidth(50);
         iconView.setFitHeight(50);
         button.setGraphic(iconView);
         button.setUserData(shapeName);
-        button.setOnAction(this);
+        button.setOnAction(handler);
 
         this.add(button, 0, gridRow);
-    }
-
-    @Override
-    public void handle(ActionEvent event) {
-        Button clicked = (Button) event.getSource();
-        String command = (String) clicked.getUserData();
-
-        view.setMode(command);
-        System.out.println(command);
-
-        for (Node node : getChildren()) {
-            if (node instanceof Button b) {
-                b.setStyle("");
-            }
-        }
-        clicked.setStyle(HIGHLIGHT_STYLE);
     }
 }

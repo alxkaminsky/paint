@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class PaintModel extends Observable {
+        private String mode = "Circle";
         private ArrayList<ArrayList<Point>> points=new ArrayList<ArrayList<Point>>();
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+        private ArrayList<Oval> ovals = new ArrayList<Oval>();
         private ArrayList<RightTriangle> rightTriangles = new ArrayList<RightTriangle>();
         private ArrayList<IsoscelesTriangle> isoscelesTriangles = new ArrayList<IsoscelesTriangle>();
 
         private Circle previewCircle;
+        private Oval previewOval;
         private Rectangle previewRectangle;
         private RightTriangle previewRightTriangle;
         private IsoscelesTriangle previewIsoscelesTriangle;
@@ -18,6 +21,10 @@ public class PaintModel extends Observable {
         public PaintModel() {
             newLine();
         }
+
+        public String getMode() {return mode;}
+
+        public void setMode(String mode) {this.mode = mode;}
 
         public void addPoint(Point p){
             points.getLast().add(p);
@@ -74,6 +81,28 @@ public class PaintModel extends Observable {
             notifyObservers();
         }
 
+        public void addOval(Oval o){
+            ovals.add(o);
+            setChanged();
+            notifyObservers();
+        }
+
+        public ArrayList<Oval> getOvals(){return ovals;}
+
+        public Oval getPreviewOval(){return previewOval;}
+
+        public void setPreviewOval(Oval o){
+            previewOval = o;
+            setChanged();
+            notifyObservers();
+        }
+
+        public void updatePreviewOval(Point endPoint) {
+            previewOval.setEndPoint(endPoint);
+            setChanged();
+            notifyObservers();
+        }
+
         public void addRightTriangle(RightTriangle rt){
             rightTriangles.add(rt);
             setChanged();
@@ -87,7 +116,7 @@ public class PaintModel extends Observable {
             setChanged();
             notifyObservers();
         }
-        
+
         public void updatePreviewRightTriangle(Point endPoint) {
             // previewRightTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
             setChanged();
@@ -107,12 +136,12 @@ public class PaintModel extends Observable {
             setChanged();
             notifyObservers();
         }
-        
+
         public void updatePreviewIsoscelesTriangle(Point endPoint) {
             // previewIsoscelesTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
             setChanged();
             notifyObservers();
         }
-        
-        
+
+
 }
