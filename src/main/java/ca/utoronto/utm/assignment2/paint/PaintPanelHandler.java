@@ -8,6 +8,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private PaintModel model;
     Circle circle;
     Rectangle rectangle;
+    Oval oval;
 
     public PaintPanelHandler(PaintModel model) {
         this.model = model;
@@ -36,6 +37,25 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                         model.addCircle(circle);
                         System.out.println("Added Circle");
                         model.setPreviewCircle(null);
+                    }
+                }
+                break;
+            case "Oval":
+                if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
+                    System.out.println("Started Oval");
+                    Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    oval =new Oval(centre, centre);
+                    model.setPreviewOval(oval);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
+                    Point end = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    model.updatePreviewOval(end);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
+                    if (oval != null) {
+                        model.addOval(oval);
+                        System.out.println("Added Oval");
+                        model.setPreviewOval(null);
                     }
                 }
                 break;

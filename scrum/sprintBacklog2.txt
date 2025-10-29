@@ -15,7 +15,7 @@ ISSUE    :  Cannot select Triangle mode for drawing since the button is not pres
 TYPE     : BUG BUG2.002 : suleym11
 NAME     : Oval mode cannot be selected
 PRIORITY : 2
-ESTIMATE : 1 hour  ACTUAL :
+ESTIMATE : 1 hour  ACTUAL : 1 hour
 ISSUE    : Cannot select Oval mode for drawing since the button is not present.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -53,7 +53,7 @@ SO THAT  : I can add triangles to my canvas
 TYPE     : USER STORY US2.003 : suleym11
 NAME     : Draw Oval
 PRIORITY : 2
-ESTIMATE : 2 hours ACTUAL :
+ESTIMATE : 2 hours ACTUAL : 2 hours
 AS A     : user
 I WANT   : To click the center of the oval, drag, and release to specify
            a circle to be drawn in the current style.
@@ -87,7 +87,7 @@ SO THAT  : I can see the triangle I am about to build on release of the mouse bu
 TYPE     : USER STORY US2.006 : suleym11
 NAME     : Draw Oval Feedback
 PRIORITY : 2
-ESTIMATE : 3 hours ACTUAL :
+ESTIMATE : 3 hours ACTUAL : 1 hour
 AS A     : user
 I WANT   : Similar to US2.004, a 'current' oval should be drawn concurrent
            in real time to input

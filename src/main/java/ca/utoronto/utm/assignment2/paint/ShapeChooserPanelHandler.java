@@ -17,14 +17,38 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
         Button clicked = (Button) event.getSource();
         String command = (String) clicked.getUserData();
 
-        shapeChooserPanel.getModel().setMode(command);
-        System.out.println(command);
-
         for (Node node : shapeChooserPanel.getChildren()) {
-            if (node instanceof Button b) {
-                b.setStyle("");
-            }
+            if (node instanceof Button b) b.setStyle("");
         }
-        clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
+
+        if ("Circle".equals(command)) {
+            javafx.scene.control.Alert alert =
+                    new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Choose shape");
+            alert.setHeaderText(null);
+            alert.setContentText("Draw a Circle or an Oval?");
+
+            javafx.scene.control.ButtonType circleBtn =
+                    new javafx.scene.control.ButtonType("Circle");
+            javafx.scene.control.ButtonType ovalBtn =
+                    new javafx.scene.control.ButtonType("Oval");
+            javafx.scene.control.ButtonType cancelBtn =
+                    new javafx.scene.control.ButtonType("Cancel", javafx.scene.control.ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(circleBtn, ovalBtn, cancelBtn);
+
+            java.util.Optional<javafx.scene.control.ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() != cancelBtn) {
+                String chosen = (result.get() == circleBtn) ? "Circle" : "Oval";
+                shapeChooserPanel.getModel().setMode(chosen);
+                clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
+                System.out.println(chosen);
+            } else {
+            }
+        } else {
+            shapeChooserPanel.getModel().setMode(command);
+            clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
+            System.out.println(command);
+        }
     }
 }

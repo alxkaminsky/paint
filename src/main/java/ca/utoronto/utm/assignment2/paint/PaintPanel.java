@@ -33,8 +33,10 @@ public class PaintPanel extends Canvas implements Observer {
         ArrayList<ArrayList<Point>> lines = model.getPoints();
         ArrayList<Circle> circles = model.getCircles();
         ArrayList<Rectangle> rectangles = model.getRectangles();
+        ArrayList<Oval> ovals = model.getOvals();
         Rectangle previewRect = model.getPreviewRectangle();
         Circle previewCirc = model.getPreviewCircle();
+        Oval previewOval = model.getPreviewOval();
 
 
         g2d.setFill(Color.RED);
@@ -71,6 +73,17 @@ public class PaintPanel extends Canvas implements Observer {
 
             g2d.setFill(Color.rgb(0, 0, 255, 0.25));
             g2d.fillRect(previewRect.getLeftCornerX(), previewRect.getLeftCornerY(), previewRect.getWidth(), previewRect.getHeight());
+        }
+
+        g2d.setFill(Color.ORANGE);
+        for(Oval oval : ovals){
+            g2d.fillOval(oval.getUpLeftCorner().x, oval.getUpLeftCorner().y, oval.getWidth(), oval.getHeight());
+        }
+        if(previewOval !=null){
+            g2d.strokeOval(previewOval.getUpLeftCorner().x,previewOval.getUpLeftCorner().y, previewOval.getWidth(), previewOval.getHeight());
+
+            g2d.setFill(Color.rgb(255, 140, 0, 0.25));
+            g2d.fillOval(previewOval.getUpLeftCorner().x, previewOval.getUpLeftCorner().y, previewOval.getWidth(), previewOval.getHeight());
         }
     }
 }
