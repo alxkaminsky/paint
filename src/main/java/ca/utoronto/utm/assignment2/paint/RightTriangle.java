@@ -12,6 +12,6 @@ public class RightTriangle extends Triangle {
         // The final vertex that makes up the right triangle has same x as
         // the first vertex and same y as the second vertex.
         Point basePoint = new Point(getFirstVertex().x, getSecondVertex().y);
-        updateThirdVertex(basePoint);  // Use the parent class method to set the third vertex
+        updateThirdVertex(basePoint); 
     }
 }

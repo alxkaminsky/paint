@@ -13,7 +13,7 @@ public class Triangle {
 
     protected void setThirdVertex(){} // Abstract method to be implemented in subclasses
 
-    protected void updateThirdVertex(Point point) {
+    protected void updateThirdVertex(Point point) { // Setter
         this.thirdVertex = point;
     }
 

@@ -8,9 +8,12 @@ public class PaintModel extends Observable {
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
         private ArrayList<RightTriangle> rightTriangles = new ArrayList<RightTriangle>();
-        private RightTriangle previewRightTriangle;
-        private Rectangle previewRectangle;
+        private ArrayList<IsoscelesTriangle> isoscelesTriangles = new ArrayList<IsoscelesTriangle>();
+
         private Circle previewCircle;
+        private Rectangle previewRectangle;
+        private RightTriangle previewRightTriangle;
+        private IsoscelesTriangle previewIsoscelesTriangle;
 
         public PaintModel() {
             newLine();
@@ -86,9 +89,30 @@ public class PaintModel extends Observable {
         }
         
         public void updatePreviewRightTriangle(Point endPoint) {
-            previewRightTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
+            // previewRightTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
             setChanged();
             notifyObservers();
         }
+
+        public void addIsoscelesTriangle(IsoscelesTriangle it){
+            isoscelesTriangles.add(it);
+            setChanged();
+            notifyObservers();
+        }
+
+        public ArrayList<IsoscelesTriangle> getIsoscelesTriangles(){return isoscelesTriangles;}
+
+        public void setPreviewIsoscelesTriangle(IsoscelesTriangle it){
+            previewIsoscelesTriangle=it;
+            setChanged();
+            notifyObservers();
+        }
+        
+        public void updatePreviewIsoscelesTriangle(Point endPoint) {
+            // previewIsoscelesTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
+            setChanged();
+            notifyObservers();
+        }
+        
         
 }
