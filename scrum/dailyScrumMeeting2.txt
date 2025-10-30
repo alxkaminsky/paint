@@ -59,28 +59,28 @@ Oct 25,2025
 
 Oct 26,2025
 	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I will do today: Hold meeting to plan sprint 2
+	Obstacles I face: Allocating the work fairly
 
 Oct 27,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Held meeting to plan sprint 2
+	What I will do today: Read the code in depth to prepare for BUG2.003
+	Obstacles I face: Understanding what design patter to implement
 
 Oct 28,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Read through code in depth to prepare for BUG2.003
+	What I will do today: Patch BUG2.003
+	Obstacles I face: Implementing the chosen design pattern correctly
 
 Oct 29,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Patched BUG2.003
+	What I will do today: Hold a final meeting with group to discuss progress
+	Obstacles I face: None
 
 Oct 30,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Held a meeting to discuss status
+	What I will do today: Make sure submission goes smoothly
+	Obstacles I face: None. Sprint 2 completed.
 
 Oct 31,2025
 	What I did yesterday:

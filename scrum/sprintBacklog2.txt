@@ -22,7 +22,7 @@ ISSUE    : Cannot select Oval mode for drawing since the button is not present.
 TYPE     : BUG BUG2.003 : kamins64
 NAME     : Architecture behind choosing selection mode is poor
 PRIORITY : 3
-ESTIMATE : 6 hours   ACTUAL :
+ESTIMATE : 6 hours   ACTUAL : 6 hours
 ISSUE    : Code is not modular and is difficult to expand. Need a better
            architecture behind selecting a drawing mode, and handling
            the drawing events. Consider some design patterns here.
@@ -33,7 +33,7 @@ ISSUE    : Code is not modular and is difficult to expand. Need a better
 TYPE     : USER STORY US2.001 : nguy3971
 NAME     : Draw Square
 PRIORITY : 2
-ESTIMATE : 2 hours    ACTUAL :
+ESTIMATE : 2 hours    ACTUAL : 2 hours
 AS A     : user
 I WANT   : To click on one corner of a square, drag, and release to
 		   specify two corners of a square to be drawn in the current style.
@@ -63,7 +63,7 @@ SO THAT  : I can add ovals to my canvas
 TYPE     : USER STORY US2.004 : nguy3971
 NAME     : Draw Square Feedback
 PRIORITY : 2
-ESTIMATE : 3 hours  ACTUAL :
+ESTIMATE : 3 hours  ACTUAL : 3 hours
 AS A     : user
 I WANT   : As a user is specifying a Square, during the drag, a 'current'
            square should be on display. As the user drags, the 'current'
