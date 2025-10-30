@@ -11,7 +11,7 @@ public class RightTriangle extends Triangle {
     protected void setThirdVertex() {
         // The final vertex that makes up the right triangle has same x as
         // the first vertex and same y as the second vertex.
-        Point basePoint = new Point(getFirstVertex().x, getSecondVertex().y);
+        Point basePoint = new Point(getStart().x, getEnd().y);
         updateThirdVertex(basePoint); 
     }
 }

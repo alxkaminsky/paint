@@ -9,7 +9,7 @@ public class PaintModel extends Observable {
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
         private ArrayList<Oval> ovals = new ArrayList<Oval>();
-        private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
+        private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
 
         private Circle previewCircle;
         private Oval previewOval;
@@ -103,12 +103,14 @@ public class PaintModel extends Observable {
         }
 
         public void addTriangle(Triangle tg){
-            Triangles.add(tg);
+            triangles.add(tg);
             setChanged();
             notifyObservers();
         }
 
-        public ArrayList<Triangle> getTriangles(){return Triangles;}
+        public ArrayList<Triangle> getTriangles(){return triangles;}
+
+        public Triangle getPreviewTriangle(){return previewTriangle;}
 
         public void setPreviewTriangle(Triangle tg){
             previewTriangle=tg;
@@ -117,7 +119,7 @@ public class PaintModel extends Observable {
         }
 
         public void updatePreviewTriangle(Point endPoint) {
-            // previewTriangle.setEndPoint(endPoint); // !!IMPLEMENT THIS
+            previewTriangle.setEndPoint(endPoint);
             setChanged();
             notifyObservers();
         }

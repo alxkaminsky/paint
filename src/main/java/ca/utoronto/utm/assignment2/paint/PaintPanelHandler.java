@@ -9,6 +9,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     Circle circle;
     Rectangle rectangle;
     Oval oval;
+    Triangle triangle;
 
     public PaintPanelHandler(PaintModel model) {
         this.model = model;
@@ -78,6 +79,25 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 }
                 break;
             case "Square": break;
+
+            case "Triangle":
+                if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
+                    System.out.println("Started Triangle");
+                    Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    triangle=new Triangle(startPoint, startPoint);
+                    model.setPreviewTriangle(triangle);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
+                    model.updatePreviewTriangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
+                    if (triangle != null) {
+                        model.addTriangle(triangle);
+                        System.out.println("Added Triangle");
+                        model.setPreviewTriangle(null);
+                    }
+                }
+
             case "Squiggle":
                 if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
                     model.addPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));

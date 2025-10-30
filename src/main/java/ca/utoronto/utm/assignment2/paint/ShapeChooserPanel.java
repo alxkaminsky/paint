@@ -15,7 +15,7 @@ public class ShapeChooserPanel extends GridPane{
 
     public ShapeChooserPanel(PaintModel model) {
         this.model = model;
-        String[] shapeNames = {"Circle", "Rectangle", "Square", "Squiggle", "Polyline"};
+        String[] shapeNames = {"Circle", "Rectangle", "Square", "Triangle", "Squiggle", "Polyline"};
         for (int i = 0; i < shapeNames.length; i++) {
             createShapeButton(shapeNames[i], i);
         }

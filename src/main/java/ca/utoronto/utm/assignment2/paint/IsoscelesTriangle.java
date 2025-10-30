@@ -13,9 +13,9 @@ public class IsoscelesTriangle extends Triangle {
         // line of symmetry.
 
         // Mirror over this point's x
-        double xCoorBasePoint = getFirstVertex().x;
-        double xCoorThirdVertex = 2*xCoorBasePoint - getSecondVertex().x;
-        Point finalVertex = new Point(xCoorThirdVertex, getSecondVertex().y);
+        double xCoorBasePoint = getStart().x;
+        double xCoorThirdVertex = 2*xCoorBasePoint - getEnd().x;
+        Point finalVertex = new Point(xCoorThirdVertex, getEnd().y);
         updateThirdVertex(finalVertex);
     }
 }
