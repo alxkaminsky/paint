@@ -34,11 +34,13 @@ public class PaintPanel extends Canvas implements Observer {
         ArrayList<Circle> circles = model.getCircles();
         ArrayList<Rectangle> rectangles = model.getRectangles();
         ArrayList<Oval> ovals = model.getOvals();
+        ArrayList<Square> squares = model.getSquares();
         ArrayList<RightTriangle> rtriangles = model.getRTriangles();
         ArrayList<IsoscelesTriangle> itriangles = model.getITriangles();
         Rectangle previewRect = model.getPreviewRectangle();
         Circle previewCirc = model.getPreviewCircle();
         Oval previewOval = model.getPreviewOval();
+        Square previewSquare = model.getPreviewSquare();
         RightTriangle previewRTriangle = model.getPreviewRTriangle();
         IsoscelesTriangle previewITriangle = model.getPreviewITriangle();
 
@@ -77,6 +79,17 @@ public class PaintPanel extends Canvas implements Observer {
 
             g2d.setFill(Color.rgb(0, 0, 255, 0.25));
             g2d.fillRect(previewRect.getLeftCornerX(), previewRect.getLeftCornerY(), previewRect.getWidth(), previewRect.getHeight());
+        }
+
+        g2d.setFill(Color.SPRINGGREEN);
+        for(Square r: squares){
+            g2d.fillRect(r.getLeftCornerX(), r.getLeftCornerY(), r.getWidth(), r.getHeight());
+        }
+        if(previewSquare !=null){
+            g2d.strokeRect(previewSquare.getLeftCornerX(), previewSquare.getLeftCornerY(), previewSquare.getWidth(), previewSquare.getHeight());
+
+            g2d.setFill(Color.rgb(0, 255, 127, 0.25));
+            g2d.fillRect(previewSquare.getLeftCornerX(), previewSquare.getLeftCornerY(), previewSquare.getWidth(), previewSquare.getHeight());
         }
 
         g2d.setFill(Color.ORANGE);

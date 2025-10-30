@@ -8,6 +8,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private PaintModel model;
     Circle circle;
     Rectangle rectangle;
+    Square square;
     Oval oval;
     RightTriangle rtriangle;
     IsoscelesTriangle itriangle;
@@ -79,7 +80,24 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     }
                 }
                 break;
-            case "Square": break;
+            case "Square":
+                if (mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
+                    System.out.println("Started Square");
+                    Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    square = new Square(startPoint, startPoint);
+                    model.setPreviewSquare(square);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){
+                    model.updatePreviewSquare(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)){
+                    if (square != null){
+                        model.addSquare(square);
+                        System.out.println("Added Square");
+                        model.setPreviewSquare(null);
+                    }
+                }
+                break;
 
             case "RightTriangle":
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {

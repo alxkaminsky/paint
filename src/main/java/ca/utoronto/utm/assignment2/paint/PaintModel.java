@@ -8,6 +8,7 @@ public class PaintModel extends Observable {
         private ArrayList<ArrayList<Point>> points=new ArrayList<ArrayList<Point>>();
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+        private ArrayList<Square> squares = new ArrayList<Square>();
         private ArrayList<Oval> ovals = new ArrayList<Oval>();
         private ArrayList<RightTriangle> rtriangles = new ArrayList<RightTriangle>();
         private ArrayList<IsoscelesTriangle> itriangles = new ArrayList<IsoscelesTriangle>();
@@ -15,6 +16,7 @@ public class PaintModel extends Observable {
         private Circle previewCircle;
         private Oval previewOval;
         private Rectangle previewRectangle;
+        private Square previewSquare;
         private RightTriangle previewRTriangle;
         private IsoscelesTriangle previewITriangle;
 
@@ -71,13 +73,35 @@ public class PaintModel extends Observable {
         public Rectangle getPreviewRectangle(){return previewRectangle;}
 
         public void setPreviewRectangle(Rectangle r){
-            previewRectangle=r;
+            previewRectangle = r;
             setChanged();
             notifyObservers();
         }
 
         public void updatePreviewRectangle(Point endPoint) {
             previewRectangle.setEndPoint(endPoint);
+            setChanged();
+            notifyObservers();
+        }
+
+        public void addSquare(Square s){
+            squares.add(s);
+            setChanged();
+            notifyObservers();
+        }
+
+        public ArrayList<Square> getSquares(){return squares;}
+
+        public Square getPreviewSquare(){return previewSquare;}
+
+        public void setPreviewSquare(Square s){
+            previewSquare = s;
+            setChanged();
+            notifyObservers();
+        }
+
+        public void updatePreviewSquare(Point endPoint) {
+            previewSquare.setEndPoint(endPoint);
             setChanged();
             notifyObservers();
         }
