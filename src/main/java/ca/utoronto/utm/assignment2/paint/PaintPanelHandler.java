@@ -9,7 +9,8 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     Circle circle;
     Rectangle rectangle;
     Oval oval;
-    Triangle triangle;
+    RightTriangle rtriangle;
+    IsoscelesTriangle itriangle;
 
     public PaintPanelHandler(PaintModel model) {
         this.model = model;
@@ -80,23 +81,43 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 break;
             case "Square": break;
 
-            case "Triangle":
+            case "RightTriangle":
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
-                    System.out.println("Started Triangle");
+                    System.out.println("Started RightTriangle");
                     Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    triangle=new Triangle(startPoint, startPoint);
-                    model.setPreviewTriangle(triangle);
+                    rtriangle=new RightTriangle(startPoint, startPoint);
+                    model.setPreviewRTriangle(rtriangle);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
-                    model.updatePreviewTriangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                    model.updatePreviewRTriangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
-                    if (triangle != null) {
-                        model.addTriangle(triangle);
-                        System.out.println("Added Triangle");
-                        model.setPreviewTriangle(null);
+                    if (rtriangle != null) {
+                        model.addRTriangle(rtriangle);
+                        System.out.println("Added RightTriangle");
+                        model.setPreviewRTriangle(null);
                     }
                 }
+                break;
+
+            case "IsoscelesTriangle":
+                if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
+                    System.out.println("Started IsoscelesTriangle");
+                    Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
+                    itriangle=new IsoscelesTriangle(startPoint, startPoint);
+                    model.setPreviewITriangle(itriangle);
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
+                    model.updatePreviewITriangle(new Point(mouseEvent.getX(), mouseEvent.getY()));
+                }
+                else if (mouseEventType.equals(MouseEvent.MOUSE_RELEASED)) {
+                    if (itriangle != null) {
+                        model.addITriangle(itriangle);
+                        System.out.println("Added IsoscelesTriangle");
+                        model.setPreviewITriangle(null);
+                    }
+                }
+                break;
 
             case "Squiggle":
                 if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {

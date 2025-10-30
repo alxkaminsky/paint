@@ -34,11 +34,13 @@ public class PaintPanel extends Canvas implements Observer {
         ArrayList<Circle> circles = model.getCircles();
         ArrayList<Rectangle> rectangles = model.getRectangles();
         ArrayList<Oval> ovals = model.getOvals();
-        ArrayList<Triangle> triangles = model.getTriangles();
+        ArrayList<RightTriangle> rtriangles = model.getRTriangles();
+        ArrayList<IsoscelesTriangle> itriangles = model.getITriangles();
         Rectangle previewRect = model.getPreviewRectangle();
         Circle previewCirc = model.getPreviewCircle();
         Oval previewOval = model.getPreviewOval();
-        Triangle previewTriangle = model.getPreviewTriangle();
+        RightTriangle previewRTriangle = model.getPreviewRTriangle();
+        IsoscelesTriangle previewITriangle = model.getPreviewITriangle();
 
 
         g2d.setFill(Color.RED);
@@ -90,13 +92,24 @@ public class PaintPanel extends Canvas implements Observer {
 
         final int numVerticesTriangle = 3;
         g2d.setFill(Color.SALMON);
-        for (Triangle triangle : triangles) {
+        for (Triangle triangle : rtriangles) {
             g2d.fillPolygon(triangle.getXAllVertices(), triangle.getYAllVertices(), numVerticesTriangle);
         }
-        if (previewTriangle != null) {
-            g2d.strokePolygon(previewTriangle.getXAllVertices(), previewTriangle.getYAllVertices(), numVerticesTriangle);
+        if (previewRTriangle != null) {
+            g2d.strokePolygon(previewRTriangle.getXAllVertices(), previewRTriangle.getYAllVertices(), numVerticesTriangle);
             g2d.setFill(Color.rgb(250, 128, 114, 0.25));
-            g2d.fillPolygon(previewTriangle.getXAllVertices(), previewTriangle.getYAllVertices(), numVerticesTriangle);
+            g2d.fillPolygon(previewRTriangle.getXAllVertices(), previewRTriangle.getYAllVertices(), numVerticesTriangle);
         }
+
+        g2d.setFill(Color.PAPAYAWHIP);
+        for (Triangle triangle : itriangles) {
+            g2d.fillPolygon(triangle.getXAllVertices(), triangle.getYAllVertices(), numVerticesTriangle);
+        }
+        if (previewITriangle != null) {
+            g2d.strokePolygon(previewITriangle.getXAllVertices(), previewITriangle.getYAllVertices(), numVerticesTriangle);
+            g2d.setFill(Color.rgb(250, 128, 114, 0.25));
+            g2d.fillPolygon(previewITriangle.getXAllVertices(), previewITriangle.getYAllVertices(), numVerticesTriangle);
+        }
+
     }
 }

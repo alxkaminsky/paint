@@ -9,12 +9,14 @@ public class PaintModel extends Observable {
         private ArrayList<Circle> circles=new ArrayList<Circle>();
         private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
         private ArrayList<Oval> ovals = new ArrayList<Oval>();
-        private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
+        private ArrayList<RightTriangle> rtriangles = new ArrayList<RightTriangle>();
+        private ArrayList<IsoscelesTriangle> itriangles = new ArrayList<IsoscelesTriangle>();
 
         private Circle previewCircle;
         private Oval previewOval;
         private Rectangle previewRectangle;
-        private Triangle previewTriangle;
+        private RightTriangle previewRTriangle;
+        private IsoscelesTriangle previewITriangle;
 
 
         public PaintModel() {
@@ -102,26 +104,47 @@ public class PaintModel extends Observable {
             notifyObservers();
         }
 
-        public void addTriangle(Triangle tg){
-            triangles.add(tg);
+        public void addRTriangle(RightTriangle tg){
+            rtriangles.add(tg);
             setChanged();
             notifyObservers();
         }
 
-        public ArrayList<Triangle> getTriangles(){return triangles;}
+        public ArrayList<RightTriangle> getRTriangles(){return rtriangles;}
 
-        public Triangle getPreviewTriangle(){return previewTriangle;}
+        public RightTriangle getPreviewRTriangle(){return previewRTriangle;}
 
-        public void setPreviewTriangle(Triangle tg){
-            previewTriangle=tg;
+        public void setPreviewRTriangle(RightTriangle tg){
+            previewRTriangle=tg;
             setChanged();
             notifyObservers();
         }
 
-        public void updatePreviewTriangle(Point endPoint) {
-            previewTriangle.setEndPoint(endPoint);
+        public void updatePreviewRTriangle(Point endPoint) {
+            previewRTriangle.setEndPoint(endPoint);
             setChanged();
             notifyObservers();
         }
 
+        public void addITriangle(IsoscelesTriangle tg){
+            itriangles.add(tg);
+            setChanged();
+            notifyObservers();
+        }
+
+        public ArrayList<IsoscelesTriangle> getITriangles(){return itriangles;}
+
+        public IsoscelesTriangle getPreviewITriangle(){return previewITriangle;}
+
+        public void setPreviewITriangle(IsoscelesTriangle tg){
+            previewITriangle=tg;
+            setChanged();
+            notifyObservers();
+        }
+
+        public void updatePreviewITriangle(Point endPoint) {
+            previewITriangle.setEndPoint(endPoint);
+            setChanged();
+            notifyObservers();
+        }
 }

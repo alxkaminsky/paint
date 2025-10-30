@@ -6,14 +6,14 @@ public class Triangle {
     private Point thirdVertex;
 
     public Triangle(Point start, Point end){
-        this.start = start; // Registered on mouse click
-        this.end = end; // Registered on mouse release
-        setThirdVertex(); // Abstract method for thirdVertex
+        this.start = start;
+        this.end = end;
+        setThirdVertex();
     }
 
     protected void setThirdVertex(){} // Abstract method to be implemented in subclasses
 
-    protected void updateThirdVertex(Point point) { // Setter
+    protected void updateThirdVertex(Point point) {
         this.thirdVertex = point;
     }
 
@@ -47,5 +47,6 @@ public class Triangle {
 
     public void setEndPoint(Point end) {
         this.end = end;
+        setThirdVertex();
     }
 }

@@ -45,7 +45,35 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
                 System.out.println(chosen);
             } else {
             }
-        } else {
+        }
+
+        else if ("Triangle".equals(command)) {
+            javafx.scene.control.Alert alert =
+                    new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Choose shape");
+            alert.setHeaderText(null);
+            alert.setContentText("Draw a Right Triangle or an Isosceles Triangle?");
+
+            javafx.scene.control.ButtonType rightTriangleBtn =
+                    new javafx.scene.control.ButtonType("Right Triangle");
+            javafx.scene.control.ButtonType isoscelesTriangleBtn =
+                    new javafx.scene.control.ButtonType("Isosceles Triangle");
+            javafx.scene.control.ButtonType cancelBtn =
+                    new javafx.scene.control.ButtonType("Cancel", javafx.scene.control.ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(rightTriangleBtn, isoscelesTriangleBtn, cancelBtn);
+
+            java.util.Optional<javafx.scene.control.ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() != cancelBtn) {
+                String chosen = (result.get() == rightTriangleBtn) ? "RightTriangle" : "IsoscelesTriangle";
+                shapeChooserPanel.getModel().setMode(chosen);
+                clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
+                System.out.println(chosen);
+            } else {
+            }
+        }
+
+        else {
             shapeChooserPanel.getModel().setMode(command);
             clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
             System.out.println(command);
