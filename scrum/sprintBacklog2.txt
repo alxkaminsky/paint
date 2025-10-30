@@ -8,7 +8,7 @@
 TYPE     : BUG BUG2.001 : phammi36
 NAME     : Triangle mode cannot be selected
 PRIORITY : 2
-ESTIMATE : 1 hour   ACTUAL :
+ESTIMATE : 1 hour   ACTUAL : 1 hour
 ISSUE    :  Cannot select Triangle mode for drawing since the button is not present.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -43,10 +43,10 @@ SO THAT  : I can add squares to my canvas
 TYPE     : USER STORY US2.002 : phammi36
 NAME     : Draw Triangle
 PRIORITY : 2
-ESTIMATE : 2 hours    ACTUAL :
+ESTIMATE : 2 hours    ACTUAL : 2 days
 AS A     : user
 I WANT   : To click on an initial (absolute) point, drag, and release to
-		   specify two points of an equilateral triangle to be drawn in the current style.
+		   specify two points of an right/isosceles triangle to be drawn in the current style.
 SO THAT  : I can add triangles to my canvas
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -77,7 +77,7 @@ SO THAT  : I can see the square I am about to build on release of the mouse
 TYPE     : USER STORY US2.005 : phammi36
 NAME     : Draw Triangle Feedback
 PRIORITY : 2
-ESTIMATE : 3 hours  ACTUAL :
+ESTIMATE : 3 hours  ACTUAL : 3 hours
 AS A     : user
 I WANT   : Similar to US2.004, a 'current' triangle should be drawn concurrent
            in real time to input.

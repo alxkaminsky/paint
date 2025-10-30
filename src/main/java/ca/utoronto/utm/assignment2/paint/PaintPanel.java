@@ -101,7 +101,7 @@ public class PaintPanel extends Canvas implements Observer {
             g2d.fillPolygon(previewRTriangle.getXAllVertices(), previewRTriangle.getYAllVertices(), numVerticesTriangle);
         }
 
-        g2d.setFill(Color.PAPAYAWHIP);
+        g2d.setFill(Color.RED);
         for (Triangle triangle : itriangles) {
             g2d.fillPolygon(triangle.getXAllVertices(), triangle.getYAllVertices(), numVerticesTriangle);
         }

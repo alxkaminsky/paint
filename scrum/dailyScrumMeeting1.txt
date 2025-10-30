@@ -72,14 +72,14 @@ Oct 27,2025
 	Obstacles I face:
 
 Oct 28,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Scrum meeting to discuss sprint 2
+	What I will do today: Plan out what kinds of triangles to implement
+	Obstacles I face: Can't figure out non-special triangle
 
 Oct 29,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Planning
+	What I will do today: Gave up on non-special triangles. Planned out right/isosceles triangles
+	Obstacles I face: Huge code base that was hard to keep track of
 
 Oct 30,2025
 	What I did yesterday:
