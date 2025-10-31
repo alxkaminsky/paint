@@ -39,54 +39,58 @@ Oct 21,2025
 	Obstacles I face: How to merge without creating conflict
 
 Oct 22,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Complete BUG1.001 and merged with remote repo and finished sprint 1
+	What I will do today: Start reviewing 207 midterm
+	Obstacles I face: Don't know where to start since there are a lot to cover
 
 Oct 23,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Reviewing 207 midterm
+	What I will do today: Reviewing 207 midterm
+	Obstacles I face: Determine the parts of the material where I should mainly be focused
 
 Oct 24,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Reviewing 207 midterm
+	What I will do today: Reviewing 207 midterm
+	Obstacles I face: Improve my weakness after it got exposed while I was doing the past paper
 
 Oct 25,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Reviewing the midterm
+	What I will do today: Taking the midterm and probably give myself a little break after
+	Obstacles I face: A lot during the midterm :)
 
 Oct 26,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Taking the midterm and probably give myself a little break after
+	What I will do today: Meeting with my teammate to discuss about Sprint 2 as well as received my tasks
+	Obstacles I face: Write the User Story
 
 Oct 27,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Meeting with my teammate to discuss about Sprint 2 as well as received my tasks
+	What I will do today: Have a general look at the code for Rectangle since my task is Square and it will
+	                      be similar (or probably it will be extended to Rectangle)
+	Obstacles I face: Determine where do I start
 
 Oct 28,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Have a general look at the code for Rectangle since my task is Square and it will
+                          be similar (or probably it will be extended to Rectangle)
+	What I will do today: I have a Niagara Falls trip today so I won't be doing too much work
+	Obstacles I face: Make it to the GO Station on time :)
 
 Oct 29,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: I have a Niagara Falls trip today so I won't be doing too much work
+	What I will do today: Got back from the trip and start creating a Square class and the codes
+	                      to draw it on canvas
+	Obstacles I face: The system is down, I can't pull or taking any further action at the time
 
 Oct 30,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Got back from the trip and start creating a Square class and the codes
+                          to draw it on canvas
+	What I will do today: Complete US2.001, US2.004 and merge it to the remote repo
+	Obstacles I face: None since luckily, there is no merge conflict happened this time. Hooray!!!
 
 Oct 31,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Complete US2.001, US2.004 and merge it to the remote repo
+	What I will do today: Take a look at sprint 3 and determine what to do next
+	Obstacles I face: Divide the work and estimate the necessary time for each task
 
 Nov 1,2025
 	What I did yesterday:
