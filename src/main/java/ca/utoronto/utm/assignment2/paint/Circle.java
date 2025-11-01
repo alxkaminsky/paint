@@ -1,34 +1,27 @@
 package ca.utoronto.utm.assignment2.paint;
+import javafx.scene.paint.Color;
 
+public class Circle extends Oval{
+        private double diameter;
+        public static Color base = Color.GREEN;
 
-public class Circle {
-        private final Point centre;
-        private Point end;
-        private double radius;
-
-        public Circle(Point centre, Point end){
-                this.centre = centre;
-                this.end = end;
-                calculateRadius();
+        public Circle(Point centre, Point end, Color colour){
+            super(centre, end, colour);
         }
 
-        public Point getCentre() {
-                return centre;
+        @Override
+        public void calculateHeight(){
+            calculateDiameter();
+            height = diameter;
         }
-
-        public double getRadius() {
-                return radius;
+        @Override
+        public void calculateWidth(){
+            width = height;
         }
-
-        public void setEndPoint(Point end){
-            this.end = end;
-            calculateRadius();
-        }
-
-        private void calculateRadius(){
-            double deltaX = getCentre().x - end.x;
-            double deltaY = getCentre().y - end.y;
-            this.radius = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-        }
-
+        public double calculateDiameter(){
+                double deltaX = getCentre().x - end.x;
+                double deltaY = getCentre().y - end.y;
+                diameter = 2*Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+                return diameter;
+            }
 }

@@ -1,15 +1,20 @@
 package ca.utoronto.utm.assignment2.paint;
 
+import javafx.scene.paint.Color;
+
 public class Square extends Rectangle {
 
     private final Point refStartPoint;
+    public static Color base = Color.SPRINGGREEN;
 
-    public Square(Point start, Point end) {
-        super(start, start);
-        this.refStartPoint = start;
+    public Square(Point start, Point end, Color colour) {
+        super(start, start, colour);
+        refStartPoint = start;
+        this.colour = colour;
         setEndPoint(end);
     }
 
+    @Override
     public void setEndPoint(Point endPoint) {
         double changeInX = endPoint.x - refStartPoint.x;
         double changeInY = endPoint.y - refStartPoint.y;

@@ -28,7 +28,7 @@ ISSUE    : Need to re-architect the PaintModel
 TYPE     : BUG BUG3.005 : kamins64
 NAME     : Shapes are not drawn in the order they were created
 PRIORITY : 3
-ESTIMATE : 1 hour  ACTUAL :
+ESTIMATE : 1 hour  ACTUAL : 3 hours
 ISSUE    : Expected Behavior:
            Shape B, being the most recently created object, should be rendered on top of Shape A.
            The drawing order should match the creation order, with the last shape added to the canvas
