@@ -1,20 +1,26 @@
 package ca.utoronto.utm.assignment2.paint;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-public class Rectangle {
+public class Rectangle implements Shape{
     private final Point startPoint;
     private Point endPoint;
     private Point upLeftCorner;
     private double width;
     private double height;
+    protected Color colour;
+    public static Color base = Color.BLUE;
 
-    public Rectangle(Point start, Point end) {
+    public Rectangle(Point start, Point end, Color colour) {
         startPoint = start;
         endPoint = end;
         width = Math.abs(endPoint.x - startPoint.x);
         height = Math.abs(endPoint.y - startPoint.y);
+        this.colour = colour;
         calculateUpLeftCorner();
     }
 
+    @Override
     public void setEndPoint(Point end) {
         endPoint = end;
         calculateUpLeftCorner();
@@ -37,5 +43,19 @@ public class Rectangle {
 
     private void calculateUpLeftCorner(){
         upLeftCorner = new Point(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y));
+    }
+
+    @Override
+    public void setColour(Color color) {
+        this.colour = color;
+    }
+
+    @Override
+    public void draw(GraphicsContext g2d, boolean preview) {
+        g2d.setFill(colour);
+        g2d.fillRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
+
+        if (preview)
+            g2d.strokeRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
     }
 }

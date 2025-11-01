@@ -1,13 +1,18 @@
 package ca.utoronto.utm.assignment2.paint;
 
-public class Triangle {
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public abstract class Triangle implements Shape {
     private final Point start;
     private Point end;
     private Point thirdVertex;
+    protected Color colour;
 
-    public Triangle(Point start, Point end){
+    public Triangle(Point start, Point end, Color colour){
         this.start = start;
         this.end = end;
+        this.colour = colour;
         setThirdVertex();
     }
 
@@ -45,8 +50,23 @@ public class Triangle {
         return points;
     }
 
+    @Override
+    public void setColour(Color color) {
+        this.colour = color;
+    }
+
+    @Override
     public void setEndPoint(Point end) {
         this.end = end;
         setThirdVertex();
+    }
+
+    @Override
+    public void draw(GraphicsContext g2d, boolean preview) {
+        g2d.setFill(colour);
+        g2d.fillPolygon(getXAllVertices(), getYAllVertices(), 3);
+
+        if(preview)
+            g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
     }
 }
