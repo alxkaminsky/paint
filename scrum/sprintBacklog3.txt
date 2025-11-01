@@ -5,3 +5,107 @@
 # Sprint 3 Oct 31-Nov 06, 2025
 # Sprint 3 Backlog UserStories go below
 
+Prop 1. Layer by time created as opposed to the shape type
+
+--------------------------------------------------------------------------
+TYPE     : BUG BUG3.004 : suleym11
+NAME     : Architecture behind Model is poor
+PRIORITY : 3
+ESTIMATE : 1 day  ACTUAL :
+ISSUE    : Need to re-architect the PaintModel
+           so that it is more flexible, and easier to work with.
+           Consider some design patterns, or change of responsibility
+           here. Research the following design patterns and figure out which are
+           best to use:
+           	1.Strategy
+           	2.Command
+           	3.Singleton
+           	4.Composite
+           	5.Factory
+           	6.Builder
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG3.005 : kamins64
+NAME     : Shapes are not drawn in the order they were created
+PRIORITY : 3
+ESTIMATE : 1 hour  ACTUAL :
+ISSUE    : Expected Behavior:
+           Shape B, being the most recently created object, should be rendered on top of Shape A.
+           The drawing order should match the creation order, with the last shape added to the canvas
+           appearing at the top of the rendering stack.
+
+           Actual Behavior:
+           The rendering order is incorrect or inconsistent.
+           Shape A (the first shape) is drawn on top of Shape B, obscuring it.
+           The Z-order of the shapes does not respect the order of creation.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US3.005 : phammi36 : NotStarted
+NAME     : Color selector
+PRIORITY : 3
+ESTIMATE : 1 day   ACTUAL :
+AS A     : user
+I WANT   : To be able to select the current drawing color, to be applied
+           to subsequent shapes. Example:
+           		selects color red
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select color green
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two red circles and a red rectangle as well as
+           	two green rectangles and a green squiggle
+SO THAT  :
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US3.006 : kamins64 : NotStarted
+NAME     : Fill style selector
+PRIORITY : 3
+ESTIMATE : 1 day   ACTUAL :
+AS A     : user
+I WANT   : To be able to select the current drawing style (filled or outline), to be applied
+           to subsequent shapes. Example:
+           		selects fill style solid
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select fill style outline
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two solid circles and a solid rectangle as well as
+           	two outlined rectangles and a squiggle
+SO THAT  :
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US3.007 : nguy3971 : NotStarted
+NAME     : Line thickness selector
+PRIORITY : 3
+ESTIMATE : 1 day    ACTUAL :
+AS A     : user
+I WANT   : To be able to select the current line thickness, to be applied
+           to subsequent shapes. Example:
+           		select fill style outline
+           		selects line thickness 1
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select line thickness 9
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two thinly outlined circles and a thinly outlined
+           	rectangle as well as two thickly outlined rectangles and a thick squiggle
+SO THAT  :
+--------------------------------------------------------------------------
