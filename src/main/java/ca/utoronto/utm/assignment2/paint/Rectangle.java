@@ -57,6 +57,7 @@ public class Rectangle implements Shape{
         if(style.equals("Filled")) {
             g2d.setFill(colour);
             g2d.fillRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
+            g2d.setStroke(Color.BLACK);
         }
         else{
             g2d.setStroke(colour);

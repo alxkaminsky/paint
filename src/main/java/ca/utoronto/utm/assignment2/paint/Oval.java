@@ -54,6 +54,7 @@ public class Oval implements Shape {
         if(style.equals("Filled")) {
             g2d.setFill(colour);
             g2d.fillOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
+            g2d.setStroke(Color.BLACK);
         }
         else{
             g2d.setStroke(colour);
