@@ -7,19 +7,20 @@ public class Oval implements Shape {
     private final Point centre;
     protected Point end;
     private Point upLeftCorner;
+    private String style;
     protected double width;
     protected double height;
     protected Color colour;
     public static Color base = Color.ORANGE;
 
-    public Oval(Point centre, Point end, Color colour) {
+    public Oval(Point centre, Point end, Color colour, String style) {
         this.centre = centre;
         this.end = end;
-        this.colour = base;
+        this.style = style;
+        this.colour = colour;
         calculateHeight();
         calculateWidth();
         calculateUpLeftPoint();
-        this.colour = colour;
     }
 
     public void calculateWidth(){width = 2 * Math.abs((end.x - centre.x));}
@@ -49,11 +50,14 @@ public class Oval implements Shape {
     }
 
     @Override
-    public void draw(GraphicsContext g2d, boolean preview) {
-        g2d.setFill(colour);
-        g2d.fillOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
-
-        if (preview)
-            g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
+    public void draw(GraphicsContext g2d) {
+        if(style.equals("Filled")) {
+            g2d.setFill(colour);
+            g2d.fillOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
+        }
+        else{
+            g2d.setStroke(colour);
+        }
+        g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
     }
 }

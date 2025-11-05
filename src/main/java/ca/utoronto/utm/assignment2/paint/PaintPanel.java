@@ -36,11 +36,11 @@ public class PaintPanel extends Canvas implements Observer {
 
 
         for(Shape shape: shapes){
-            shape.draw(g2d, false);
+            shape.draw(g2d);
         }
 
         if (preview!= null)
-            preview.draw(g2d, true);
+            preview.draw(g2d);
 
         g2d.setFill(Color.RED);
         for(ArrayList<Point> line: lines){

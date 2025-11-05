@@ -4,9 +4,8 @@ import javafx.scene.paint.Color;
 public class IsoscelesTriangle extends Triangle {
     public static Color base = Color.RED;
 
-    public IsoscelesTriangle(Point firstVertex, Point secondVertex, Color colour){
-        super(firstVertex, secondVertex, colour);
-        this.colour = colour;
+    public IsoscelesTriangle(Point firstVertex, Point secondVertex, Color colour, String style) {
+        super(firstVertex, secondVertex, colour, style);
         setThirdVertex();
     }
 
