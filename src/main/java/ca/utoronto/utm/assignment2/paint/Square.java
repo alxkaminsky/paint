@@ -7,10 +7,9 @@ public class Square extends Rectangle {
     private final Point refStartPoint;
     public static Color base = Color.SPRINGGREEN;
 
-    public Square(Point start, Point end, Color colour) {
-        super(start, start, colour);
+    public Square(Point start, Point end, Color colour, String style) {
+        super(start, start, colour, style);
         refStartPoint = start;
-        this.colour = colour;
         setEndPoint(end);
     }
 

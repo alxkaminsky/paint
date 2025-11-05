@@ -29,7 +29,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Circle");
                     Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    circle=new Circle(centre, centre, Color.rgb(0, 255, 0, 0.25));
+                    circle=new Circle(centre, centre, Color.rgb(0, 255, 0, 0.25), model.getStyle());
                     model.setPreviewShape(circle);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
@@ -49,7 +49,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Oval");
                     Point centre = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    oval =new Oval(centre, centre, Color.rgb(255, 140, 0, 0.25));
+                    oval =new Oval(centre, centre, Color.rgb(255, 140, 0, 0.25), model.getStyle());
                     model.setPreviewShape(oval);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
@@ -69,7 +69,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Rectangle");
                     Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    rectangle=new Rectangle(startPoint, startPoint, Color.rgb(0, 0, 255, 0.25));
+                    rectangle=new Rectangle(startPoint, startPoint, Color.rgb(0, 0, 255, 0.25), model.getStyle());
                     model.setPreviewShape(rectangle);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){
@@ -88,7 +88,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 if (mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started Square");
                     Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    square = new Square(startPoint, startPoint, Color.rgb(0, 255, 127, 0.25));
+                    square = new Square(startPoint, startPoint, Color.rgb(0, 255, 127, 0.25), model.getStyle());
                     model.setPreviewShape(square);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)){
@@ -108,7 +108,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started RightTriangle");
                     Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    rtriangle=new RightTriangle(startPoint, startPoint, Color.rgb(250, 128, 114, 0.25));
+                    rtriangle=new RightTriangle(startPoint, startPoint, Color.rgb(250, 128, 114, 0.25), model.getStyle());
                     model.setPreviewShape(rtriangle);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {
@@ -128,7 +128,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 if(mouseEventType.equals(MouseEvent.MOUSE_PRESSED)) {
                     System.out.println("Started IsoscelesTriangle");
                     Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-                    itriangle=new IsoscelesTriangle(startPoint, startPoint, Color.rgb(250, 128, 114, 0.25));
+                    itriangle=new IsoscelesTriangle(startPoint, startPoint, Color.rgb(250, 128, 114, 0.25), model.getStyle());
                     model.setPreviewShape(itriangle);
                 }
                 else if (mouseEventType.equals(MouseEvent.MOUSE_DRAGGED)) {

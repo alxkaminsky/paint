@@ -5,8 +5,8 @@ public class Circle extends Oval{
         private double diameter;
         public static Color base = Color.GREEN;
 
-        public Circle(Point centre, Point end, Color colour){
-            super(centre, end, colour);
+        public Circle(Point centre, Point end, Color colour, String style){
+            super(centre, end, colour, style);
         }
 
         @Override
