@@ -9,6 +9,7 @@ public abstract class Triangle implements Shape {
     private Point thirdVertex;
     private String style;
     protected Color colour;
+    private double strokeWidth;
 
     public Triangle(Point start, Point end, Color colour, String style) {
         this.start = start;
@@ -73,7 +74,16 @@ public abstract class Triangle implements Shape {
         else {
             g2d.setStroke(colour);
         }
+        g2d.setLineWidth(getStrokeWidth());
         g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
 
+    }
+
+    public void setStrokeWidth(double width) {
+        this.strokeWidth = width;
+    }
+
+    public double getStrokeWidth() {
+        return this.strokeWidth;
     }
 }

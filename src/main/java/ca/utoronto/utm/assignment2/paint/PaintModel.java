@@ -9,7 +9,7 @@ public class PaintModel extends Observable {
         private ArrayList<ArrayList<Point>> points=new ArrayList<ArrayList<Point>>();
         private ArrayList<Shape> shapes = new ArrayList<Shape>();
         private Shape previewShape;
-
+        private double currStrokeWidth = 2.0;
 
         public PaintModel() {
             newLine();
@@ -54,5 +54,13 @@ public class PaintModel extends Observable {
             previewShape.setEndPoint(endPoint);
             setChanged();
             notifyObservers();
+        }
+
+        public double getCurrStrokeWidth() {
+            return currStrokeWidth;
+        }
+
+        public void setCurrStrokeWidth(double thickness) {
+            currStrokeWidth = thickness;
         }
 }

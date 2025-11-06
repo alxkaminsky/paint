@@ -12,6 +12,7 @@ public class Oval implements Shape {
     protected double height;
     protected Color colour;
     public static Color base = Color.ORANGE;
+    private double strokeWidth;
 
     public Oval(Point centre, Point end, Color colour, String style) {
         this.centre = centre;
@@ -58,6 +59,15 @@ public class Oval implements Shape {
         else{
             g2d.setStroke(colour);
         }
+        g2d.setLineWidth(getStrokeWidth());
         g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
+    }
+
+    public void setStrokeWidth(double width) {
+        this.strokeWidth = width;
+    }
+
+    public double getStrokeWidth() {
+        return this.strokeWidth;
     }
 }
