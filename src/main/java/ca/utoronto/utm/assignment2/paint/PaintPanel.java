@@ -31,6 +31,9 @@ public class PaintPanel extends Canvas implements Observer {
         GraphicsContext g = getGraphicsContext2D();
         g.clearRect(0, 0, getWidth(), getHeight());
 
+        double strokeWidth = model.getCurrStrokeWidth();
+        g.setLineWidth(strokeWidth);
+
         for (Shape s : model.getShapes()) {
             s.draw(g);
         }

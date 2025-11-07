@@ -2,7 +2,6 @@ package ca.utoronto.utm.assignment2.paint;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import javafx.scene.paint.Color;
 
 public class PaintModel extends Observable {
     private String mode = "Circle";
@@ -11,42 +10,68 @@ public class PaintModel extends Observable {
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Shape previewShape;
 
-    private Color currentColor = Color.BLACK;
+    private double currStrokeWidth = 2.0;
 
     public PaintModel() {
         newLine();
     }
 
-    public String getMode() { return mode; }
+    public String getMode() {
+        return mode;
+    }
 
-    public void setMode(String mode) { this.mode = mode; System.out.println(this.mode); }
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
 
-    public String getStyle() { return style; }
+    public String getStyle() {
+        return style;
+    }
 
-    public void setStyle(String style) { this.style = style; }
+    public void setStyle(String style) {
+        this.style = style;
+    }
 
-    public void setColour(Color c) { if (c != null) this.currentColor = c; }
+    public void setCurrStrokeWidth(double width) {
+        if (width > 0) {
+            this.currStrokeWidth = width;
+            setChanged();
+            notifyObservers();
+        }
+    }
 
-    public Color getColour() { return this.currentColor; }
-
+    public double getCurrStrokeWidth() {
+        return currStrokeWidth;
+    }
 
     public void addPoint(Point p) {
-        points.get(points.size()-1).add(p);
-        setChanged(); notifyObservers();
+        if (points.isEmpty()) {
+            newLine();
+        }
+        points.get(points.size() - 1).add(p);
+        setChanged();
+        notifyObservers();
     }
 
     public void newLine() {
         points.add(new ArrayList<Point>());
-        setChanged(); notifyObservers();
+        setChanged();
+        notifyObservers();
     }
 
-    public ArrayList<ArrayList<Point>> getPoints() { return points; }
+    public ArrayList<ArrayList<Point>> getPoints() {
+        return points;
+    }
 
-    public ArrayList<Shape> getShapes() { return shapes; }
+    public ArrayList<Shape> getShapes() {
+        return shapes;
+    }
 
     private void addShape(Shape s) {
+        if (s == null) return;
         shapes.add(s);
-        setChanged(); notifyObservers();
+        setChanged();
+        notifyObservers();
     }
 
     public void commitShape(Point start, Point end) {
@@ -54,22 +79,27 @@ public class PaintModel extends Observable {
                 this.mode,
                 start,
                 end,
-                this.style
+                this.style,
+                this.currStrokeWidth
         );
         addShape(s);
     }
 
-    public Shape getPreviewShape() { return previewShape; }
+    public Shape getPreviewShape() {
+        return previewShape;
+    }
 
     public void setPreviewShape(Shape s) {
-        previewShape = s;
-        setChanged(); notifyObservers();
+        this.previewShape = s;
+        setChanged();
+        notifyObservers();
     }
 
     public void updatePreviewShape(Point endPoint) {
         if (previewShape != null) {
             previewShape.setEndPoint(endPoint);
-            setChanged(); notifyObservers();
+            setChanged();
+            notifyObservers();
         }
     }
 }
