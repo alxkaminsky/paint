@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 BUG3.005 author:kamins64 puller:phammi36 status:Complete
-US3.005 author:phammi36 puller:kamins64 status:Complete
+US3.005 author:phammi36 puller:nguy3971 status:Complete
 US3.006 author:kamins64 puller:phammi36 status: Complete
 US3.007 author:nguy3971 puller:suleym11  status:Complete
 BUG3.004 author:suleym11 puller:kamins64 status: Complete
