@@ -1,6 +1,7 @@
 module ca.utoronto.utm.assignment2 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.base;
 
 
     opens ca.utoronto.utm.assignment2 to javafx.fxml;

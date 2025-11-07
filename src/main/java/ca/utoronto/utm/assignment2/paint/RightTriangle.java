@@ -2,8 +2,6 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.paint.Color;
 
 public class RightTriangle extends Triangle {
-    public static Color base = Color.SALMON;
-
     public  RightTriangle(Point firstVertex, Point secondVertex, Color colour, String style) {
         super(firstVertex, secondVertex, colour, style);
         setThirdVertex();

@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 public class Square extends Rectangle {
 
     private final Point refStartPoint;
-    public static Color base = Color.SPRINGGREEN;
 
     public Square(Point start, Point end, Color colour, String style) {
         super(start, start, colour, style);

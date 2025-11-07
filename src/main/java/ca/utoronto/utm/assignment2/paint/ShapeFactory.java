@@ -31,6 +31,7 @@ public final class ShapeFactory {
     public static Shape create(String shapeType,
                                Point start,
                                Point end,
+                               Color color,
                                String style,
                                double strokeWidth) {
         String key = norm(shapeType);
@@ -38,27 +39,27 @@ public final class ShapeFactory {
 
         switch (key) {
             case "rectangle":
-                s = new Rectangle(start, end, Rectangle.base, style);
+                s = new Rectangle(start, end, color, style);
                 break;
 
             case "circle":
-                s = new Circle(start, end, Circle.base, style);
+                s = new Circle(start, end, color, style);
                 break;
 
             case "oval":
-                s = new Oval(start, end, Oval.base, style);
+                s = new Oval(start, end, color, style);
                 break;
 
             case "square":
-                s = new Square(start, end, Square.base, style);
+                s = new Square(start, end, color, style);
                 break;
 
             case "righttriangle":
-                s = new RightTriangle(start, end, RightTriangle.base, style);
+                s = new RightTriangle(start, end, color, style);
                 break;
 
             case "isoscelestriangle":
-                s = new IsoscelesTriangle(start, end, IsoscelesTriangle.base, style);
+                s = new IsoscelesTriangle(start, end, color, style);
                 break;
 
             default:
@@ -72,6 +73,7 @@ public final class ShapeFactory {
     public static Shape createPreview(String shapeType,
                                       Point start,
                                       Point end,
+                                      Color color,
                                       String style,
                                       double strokeWidth) {
         String key = norm(shapeType);
@@ -80,32 +82,32 @@ public final class ShapeFactory {
         switch (key) {
             case "rectangle":
                 s = new Rectangle(start, end,
-                        withAlpha(Rectangle.base, 0.25), style);
+                        withAlpha(color, 0.25), style);
                 break;
 
             case "circle":
                 s = new Circle(start, end,
-                        withAlpha(Circle.base, 0.25), style);
+                        withAlpha(color, 0.25), style);
                 break;
 
             case "oval":
                 s = new Oval(start, end,
-                        withAlpha(Oval.base, 0.25), style);
+                        withAlpha(color, 0.25), style);
                 break;
 
             case "square":
                 s = new Square(start, end,
-                        withAlpha(Square.base, 0.25), style);
+                        withAlpha(color, 0.25), style);
                 break;
 
             case "righttriangle":
                 s = new RightTriangle(start, end,
-                        withAlpha(RightTriangle.base, 0.25), style);
+                        withAlpha(color, 0.25), style);
                 break;
 
             case "isoscelestriangle":
                 s = new IsoscelesTriangle(start, end,
-                        withAlpha(IsoscelesTriangle.base, 0.25), style);
+                        withAlpha(color, 0.25), style);
                 break;
 
             default:

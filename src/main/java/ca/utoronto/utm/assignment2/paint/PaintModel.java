@@ -1,5 +1,6 @@
 package ca.utoronto.utm.assignment2.paint;
 
+import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -9,6 +10,7 @@ public class PaintModel extends Observable {
     private ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Shape previewShape;
+    private Color currentColor = Color.BURLYWOOD;
 
     private double currStrokeWidth = 2.0;
 
@@ -79,6 +81,7 @@ public class PaintModel extends Observable {
                 this.mode,
                 start,
                 end,
+                this.currentColor,
                 this.style,
                 this.currStrokeWidth
         );
@@ -101,5 +104,18 @@ public class PaintModel extends Observable {
             setChanged();
             notifyObservers();
         }
+    }
+
+    public Color getCurrentColor() {
+        return currentColor;
+    }
+
+    public void setCurrentColor(Color color) {
+        this.currentColor = color;
+        if (this.previewShape != null) {
+            this.previewShape.setColour(color);
+        }
+        setChanged();
+        notifyObservers();
     }
 }

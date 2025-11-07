@@ -40,6 +40,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     mode,
                     start,
                     start,
+                    model.getCurrentColor(),
                     model.getStyle(),
                     model.getCurrStrokeWidth());
             model.setPreviewShape(preview);
