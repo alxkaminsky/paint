@@ -16,8 +16,6 @@ public class ColorPickerPanelHandler implements EventHandler<ActionEvent> {
         String colorName = colorPickerPanel.getSelectedColor();
         Color color;
 
-        // I love to confuse people with these colors
-        // Map the friendly names used in the ComboBox to actual JavaFX Color constants
         switch(colorName) {
             case "SADDLEBROWN": color = Color.SADDLEBROWN; break;
             case "CADETBLUE": color = Color.CADETBLUE; break;
