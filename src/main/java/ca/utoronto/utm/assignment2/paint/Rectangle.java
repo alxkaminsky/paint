@@ -60,7 +60,7 @@ public class Rectangle implements Shape{
         }
         else{
             g2d.setStroke(colour);
+            g2d.strokeRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
         }
-        g2d.strokeRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
     }
 }

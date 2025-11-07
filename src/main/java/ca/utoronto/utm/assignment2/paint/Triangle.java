@@ -72,8 +72,7 @@ public abstract class Triangle implements Shape {
         }
         else {
             g2d.setStroke(colour);
+            g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
         }
-        g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
-
     }
 }

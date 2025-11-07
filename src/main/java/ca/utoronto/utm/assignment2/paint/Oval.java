@@ -57,7 +57,7 @@ public class Oval implements Shape {
         }
         else{
             g2d.setStroke(colour);
+            g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
         }
-        g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
     }
 }
