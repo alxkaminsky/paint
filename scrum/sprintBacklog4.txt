@@ -69,8 +69,8 @@ ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
            the order in which the shapes were placed.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG4.002 : UTORID : nguy3971
-NAME     : Icons instead of text for drawing mode selection
+TYPE     : BUG BUG4.002 : UTORID : kamins64
+NAME     : UI is messy
 PRIORITY : 1
 ESTIMATE : 4 hours   ACTUAL :
 ISSUE    : UI is currently crowded and unintuitive. The buttons and draw settings
