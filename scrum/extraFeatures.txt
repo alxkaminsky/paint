@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+FeatureName: Undo
+
+Description:
+	Allows the user to reverse the last action performed. This typically includes
+	actions like drawing a line, adding text, or deleting an object, reverting the
+	canvas to its previous state.
+
+Reference:
+	US4.004
+--------------------------------------------------------------------------------
+FeatureName: Clear
+
+Description:
+	Allows the user to remove all content from the current canvas or working area,
+	resetting it to a blank state.
+
+Reference:
+	US4.005
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Resizable Canvas
+
+Description:
+	Allows the user to change the dimensions (width and/or height) of the main
+	working area (the canvas) to fit their project needs.
+
+Reference:
+	US4.006
+--------------------------------------------------------------------------------

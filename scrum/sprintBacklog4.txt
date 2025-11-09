@@ -4,4 +4,76 @@
 
 # Sprint 4 Nov 7-Nov 13, 2025
 # Sprint 4 Backlog UserStories go below
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.001 : suleym11
+NAME     : Draw Polyline
+PRIORITY : 2
+ESTIMATE : 3 hours   ACTUAL :
+AS A     : user
+I WANT   : To click a series of sequential points on the screen, connected by a line.
+SO THAT  : I can create a custom, multi-segmented line to represent a path, boundary, or feature.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.002 : kamins64
+NAME     : Custom Colour Selection
+PRIORITY : 2
+ESTIMATE : 2 hours   ACTUAL :
+AS A     : user
+I WANT   : Select a custom RGB colour on a colour wheel.
+SO THAT  : I can draw shapes\segments using the colour I picked.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.003 : nguy3971
+NAME     : Line thickness selection
+PRIORITY : 2
+ESTIMATE : 2 hours   ACTUAL :
+AS A     : user
+I WANT   : Select the thickness of outlines/line segments on the canvas
+           on a scale
+SO THAT  : I can draw outlines/segments with my selected line thickness.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.004 : nguy3971
+NAME     : Undo
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+AS A     : user
+I WANT   : To be able to undo the most recent drawing
+SO THAT  : I can easily correct mistakes or revert changes without having to start over.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.005 : nguy3971
+NAME     : Clear
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+AS A     : user
+I WANT   : To be able to clear all drawings from the canvas at once
+SO THAT  : I can start over with a blank slate without having to undo each item individually.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.006 : phammi36
+NAME     : Resizable Canvas
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+AS A     : user
+I WANT   : To be able to dynamically resize the drawing canvas
+SO THAT  : I can make the canvas size to my liking
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG4.001 : UTORID : nguy3971
+NAME     : Squiggle is broken
+PRIORITY : 1
+ESTIMATE : 4 hours   ACTUAL :
+ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
+           Squiggle is constantly drawn above other shapes no matter
+           the order in which the shapes were placed.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG4.002 : UTORID : nguy3971
+NAME     : Icons instead of text for drawing mode selection
+PRIORITY : 1
+ESTIMATE : 4 hours   ACTUAL :
+ISSUE    : UI is currently crowded and unintuitive. The buttons and draw settings
+           should all be in one place.
+--------------------------------------------------------------------------
 
