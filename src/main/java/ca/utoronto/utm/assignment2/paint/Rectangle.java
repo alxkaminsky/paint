@@ -10,7 +10,6 @@ public class Rectangle implements Shape{
     private String style;
     private double height;
     protected Color colour;
-    public static Color base = Color.BLUE;
     private double strokeWidth;
 
     public Rectangle(Point start, Point end, Color colour, String style) {

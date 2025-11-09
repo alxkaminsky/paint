@@ -255,6 +255,21 @@ ISSUE    : Code is not modular and is difficult to expand. Need a better
            Refactor ShapeChooserPanel and PaintPanel to get rid of the
            'if' blocks in the PaintPanel mouse event code.
 --------------------------------------------------------------------------
+TYPE     : BUG BUG3.004 : suleym11
+NAME     : Architecture behind Model is poor
+PRIORITY : 3
+ESTIMATE : 1 day  ACTUAL :
+ISSUE    : Need to re-architect the PaintModel
+           so that it is more flexible, and easier to work with.
+           Consider some design patterns, or change of responsibility
+           here. Research the following design patterns and figure out which are
+           best to use:
+           	1.Strategy
+           	2.Command
+           	3.Singleton
+           	4.Composite
+           	5.Factory
+           	6.Builder
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
 

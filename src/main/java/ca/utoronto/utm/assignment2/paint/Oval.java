@@ -11,7 +11,6 @@ public class Oval implements Shape {
     protected double width;
     protected double height;
     protected Color colour;
-    public static Color base = Color.ORANGE;
     private double strokeWidth;
 
     public Oval(Point centre, Point end, Color colour, String style) {
