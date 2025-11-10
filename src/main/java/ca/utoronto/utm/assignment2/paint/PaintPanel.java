@@ -13,7 +13,7 @@ public class PaintPanel extends Canvas implements Observer {
     private final PaintPanelHandler handler;
 
     public PaintPanel(PaintModel model) {
-        super(300, 300);
+        super(1000, 650);
         this.model = model;
         this.handler = new PaintPanelHandler(model);
 

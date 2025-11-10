@@ -17,7 +17,7 @@ SO THAT  : I can create a custom, multi-segmented line to represent a path, boun
 TYPE     : USER STORY US4.002 : kamins64
 NAME     : Custom Colour Selection
 PRIORITY : 2
-ESTIMATE : 2 hours   ACTUAL :
+ESTIMATE : 2 hours   ACTUAL : 1 hour
 AS A     : user
 I WANT   : Select a custom RGB colour on a colour wheel.
 SO THAT  : I can draw shapes\segments using the colour I picked.
@@ -60,7 +60,7 @@ I WANT   : To be able to dynamically resize the drawing canvas
 SO THAT  : I can make the canvas size to my liking
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG BUG4.001 : UTORID : nguy3971
+TYPE     : BUG BUG4.001 : UTORID : suleym11
 NAME     : Squiggle is broken
 PRIORITY : 1
 ESTIMATE : 4 hours   ACTUAL :

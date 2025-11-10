@@ -9,30 +9,28 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class View implements EventHandler<ActionEvent> {
 
         private PaintModel paintModel;
         private PaintPanel paintPanel;
-        private ShapeChooserPanel shapeChooserPanel;
         private DrawSettingsPanel drawSettingsPanel;
-        private ColorPickerPanel colorPickerPanel;
+
 
         public View(PaintModel model, Stage stage) {
             this.paintModel = model;
 
             paintPanel = new PaintPanel(this.paintModel);
-            shapeChooserPanel = new ShapeChooserPanel(model);
             drawSettingsPanel = new DrawSettingsPanel(model);
-            colorPickerPanel = new ColorPickerPanel(model);
+
+            VBox vBox = new VBox();
+            vBox.getChildren().addAll(createMenuBar(), drawSettingsPanel);
 
             BorderPane root = new BorderPane();
-            root.setTop(createMenuBar());
+            root.setTop(vBox);
             root.setCenter(this.paintPanel);
-            root.setLeft(this.shapeChooserPanel);
-            root.setBottom(drawSettingsPanel);
-            root.setRight(colorPickerPanel);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Paint");
