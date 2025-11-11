@@ -8,7 +8,7 @@
 TYPE     : USER STORY US4.001 : suleym11
 NAME     : Draw Polyline
 PRIORITY : 2
-ESTIMATE : 3 hours   ACTUAL :
+ESTIMATE : 3 hours   ACTUAL : 2 hours
 AS A     : user
 I WANT   : To click a series of sequential points on the screen, connected by a line.
 SO THAT  : I can create a custom, multi-segmented line to represent a path, boundary, or feature.
@@ -63,7 +63,7 @@ SO THAT  : I can make the canvas size to my liking
 TYPE     : BUG BUG4.001 : UTORID : suleym11
 NAME     : Squiggle is broken
 PRIORITY : 1
-ESTIMATE : 4 hours   ACTUAL :
+ESTIMATE : 4 hours   ACTUAL : 2 hours
 ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
            Squiggle is constantly drawn above other shapes no matter
            the order in which the shapes were placed.

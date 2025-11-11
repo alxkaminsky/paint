@@ -25,6 +25,8 @@ public final class ShapeFactory {
             o.setStrokeWidth(strokeWidth);
         } else if (s instanceof Square sq) {
             sq.setStrokeWidth(strokeWidth);
+        } else if (s instanceof Squiggle squ) {
+            squ.setStrokeWidth(strokeWidth);
         }
     }
 
@@ -61,6 +63,14 @@ public final class ShapeFactory {
 
             case "isoscelestriangle":
                 s = new IsoscelesTriangle(start, end, fillColor, outlineColor, style);
+                break;
+
+            case "polyline":
+                s = new Polyline(start, end, fillColor, outlineColor, style);
+                break;
+
+            case "squiggle":
+                s = new Squiggle(start, end, fillColor, outlineColor, style);
                 break;
 
             default:
@@ -110,6 +120,14 @@ public final class ShapeFactory {
             case "isoscelestriangle":
                 s = new IsoscelesTriangle(start, end,
                         withAlpha(fillColour, 0.25), outlineColour, style);
+                break;
+
+            case "polyline":
+                s = new Polyline(start, end, fillColour, outlineColour, style);
+                break;
+
+            case "squiggle":
+                s = new Squiggle(start, end, fillColour, outlineColour, style);
                 break;
 
             default:
