@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -17,6 +19,7 @@ public class View implements EventHandler<ActionEvent> {
         private PaintModel paintModel;
         private PaintPanel paintPanel;
         private DrawSettingsPanel drawSettingsPanel;
+        private Canvas canvas;
 
 
         public View(PaintModel model, Stage stage) {
@@ -92,8 +95,11 @@ public class View implements EventHandler<ActionEvent> {
                 menuItem.setOnAction(this);
                 menu.getItems().add(menuItem);
 
-                menuItem = new MenuItem("Redo");
-                menuItem.setOnAction(this);
+                menuItem = new MenuItem("Clear All");
+                menuItem.setOnAction(e -> {
+                    paintModel.deleteAllShapes();
+                    createNewCanvas();
+                });
                 menu.getItems().add(menuItem);
 
                 menuBar.getMenus().add(menu);
@@ -112,5 +118,11 @@ public class View implements EventHandler<ActionEvent> {
                         Platform.exit();
                 }
         }
+
+    public void createNewCanvas() {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        paintModel.draw(gc);
+    }
 
 }
