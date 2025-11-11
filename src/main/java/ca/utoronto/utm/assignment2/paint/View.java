@@ -89,7 +89,9 @@ public class View implements EventHandler<ActionEvent> {
 
                 menu.getItems().add(new SeparatorMenuItem());
                 menuItem = new MenuItem("Undo");
-                menuItem.setOnAction(this);
+                menuItem.setOnAction(e -> {
+                    paintModel.deleteMostRecentShape();
+                });
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Redo");

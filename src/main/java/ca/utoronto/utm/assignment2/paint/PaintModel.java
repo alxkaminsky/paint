@@ -77,6 +77,14 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    public void deleteMostRecentShape() {
+        if (!shapes.isEmpty()) {
+            shapes.removeLast();
+            setChanged();
+            notifyObservers();
+        }
+    }
+
     public void commitShape(Point start, Point end) {
         Shape s = ShapeFactory.create(
                 this.mode,
