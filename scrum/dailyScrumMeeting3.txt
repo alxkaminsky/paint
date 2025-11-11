@@ -93,59 +93,59 @@ Oct 31,2025
 	Obstacles I face: Divide the work and estimate the necessary time for each task
 
 Nov 1,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Take a look at sprint 3 and determine what to do next
+	What I will do today: Have a meeting with my group members to discuss the task for this sprint
+	Obstacles I face: Divide the work equally and estimate the time
 
 Nov 2,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Have a meeting with my group members to discuss the task for this sprint
+	What I will do today: Start my task, which is adjusting the thickness outline of a shape
+	Obstacles I face: I don't know which command control and thickness and how to adjust it
 
 Nov 3,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Start my task, which is adjusting the thickness outline of a shape
+	What I will do today: Trying to read documents about adjusting the shape's outline
+	Obstacles I face: Too many documents online and many way of implementation
 
 Nov 4,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Trying to read documents about adjusting the shape's outline
+	What I will do today: Determine which implementation will be the most efficient
+	Obstacles I face: Keep getting errors from the IDE and adapting my implementation into the project
 
 Nov 5,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Determine which implementation will be the most efficient
+	What I will do today: Complete my task and ready to solve merge conflict
+	Obstacles I face: Finalize my implementation and testing my codes
 
 Nov 6,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Complete my task and ready to solve merge conflict
+	What I will do today: Solving merge conflict and meeting with team to finalize before submission
+	Obstacles I face: Merge conflict
 
 Nov 7,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Solving merge conflict and meeting with team to finalize before submission
+	What I will do today: Take a quick look into sprint 4 and study for STA256 midterm
+	Obstacles I face: Material of STA256
 
 Nov 8,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Take a quick look into sprint 4 and study for STA256 midterm
+	What I will do today: Taking STA256 Midterm and take a little break after that
+	Obstacles I face: STA256 Midterm
 
 Nov 9,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Taking STA256 Midterm and take a little break after that
+	What I will do today: Have a meeting with group members to discuss about sprint 4
+	Obstacles I face: Determine the extra features that we could do
 
 Nov 10,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Have a meeting with group members to discuss about sprint 4
+	What I will do today: Receive my task and start working on it
+	Obstacles I face: Determine how to implement undo/clear all
 
 Nov 11,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Receive my task and start working on it
+	What I will do today: Complete my undo/clear all and ready to discuss with others about architecture
+	Obstacles I face: Efficiently implement undo/clear all
 
 Nov 12,2025
 	What I did yesterday:
