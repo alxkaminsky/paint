@@ -10,20 +10,20 @@ import javafx.scene.paint.Color;
 public class PaintPanel extends Canvas implements Observer {
 
     private final PaintModel model;
-    private final PaintPanelHandler handler;
 
     public PaintPanel(PaintModel model) {
         super(1000, 650);
         this.model = model;
-        this.handler = new PaintPanelHandler(model);
+
+        PaintPanelHandler handler = new PaintPanelHandler(model);
 
         model.addObserver(this);
 
-        addEventHandler(MouseEvent.MOUSE_PRESSED,  handler);
-        addEventHandler(MouseEvent.MOUSE_DRAGGED,  handler);
+        addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
+        addEventHandler(MouseEvent.MOUSE_DRAGGED, handler);
         addEventHandler(MouseEvent.MOUSE_RELEASED, handler);
-        addEventHandler(MouseEvent.MOUSE_MOVED,    handler);
-        addEventHandler(MouseEvent.MOUSE_CLICKED,  handler);
+        addEventHandler(MouseEvent.MOUSE_MOVED, handler);
+        addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
     }
 
     @Override

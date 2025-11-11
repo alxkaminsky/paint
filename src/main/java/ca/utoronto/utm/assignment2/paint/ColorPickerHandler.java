@@ -7,9 +7,11 @@ import javafx.scene.paint.Color;
 
 public class ColorPickerHandler implements EventHandler<ActionEvent> {
     PaintModel model;
+    boolean isOutline;
 
-    public ColorPickerHandler(PaintModel model) {
+    public ColorPickerHandler(PaintModel model, boolean isOutline) {
         this.model = model;
+        this.isOutline = isOutline;
     }
 
     @Override
@@ -17,6 +19,11 @@ public class ColorPickerHandler implements EventHandler<ActionEvent> {
         ColorPicker colorPicker = (ColorPicker) actionEvent.getSource();
         Color color = colorPicker.getValue();
 
-        model.setCurrentColor(color);
+        if (isOutline) {
+            model.setOutlineColor(color);
+        }
+        else{
+            model.setFillColor(color);
+        }
     }
 }

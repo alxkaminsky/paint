@@ -10,14 +10,16 @@ public class Oval implements Shape {
     private String style;
     protected double width;
     protected double height;
-    protected Color colour;
+    protected Color fillColour;
+    protected Color outlineColour;
     private double strokeWidth;
 
-    public Oval(Point centre, Point end, Color colour, String style) {
+    public Oval(Point centre, Point end, Color fillColour, Color outlineColour, String style) {
         this.centre = centre;
         this.end = end;
         this.style = style;
-        this.colour = colour;
+        this.fillColour = fillColour;
+        this.outlineColour = outlineColour;
         calculateHeight();
         calculateWidth();
         calculateUpLeftPoint();
@@ -45,20 +47,17 @@ public class Oval implements Shape {
     public Point getUpLeftCorner() {return upLeftCorner;}
 
     @Override
-    public void setColour(Color color) {
-        this.colour = color;
+    public void setFillColour(Color color) {
+        this.fillColour = color;
     }
 
     @Override
     public void draw(GraphicsContext g2d) {
         if(style.equals("Filled")) {
-            g2d.setFill(colour);
+            g2d.setFill(fillColour);
             g2d.fillOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
-            g2d.setStroke(Color.BLACK);
         }
-        else{
-            g2d.setStroke(colour);
-        }
+        g2d.setStroke(outlineColour);
         g2d.setLineWidth(getStrokeWidth());
         g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
     }

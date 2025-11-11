@@ -10,7 +10,8 @@ public class PaintModel extends Observable {
     private ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Shape previewShape;
-    private Color currentColor = Color.BURLYWOOD;
+    private Color fillColor = Color.BURLYWOOD;
+    private Color outlineColor = Color.BLACK;
 
     private double currStrokeWidth = 2.0;
 
@@ -81,7 +82,8 @@ public class PaintModel extends Observable {
                 this.mode,
                 start,
                 end,
-                this.currentColor,
+                this.fillColor,
+                this.outlineColor,
                 this.style,
                 this.currStrokeWidth
         );
@@ -106,16 +108,11 @@ public class PaintModel extends Observable {
         }
     }
 
-    public Color getCurrentColor() {
-        return currentColor;
-    }
+    public Color getFillColor() {return fillColor;}
 
-    public void setCurrentColor(Color color) {
-        this.currentColor = color;
-        if (this.previewShape != null) {
-            this.previewShape.setColour(color);
-        }
-        setChanged();
-        notifyObservers();
-    }
+    public void setFillColor(Color color) {this.fillColor = color;}
+
+    public Color getOutlineColor() {return outlineColor;}
+
+    public void setOutlineColor(Color color) {this.outlineColor = color;}
 }

@@ -4,4 +4,5 @@ US3.006 author:kamins64 puller:phammi36 status: Complete
 US3.007 author:nguy3971 puller:suleym11  status:Complete
 BUG3.004 author:suleym11 puller:kamins64 status: Complete
 US4.002 author:kamins64 puller:suleym11 status: Complete <<<<<<< HEAD
+BUG4.002 author:kamins64 puller:suleym11 status: waiting
 

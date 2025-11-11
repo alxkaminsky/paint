@@ -6,8 +6,8 @@ public class Square extends Rectangle {
 
     private final Point refStartPoint;
 
-    public Square(Point start, Point end, Color colour, String style) {
-        super(start, start, colour, style);
+    public Square(Point start, Point end, Color fillColour, Color outlineColour, String style) {
+        super(start, start, fillColour, outlineColour, style);
         refStartPoint = start;
         setEndPoint(end);
     }

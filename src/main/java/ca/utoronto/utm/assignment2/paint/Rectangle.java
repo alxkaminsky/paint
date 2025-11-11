@@ -9,15 +9,17 @@ public class Rectangle implements Shape{
     private double width;
     private String style;
     private double height;
-    protected Color colour;
+    protected Color fillColour;
+    protected Color outlineColour;
     private double strokeWidth;
 
-    public Rectangle(Point start, Point end, Color colour, String style) {
+    public Rectangle(Point start, Point end, Color fillColour, Color outlineColour, String style) {
         startPoint = start;
         endPoint = end;
         width = Math.abs(endPoint.x - startPoint.x);
         height = Math.abs(endPoint.y - startPoint.y);
-        this.colour = colour;
+        this.fillColour = fillColour;
+        this.outlineColour = outlineColour;
         this.style = style;
         calculateUpLeftCorner();
     }
@@ -48,20 +50,18 @@ public class Rectangle implements Shape{
     }
 
     @Override
-    public void setColour(Color color) {
-        this.colour = color;
+    public void setFillColour(Color color) {
+        this.fillColour = color;
     }
 
     @Override
     public void draw(GraphicsContext g2d) {
         if(style.equals("Filled")) {
-            g2d.setFill(colour);
+            g2d.setFill(fillColour);
             g2d.fillRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
             g2d.setStroke(Color.BLACK);
         }
-        else{
-            g2d.setStroke(colour);
-        }
+        g2d.setStroke(outlineColour);
         g2d.setLineWidth(getStrokeWidth());
         g2d.strokeRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
     }

@@ -1,42 +1,48 @@
 package ca.utoronto.utm.assignment2.paint;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-public class ColorPickerPanel extends VBox{
+public class ColorPickerPanel extends StackPane {
 
-    private PaintModel model;
-    private ComboBox<String> colorComboBox;
+    private final ColorPicker hiddenColorPicker;
+    private final Rectangle visibleColorSquare;
 
-    public ColorPickerPanel(PaintModel model) {
-        this.model = model;
+    public ColorPickerPanel(Color initialColor) {
 
-        Label label = new Label("Choose color");
+        hiddenColorPicker = new ColorPicker(initialColor);
+        hiddenColorPicker.setVisible(false);
+        hiddenColorPicker.setManaged(false);
 
-        colorComboBox = new ComboBox<>();
-        colorComboBox.getItems().addAll(
-                "SADDLEBROWN",
-                "CADETBLUE",
-                "GOLDENROD",
-                "SEAGREEN",
-                "OLDLACE",
-                "INDIGO",
-                "BURLYWOOD"
-        );
-        colorComboBox.setValue("BURLYWOOD");
+        visibleColorSquare = new Rectangle(30, 30);
+        visibleColorSquare.setArcWidth(5);
+        visibleColorSquare.setArcHeight(5);
+        visibleColorSquare.setStroke(Color.web("#000000"));
+        visibleColorSquare.setStrokeWidth(1);
 
-        ColorPickerPanelHandler handler = new ColorPickerPanelHandler(this);
-        colorComboBox.setOnAction(handler);
+        visibleColorSquare.fillProperty().bind(hiddenColorPicker.valueProperty());
 
-        getChildren().addAll(label, colorComboBox);
+        this.setOnMouseClicked(event -> {
+            hiddenColorPicker.show();
+        });
+
+        getChildren().addAll(visibleColorSquare, hiddenColorPicker);
+
+        final String HOVER_STYLE = "-fx-opacity: 0.8;";
+        final String NORMAL_STYLE = "-fx-opacity: 1.0;";
+
+        visibleColorSquare.setStyle(NORMAL_STYLE);
+        this.setOnMouseEntered(e -> visibleColorSquare.setStyle(HOVER_STYLE));
+        this.setOnMouseExited(e -> visibleColorSquare.setStyle(NORMAL_STYLE));
+
+        this.setStyle("-fx-cursor: hand;");
     }
 
-    public PaintModel getModel() {
-        return model;
-    }
-
-    public String getSelectedColor() {
-        return colorComboBox.getValue();
+    public void setOnAction(EventHandler<ActionEvent> handler) {
+        this.hiddenColorPicker.setOnAction(handler);
     }
 }

@@ -2,8 +2,8 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.paint.Color;
 
 public class IsoscelesTriangle extends Triangle {
-    public IsoscelesTriangle(Point firstVertex, Point secondVertex, Color colour, String style) {
-        super(firstVertex, secondVertex, colour, style);
+    public IsoscelesTriangle(Point firstVertex, Point secondVertex, Color fillColour, Color outlineColor, String style) {
+        super(firstVertex, secondVertex, fillColour, outlineColor, style);
         setThirdVertex();
     }
 

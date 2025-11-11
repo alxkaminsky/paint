@@ -8,13 +8,15 @@ public abstract class Triangle implements Shape {
     private Point end;
     private Point thirdVertex;
     private String style;
-    protected Color colour;
+    protected Color fillColour;
+    protected Color outlineColour;
     private double strokeWidth;
 
-    public Triangle(Point start, Point end, Color colour, String style) {
+    public Triangle(Point start, Point end, Color fillColour, Color outlineColour, String style) {
         this.start = start;
         this.end = end;
-        this.colour = colour;
+        this.fillColour = fillColour;
+        this.outlineColour = outlineColour;
         this.style = style;
         setThirdVertex();
     }
@@ -55,8 +57,8 @@ public abstract class Triangle implements Shape {
     }
 
     @Override
-    public void setColour(Color color) {
-        this.colour = color;
+    public void setFillColour(Color color) {
+        this.fillColour = color;
     }
 
     @Override
@@ -68,12 +70,12 @@ public abstract class Triangle implements Shape {
     @Override
     public void draw(GraphicsContext g2d) {
         if (style.equals("Filled")) {
-            g2d.setFill(colour);
+            g2d.setFill(fillColour);
             g2d.fillPolygon(getXAllVertices(), getYAllVertices(), 3);
             g2d.setStroke(Color.BLACK);
         }
         else {
-            g2d.setStroke(colour);
+            g2d.setStroke(fillColour);
         }
         g2d.setLineWidth(getStrokeWidth());
         g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);

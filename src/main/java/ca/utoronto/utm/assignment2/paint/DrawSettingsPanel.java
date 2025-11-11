@@ -1,28 +1,88 @@
+//package ca.utoronto.utm.assignment2.paint;
+//
+//import javafx.geometry.Insets;
+//import javafx.scene.Node;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.ColorPicker;
+//import javafx.scene.layout.HBox;
+//import javafx.scene.layout.VBox;
+//import javafx.scene.paint.Color;
+//import javafx.scene.shape.Rectangle;
+//
+//public class DrawSettingsPanel extends HBox {
+//
+//    public DrawSettingsPanel(PaintModel model) {
+//        setStyle("-fx-background-color: lightgray; -fx-border-color: #C0C0C0; -fx-border-width: 0 0 1 0;");
+//        setPadding(new Insets(5));
+//
+//        ShapeChooserPanel panel = new ShapeChooserPanel(model);
+//        ColorPicker fillColourPicker = new ColorPicker(model.getFillColor());
+//        ColorPicker outlineColourPicker = new ColorPicker(model.getOutlineColor());
+//
+//        ColorPickerHandler colorPickerHandler1 = new ColorPickerHandler(model, false);
+//        ColorPickerHandler colorPickerHandler2 = new ColorPickerHandler(model, true);
+//
+//
+//        fillColourPicker.setOnAction(colorPickerHandler1);
+//        outlineColourPicker.setOnAction(colorPickerHandler2);
+//
+//        setSpacing(10);
+//
+//        getChildren().addAll(panel, createCustomSeparator(), fillColourPicker, createCustomSeparator(),
+//                outlineColourPicker, createCustomSeparator());
+//    }
 package ca.utoronto.utm.assignment2.paint;
 
-import javafx.scene.control.Button;
+// 1. Import all the necessary classes
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox; // Import VBox
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
 
 public class DrawSettingsPanel extends HBox {
 
     public DrawSettingsPanel(PaintModel model) {
+        setStyle("-fx-background-color: lightgray; -fx-border-color: #C0C0C0; -fx-border-width: 0 0 1 0;");
+        setPadding(new Insets(5));
+        setSpacing(10);
+        setAlignment(Pos.CENTER_LEFT);
+
         ShapeChooserPanel panel = new ShapeChooserPanel(model);
-        ColorPicker colorPicker = new ColorPicker(model.getCurrentColor());
-        Button filled = new Button("Filled");
-        Button outline = new Button("Outline");
 
-        DrawSettingsPanelHandler handler1 = new DrawSettingsPanelHandler(outline, model);
-        DrawSettingsPanelHandler handler2 = new DrawSettingsPanelHandler(filled, model);
-        ColorPickerHandler colorPickerHandler = new ColorPickerHandler(model);
+        Label fillLabel = new Label("Fill");
+        ColorPickerPanel fillColourPicker = new ColorPickerPanel(model.getFillColor());
 
-        colorPicker.setOnAction(colorPickerHandler);
+        fillColourPicker.setOnAction(new ColorPickerHandler(model, false));
 
-        filled.setOnAction(handler1);
-        outline.setOnAction(handler2);
+        VBox fillBox = new VBox(5, fillLabel, fillColourPicker);
+        fillBox.setAlignment(Pos.CENTER);
 
-        filled.setDisable(true);
+        Label outlineLabel = new Label("Outline");
+        ColorPickerPanel outlineColourPicker = new ColorPickerPanel(model.getOutlineColor());
 
-        getChildren().addAll(panel,filled, outline,  colorPicker);
+        outlineColourPicker.setOnAction(new ColorPickerHandler(model, true));
+
+        VBox outlineBox = new VBox(5, outlineLabel, outlineColourPicker);
+        outlineBox.setAlignment(Pos.CENTER);
+
+        getChildren().addAll(panel,
+                createCustomSeparator(),
+                fillBox,
+                createCustomSeparator(),
+                outlineBox,
+                createCustomSeparator());
+    }
+    private Node createCustomSeparator() {
+        Rectangle separator = new Rectangle(2, 75);
+        separator.setFill(Color.web("#BDBDBD"));
+        separator.setArcWidth(5);
+        separator.setArcHeight(5);
+        return separator;
     }
 }

@@ -19,8 +19,8 @@ NAME     : Custom Colour Selection
 PRIORITY : 2
 ESTIMATE : 2 hours   ACTUAL : 1 hour
 AS A     : user
-I WANT   : Select a custom RGB colour on a colour wheel.
-SO THAT  : I can draw shapes\segments using the colour I picked.
+I WANT   : Select a custom RGB fillColour on a fillColour wheel.
+SO THAT  : I can draw shapes\segments using the fillColour I picked.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : USER STORY US4.003 : nguy3971
@@ -72,7 +72,7 @@ ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
 TYPE     : BUG BUG4.002 : UTORID : kamins64
 NAME     : UI is messy
 PRIORITY : 1
-ESTIMATE : 4 hours   ACTUAL :
+ESTIMATE : 4 hours   ACTUAL : 6 hours
 ISSUE    : UI is currently crowded and unintuitive. The buttons and draw settings
            should all be in one place.
 --------------------------------------------------------------------------

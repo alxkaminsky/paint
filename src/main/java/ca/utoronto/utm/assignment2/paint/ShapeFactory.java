@@ -31,7 +31,8 @@ public final class ShapeFactory {
     public static Shape create(String shapeType,
                                Point start,
                                Point end,
-                               Color color,
+                               Color fillColor,
+                               Color outlineColor,
                                String style,
                                double strokeWidth) {
         String key = norm(shapeType);
@@ -39,27 +40,27 @@ public final class ShapeFactory {
 
         switch (key) {
             case "rectangle":
-                s = new Rectangle(start, end, color, style);
+                s = new Rectangle(start, end, fillColor, outlineColor, style);
                 break;
 
             case "circle":
-                s = new Circle(start, end, color, style);
+                s = new Circle(start, end, fillColor, outlineColor, style);
                 break;
 
             case "oval":
-                s = new Oval(start, end, color, style);
+                s = new Oval(start, end, fillColor, outlineColor, style);
                 break;
 
             case "square":
-                s = new Square(start, end, color, style);
+                s = new Square(start, end, fillColor, outlineColor, style);
                 break;
 
             case "righttriangle":
-                s = new RightTriangle(start, end, color, style);
+                s = new RightTriangle(start, end, fillColor, outlineColor, style);
                 break;
 
             case "isoscelestriangle":
-                s = new IsoscelesTriangle(start, end, color, style);
+                s = new IsoscelesTriangle(start, end, fillColor, outlineColor, style);
                 break;
 
             default:
@@ -73,7 +74,8 @@ public final class ShapeFactory {
     public static Shape createPreview(String shapeType,
                                       Point start,
                                       Point end,
-                                      Color color,
+                                      Color fillColour,
+                                      Color outlineColour,
                                       String style,
                                       double strokeWidth) {
         String key = norm(shapeType);
@@ -82,32 +84,32 @@ public final class ShapeFactory {
         switch (key) {
             case "rectangle":
                 s = new Rectangle(start, end,
-                        withAlpha(color, 0.25), style);
+                        withAlpha(fillColour, 0.25), outlineColour, style);
                 break;
 
             case "circle":
                 s = new Circle(start, end,
-                        withAlpha(color, 0.25), style);
+                        withAlpha(fillColour, 0.25), outlineColour, style);
                 break;
 
             case "oval":
                 s = new Oval(start, end,
-                        withAlpha(color, 0.25), style);
+                        withAlpha(fillColour, 0.25), outlineColour, style);
                 break;
 
             case "square":
                 s = new Square(start, end,
-                        withAlpha(color, 0.25), style);
+                        withAlpha(fillColour, 0.25), outlineColour, style);
                 break;
 
             case "righttriangle":
                 s = new RightTriangle(start, end,
-                        withAlpha(color, 0.25), style);
+                        withAlpha(fillColour, 0.25), outlineColour, style);
                 break;
 
             case "isoscelestriangle":
                 s = new IsoscelesTriangle(start, end,
-                        withAlpha(color, 0.25), style);
+                        withAlpha(fillColour, 0.25), outlineColour, style);
                 break;
 
             default:
