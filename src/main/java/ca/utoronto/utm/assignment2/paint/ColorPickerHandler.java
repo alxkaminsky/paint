@@ -14,6 +14,7 @@ public class ColorPickerHandler implements EventHandler<ActionEvent> {
         this.isOutline = isOutline;
     }
 
+    //new handler
     @Override
     public void handle(ActionEvent actionEvent) {
         ColorPicker colorPicker = (ColorPicker) actionEvent.getSource();

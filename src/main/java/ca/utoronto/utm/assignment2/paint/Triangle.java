@@ -74,9 +74,7 @@ public abstract class Triangle implements Shape {
             g2d.fillPolygon(getXAllVertices(), getYAllVertices(), 3);
             g2d.setStroke(Color.BLACK);
         }
-        else {
-            g2d.setStroke(fillColour);
-        }
+        g2d.setStroke(outlineColour);
         g2d.setLineWidth(getStrokeWidth());
         g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
 
