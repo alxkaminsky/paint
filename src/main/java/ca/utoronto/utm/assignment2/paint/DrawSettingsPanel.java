@@ -1,39 +1,5 @@
-//package ca.utoronto.utm.assignment2.paint;
-//
-//import javafx.geometry.Insets;
-//import javafx.scene.Node;
-//import javafx.scene.control.Button;
-//import javafx.scene.control.ColorPicker;
-//import javafx.scene.layout.HBox;
-//import javafx.scene.layout.VBox;
-//import javafx.scene.paint.Color;
-//import javafx.scene.shape.Rectangle;
-//
-//public class DrawSettingsPanel extends HBox {
-//
-//    public DrawSettingsPanel(PaintModel model) {
-//        setStyle("-fx-background-color: lightgray; -fx-border-color: #C0C0C0; -fx-border-width: 0 0 1 0;");
-//        setPadding(new Insets(5));
-//
-//        ShapeChooserPanel panel = new ShapeChooserPanel(model);
-//        ColorPicker fillColourPicker = new ColorPicker(model.getFillColor());
-//        ColorPicker outlineColourPicker = new ColorPicker(model.getOutlineColor());
-//
-//        ColorPickerHandler colorPickerHandler1 = new ColorPickerHandler(model, false);
-//        ColorPickerHandler colorPickerHandler2 = new ColorPickerHandler(model, true);
-//
-//
-//        fillColourPicker.setOnAction(colorPickerHandler1);
-//        outlineColourPicker.setOnAction(colorPickerHandler2);
-//
-//        setSpacing(10);
-//
-//        getChildren().addAll(panel, createCustomSeparator(), fillColourPicker, createCustomSeparator(),
-//                outlineColourPicker, createCustomSeparator());
-//    }
 package ca.utoronto.utm.assignment2.paint;
 
-// 1. Import all the necessary classes
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
