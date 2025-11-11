@@ -2,32 +2,29 @@ package ca.utoronto.utm.assignment2.paint;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
-public class ColorPickerPanelHandler implements EventHandler<ActionEvent> {
-    private ColorPickerPanel colorPickerPanel;
+public class ColorPickerHandler implements EventHandler<ActionEvent> {
+    PaintModel model;
+    boolean isOutline;
 
-    public ColorPickerPanelHandler(ColorPickerPanel panel) {
-        this.colorPickerPanel = panel;
+    public ColorPickerHandler(PaintModel model, boolean isOutline) {
+        this.model = model;
+        this.isOutline = isOutline;
     }
 
+    //new handler
     @Override
-    public void handle(ActionEvent event) {
-        String colorName = colorPickerPanel.getSelectedColor();
-        Color color;
+    public void handle(ActionEvent actionEvent) {
+        ColorPicker colorPicker = (ColorPicker) actionEvent.getSource();
+        Color color = colorPicker.getValue();
 
-        switch(colorName) {
-            case "SADDLEBROWN": color = Color.SADDLEBROWN; break;
-            case "CADETBLUE": color = Color.CADETBLUE; break;
-            case "GOLDENROD": color = Color.GOLDENROD; break;
-            case "SEAGREEN": color = Color.SEAGREEN; break;
-            case "OLDLACE": color = Color.OLDLACE; break;
-            case "INDIGO": color = Color.INDIGO; break;
-            case "BURLYWOOD": color = Color.BURLYWOOD; break;
-            default: color = Color.BLACK; break;
+        if (isOutline) {
+            model.setOutlineColor(color);
         }
-
-        // Update the model with the new color
-        colorPickerPanel.getModel().setCurrentColor(color);
+        else{
+            model.setFillColor(color);
+        }
     }
 }
