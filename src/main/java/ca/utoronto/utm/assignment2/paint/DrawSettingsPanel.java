@@ -37,7 +37,6 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox; // Import VBox
@@ -58,7 +57,7 @@ public class DrawSettingsPanel extends HBox {
         Label fillLabel = new Label("Fill");
         ColorPickerPanel fillColourPicker = new ColorPickerPanel(model.getFillColor());
 
-        fillColourPicker.setOnAction(new ColorPickerHandler(model, false));
+        fillColourPicker.setOnAction(new ColorPickerPanelHandler(model, false));
 
         VBox fillBox = new VBox(5, fillLabel, fillColourPicker);
         fillBox.setAlignment(Pos.CENTER);
@@ -66,7 +65,7 @@ public class DrawSettingsPanel extends HBox {
         Label outlineLabel = new Label("Outline");
         ColorPickerPanel outlineColourPicker = new ColorPickerPanel(model.getOutlineColor());
 
-        outlineColourPicker.setOnAction(new ColorPickerHandler(model, true));
+        outlineColourPicker.setOnAction(new ColorPickerPanelHandler(model, true));
 
         VBox outlineBox = new VBox(5, outlineLabel, outlineColourPicker);
         outlineBox.setAlignment(Pos.CENTER);
