@@ -9,9 +9,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private final PaintModel model;
     private Point start;
 
-    public PaintPanelHandler(PaintModel model) {
-        this.model = model;
-    }
+    public PaintPanelHandler(PaintModel model) {this.model = model;}
 
     @Override
     public void handle(MouseEvent e) {
@@ -22,7 +20,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             if (type.equals(MouseEvent.MOUSE_PRESSED)) {
                 model.newLine();
             } else if (type.equals(MouseEvent.MOUSE_DRAGGED)) {
-                model.addPoint(new Point(e.getX(), e.getY()));
+                model.addPoint((new Point(e.getX(), e.getY())));
             } else if (type.equals(MouseEvent.MOUSE_RELEASED)) {
                 model.newLine();
             }
@@ -34,7 +32,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         }
 
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
-            start = new Point(e.getX(), e.getY());
+            start = (new Point(e.getX(), e.getY()));
 
             Shape preview = ShapeFactory.createPreview(
                     mode,
@@ -50,7 +48,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
         if (type.equals(MouseEvent.MOUSE_DRAGGED)) {
             if (model.getPreviewShape() != null) {
-                model.updatePreviewShape(new Point(e.getX(), e.getY()));
+                model.updatePreviewShape((new Point(e.getX(), e.getY())));
             }
             return;
         }
@@ -60,7 +58,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 return;
             }
 
-            Point end = new Point(e.getX(), e.getY());
+            Point end = (new Point(e.getX(), e.getY()));
 
             model.commitShape(start, end);
 
