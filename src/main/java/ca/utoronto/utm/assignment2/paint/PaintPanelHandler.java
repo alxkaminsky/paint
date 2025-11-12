@@ -71,6 +71,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
         if (type == MouseEvent.MOUSE_EXITED && currentPolyline != null) {
             if (e.getY() < 0) {
+                currentPolyline.setEndPoint(currentPolyline.getPoints().get(currentPolyline.getPoints().size() - 2));
                 finishPolyline();
             }
             return;

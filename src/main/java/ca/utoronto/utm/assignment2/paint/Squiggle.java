@@ -26,6 +26,7 @@ public class Squiggle implements Shape{
         }
     }
 
+    @Override
     public void setEndPoint(Point endPoint) {
         if (endPoint == null) return;
 
@@ -36,8 +37,8 @@ public class Squiggle implements Shape{
         }
     }
 
-    public void setFillColour(Color color) {
-    }
+    @Override
+    public void setFillColour(Color color) {}
 
     public void setStrokeWidth(double strokeWidth) {
         if (strokeWidth > 0) {
@@ -45,6 +46,7 @@ public class Squiggle implements Shape{
         }
     }
 
+    @Override
     public void draw(GraphicsContext g2d) {
         if (points.size() < 2) {
             return;
