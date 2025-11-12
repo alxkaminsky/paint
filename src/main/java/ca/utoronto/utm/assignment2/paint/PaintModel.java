@@ -71,7 +71,7 @@ public class PaintModel extends Observable {
         return shapes;
     }
 
-    private void addShape(Shape s) {
+    public void addShape(Shape s) {
         if (s == null) return;
         shapes.add(s);
         setChanged();
