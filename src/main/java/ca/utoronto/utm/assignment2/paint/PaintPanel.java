@@ -24,6 +24,7 @@ public class PaintPanel extends Canvas implements Observer {
         addEventHandler(MouseEvent.MOUSE_RELEASED, handler);
         addEventHandler(MouseEvent.MOUSE_MOVED, handler);
         addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
+        addEventHandler(MouseEvent.MOUSE_EXITED, handler);
     }
 
     @Override

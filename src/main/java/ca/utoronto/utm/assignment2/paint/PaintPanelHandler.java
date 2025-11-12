@@ -69,6 +69,13 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private void handlePolyline(MouseEvent e) {
         EventType<? extends MouseEvent> type = e.getEventType();
 
+        if (type == MouseEvent.MOUSE_EXITED && currentPolyline != null) {
+            if (e.getY() < 0) {
+                finishPolyline();
+            }
+            return;
+        }
+
         if (currentPolyline != null) {
             boolean finish =
                     (type == MouseEvent.MOUSE_CLICKED &&
