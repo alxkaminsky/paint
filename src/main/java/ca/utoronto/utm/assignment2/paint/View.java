@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class View implements EventHandler<ActionEvent> {
+public class View implements EventHandler<ActionEvent>  {
 
         private PaintModel paintModel;
         private PaintPanel paintPanel;
@@ -40,6 +40,16 @@ public class View implements EventHandler<ActionEvent> {
             stage.setScene(scene);
             stage.setTitle("Paint");
             stage.show();
+
+            scene.setOnKeyPressed(e -> {
+                switch (e.getCode()) {
+                    case Z:
+                        if (e.isControlDown() || e.isMetaDown()) {
+                            model.deleteMostRecentShape();
+                        }
+                        break;
+                }
+            });
         }
 
         private MenuBar createMenuBar() {
@@ -90,7 +100,9 @@ public class View implements EventHandler<ActionEvent> {
 
                 menu.getItems().add(new SeparatorMenuItem());
                 menuItem = new MenuItem("Undo");
-                menuItem.setOnAction(this);
+                menuItem.setOnAction(e -> {
+                    paintModel.deleteMostRecentShape();
+                });
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Redo");
