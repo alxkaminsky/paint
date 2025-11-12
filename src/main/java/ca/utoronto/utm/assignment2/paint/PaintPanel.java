@@ -24,6 +24,7 @@ public class PaintPanel extends Canvas implements Observer {
         addEventHandler(MouseEvent.MOUSE_RELEASED, handler);
         addEventHandler(MouseEvent.MOUSE_MOVED, handler);
         addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
+        addEventHandler(MouseEvent.MOUSE_EXITED, handler);
     }
 
     @Override
@@ -41,14 +42,6 @@ public class PaintPanel extends Canvas implements Observer {
         Shape preview = model.getPreviewShape();
         if (preview != null) {
             preview.draw(g);
-        }
-
-        g.setStroke(Color.RED);
-        for (var line : model.getPoints()) {
-            for (int i = 0; i < line.size() - 1; i++) {
-                Point p1 = line.get(i), p2 = line.get(i + 1);
-                g.strokeLine(p1.x, p1.y, p2.x, p2.y);
-            }
         }
     }
 }
