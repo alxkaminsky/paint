@@ -52,15 +52,17 @@ public class DrawSettingsPanel extends HBox {
             thicknessLiveValue.setText(String.format("%.1f", currVal.doubleValue()));
         });
 
+        VBox thicknessBox = new VBox(5, thicknessLabel, thicknessSlider, thicknessLiveValue);
+        thicknessBox.setAlignment(Pos.CENTER);
+
         getChildren().addAll(panel,
                 createCustomSeparator(),
                 fillBox,
                 createCustomSeparator(),
                 outlineBox,
                 createCustomSeparator(),
-                thicknessLabel,
-                thicknessSlider,
-                thicknessLiveValue);
+                thicknessBox,
+                createCustomSeparator());
     }
 
     private Node createCustomSeparator() {
