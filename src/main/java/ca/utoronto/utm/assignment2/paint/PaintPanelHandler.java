@@ -12,9 +12,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private Polyline currentPolyline;
     private Squiggle currentSquiggle;
 
-    public PaintPanelHandler(PaintModel model) {
-        this.model = model;
-    }
+    public PaintPanelHandler(PaintModel model) {this.model = model;}
 
     @Override
     public void handle(MouseEvent e) {

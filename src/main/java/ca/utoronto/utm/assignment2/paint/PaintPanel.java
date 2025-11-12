@@ -12,24 +12,30 @@ public class PaintPanel extends Canvas implements Observer {
     private final PaintModel model;
 
     public PaintPanel(PaintModel model) {
-        super(1000, 650);
         this.model = model;
 
         PaintPanelHandler handler = new PaintPanelHandler(model);
 
         model.addObserver(this);
 
+        //Mouse Click Events
         addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
         addEventHandler(MouseEvent.MOUSE_DRAGGED, handler);
         addEventHandler(MouseEvent.MOUSE_RELEASED, handler);
         addEventHandler(MouseEvent.MOUSE_MOVED, handler);
         addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
         addEventHandler(MouseEvent.MOUSE_EXITED, handler);
+
+        widthProperty().addListener(evt -> refresh());
+        heightProperty().addListener(evt -> refresh());
     }
+
+    private void refresh(){update(null, null);}
 
     @Override
     public void update(Observable o, Object arg) {
         GraphicsContext g = getGraphicsContext2D();
+
         g.clearRect(0, 0, getWidth(), getHeight());
 
         double strokeWidth = model.getCurrStrokeWidth();

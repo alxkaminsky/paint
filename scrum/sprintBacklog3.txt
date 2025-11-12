@@ -41,6 +41,7 @@ ISSUE    : Expected Behavior:
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : USER STORY US3.005 : phammi36
+NAME     : Color selector
 PRIORITY : 3
 ESTIMATE : 1 day   ACTUAL :
 AS A     : user
@@ -85,7 +86,7 @@ I WANT   : To be able to select the current drawing style (filled or outline), t
 SO THAT  : I can control whether shapes I draw on the canvas are filled
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US3.007 : nguy3971 : NotStarted
+TYPE     : USER STORY US3.007 : nguy3971
 NAME     : Line thickness selector
 PRIORITY : 3
 ESTIMATE : 1 day    ACTUAL :

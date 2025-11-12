@@ -31,14 +31,15 @@ public class View implements EventHandler<ActionEvent> {
             BorderPane root = new BorderPane();
             root.setTop(vBox);
             root.setCenter(this.paintPanel);
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 1000, 700);
+
+            paintPanel.widthProperty().bind(root.widthProperty());
+            // To account for tool bar
+            paintPanel.heightProperty().bind(root.heightProperty().subtract(vBox.heightProperty()));
+
             stage.setScene(scene);
             stage.setTitle("Paint");
             stage.show();
-        }
-
-        public PaintModel getPaintModel() {
-                return this.paintModel;
         }
 
         private MenuBar createMenuBar() {
