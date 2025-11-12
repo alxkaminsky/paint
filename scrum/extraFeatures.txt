@@ -26,7 +26,7 @@ Description:
 	working area (the canvas) to fit their project needs.
 
 Reference:
-	US4.006
+	US4.006_2
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 FeatureName: Outline Colour Picker

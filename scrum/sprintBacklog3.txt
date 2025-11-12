@@ -40,8 +40,7 @@ ISSUE    : Expected Behavior:
            The Z-order of the shapes does not respect the order of creation.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US3.005 : phammi36 : NotStarted
-NAME     : Color selector
+TYPE     : USER STORY US3.005 : phammi36
 PRIORITY : 3
 ESTIMATE : 1 day   ACTUAL :
 AS A     : user

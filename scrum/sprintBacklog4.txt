@@ -51,10 +51,10 @@ I WANT   : To be able to clear all drawings from the canvas at once
 SO THAT  : I can start over with a blank slate without having to undo each item individually.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US4.006 : phammi36
+TYPE     : USER STORY US4.006_2 : phammi36
 NAME     : Resizable Canvas
 PRIORITY : 2
-ESTIMATE : 1 hour   ACTUAL :
+ESTIMATE : 1 hour   ACTUAL : 3 days
 AS A     : user
 I WANT   : To be able to dynamically resize the drawing canvas
 SO THAT  : I can make the canvas size to my liking
