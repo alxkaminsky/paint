@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox; // Import VBox
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Slider;
 
 
 public class DrawSettingsPanel extends HBox {
@@ -36,13 +37,32 @@ public class DrawSettingsPanel extends HBox {
         VBox outlineBox = new VBox(5, outlineLabel, outlineColourPicker);
         outlineBox.setAlignment(Pos.CENTER);
 
+        Label thicknessLabel = new Label("Thickness level");
+        Slider thicknessSlider = new Slider(0, 50, 2);
+        Label thicknessLiveValue = new Label(String.format("%.1f", thicknessSlider.getValue()));
+        thicknessSlider.setShowTickLabels(true);
+        thicknessSlider.setMajorTickUnit(5);
+        thicknessSlider.setMinorTickCount(4);
+        thicknessSlider.setBlockIncrement(1);
+        thicknessSlider.setPrefWidth(450); // adjust width as needed
+        thicknessSlider.setPadding(new Insets(0, 10, 0, 10));
+
+        thicknessSlider.valueProperty().addListener((obs, oldVal, currVal) -> {
+            model.setCurrStrokeWidth(currVal.doubleValue());
+            thicknessLiveValue.setText(String.format("%.1f", currVal.doubleValue()));
+        });
+
         getChildren().addAll(panel,
                 createCustomSeparator(),
                 fillBox,
                 createCustomSeparator(),
                 outlineBox,
-                createCustomSeparator());
+                createCustomSeparator(),
+                thicknessLabel,
+                thicknessSlider,
+                thicknessLiveValue);
     }
+
     private Node createCustomSeparator() {
         Rectangle separator = new Rectangle(2, 75);
         separator.setFill(Color.web("#BDBDBD"));
