@@ -1,5 +1,6 @@
 package ca.utoronto.utm.assignment2.paint;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -70,7 +71,7 @@ public class PaintModel extends Observable {
         return shapes;
     }
 
-    public void addShape(Shape s) {
+    private void addShape(Shape s) {
         if (s == null) return;
         shapes.add(s);
         setChanged();
@@ -82,6 +83,19 @@ public class PaintModel extends Observable {
             shapes.removeLast();
             setChanged();
             notifyObservers();
+        }
+    }
+
+    public void deleteAllShapes() {
+        shapes.clear();
+        points.clear();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void draw(GraphicsContext gc) {
+        for (Shape shape : shapes) {
+            shape.draw(gc);
         }
     }
 
