@@ -25,9 +25,11 @@ public class PaintPanel extends Canvas implements Observer {
         addEventHandler(MouseEvent.MOUSE_MOVED, handler);
         addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
 
-        widthProperty().addListener(evt -> update(null, null));
-        heightProperty().addListener(evt -> update(null, null));
+        widthProperty().addListener(evt -> refresh());
+        heightProperty().addListener(evt -> refresh());
     }
+
+    private void refresh(){update(null, null);}
 
     @Override
     public void update(Observable o, Object arg) {
