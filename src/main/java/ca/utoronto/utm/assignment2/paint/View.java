@@ -14,6 +14,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The View component for the Paint application, responsible to build the entire user interface. This includes the
+ * menu bar and the draw setting panel.
+ */
 public class View implements EventHandler<ActionEvent>  {
 
         private PaintModel paintModel;
@@ -21,8 +25,12 @@ public class View implements EventHandler<ActionEvent>  {
         private DrawSettingsPanel drawSettingsPanel;
         private Canvas canvas;
 
-
-        public View(PaintModel model, Stage stage) {
+    /**
+     * Construct the full UI for the application and display it in the given stage
+     * @param model the PaintModel containing all the drawing states
+     * @param stage the main javafx application window
+     */
+    public View(PaintModel model, Stage stage) {
             this.paintModel = model;
 
             paintPanel = new PaintPanel(this.paintModel);
@@ -36,14 +44,17 @@ public class View implements EventHandler<ActionEvent>  {
             root.setCenter(this.paintPanel);
             Scene scene = new Scene(root, 1000, 700);
 
+            // These two lines binds the canvas size to the window. So the canvas will change the size dynamically
+            // as the user change the size of the application window.
             paintPanel.widthProperty().bind(root.widthProperty());
-            // To account for tool bar
+            // To account for toolbar
             paintPanel.heightProperty().bind(root.heightProperty().subtract(vBox.heightProperty()));
 
             stage.setScene(scene);
             stage.setTitle("Paint");
             stage.show();
 
+            // The combination CTRL + Z is used to undo the creation of a shape
             scene.setOnKeyPressed(e -> {
                 switch (e.getCode()) {
                     case Z:
@@ -120,8 +131,11 @@ public class View implements EventHandler<ActionEvent>  {
                 return menuBar;
         }
 
-
-        @Override
+    /**
+     * Handle menu actions.
+     * @param event
+     */
+    @Override
         public void handle(ActionEvent event) {
 
                 String command = ((MenuItem) event.getSource()).getText();
@@ -133,9 +147,8 @@ public class View implements EventHandler<ActionEvent>  {
         }
 
     public void createNewCanvas() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        paintModel.draw(gc);
-    }
-
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            paintModel.draw(gc);
+        }
 }

@@ -12,6 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 
+/**
+ * This class provide the user interface for choosing a shape to draw on the canvas. This sits on the top panel with
+ * the ColorPicker interface
+ */
 public class ShapeChooserPanel extends GridPane {
 
     private final PaintModel model;
@@ -19,6 +23,10 @@ public class ShapeChooserPanel extends GridPane {
     private final String HOVER_STYLE = "-fx-background-color: rgba(0, 150, 201, 0.2); -fx-background-radius: 5;";
     private final String DEFAULT_STYLE = "-fx-background-color: transparent; -fx-background-radius: 5;";
 
+    /**
+     * Constructor to create the interface for the 6 drawables
+     * @param model
+     */
     public ShapeChooserPanel(PaintModel model) {
         this.model = model;
         this.setStyle("-fx-background-color: lightgray; -fx-padding: 10; -fx-hgap: 5; -fx-vgap: 5;");

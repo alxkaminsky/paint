@@ -5,6 +5,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
+/**
+ * Handles user interactions with the ShapeChooserPanel.
+ *
+ * When the user clicks one of the shape-selection buttons, this handler
+ * updates the model's drawing mode accordingly and visually highlights
+ * the selected button while clearing the highlight from the others.
+ */
 public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
     private final ShapeChooserPanel shapeChooserPanel;
 
@@ -12,6 +19,10 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
         this.shapeChooserPanel = shapeChooserPanel;
     }
 
+    /**
+     * Respond to a specific button click in ShapePanelChooser
+     * @param event
+     */
     @Override
     public void handle(ActionEvent event) {
         Button clicked = (Button) event.getSource();

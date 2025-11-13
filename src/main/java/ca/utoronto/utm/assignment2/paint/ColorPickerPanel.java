@@ -8,12 +8,20 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Implementation of the ColorPicker interface for choosing color of the outline and the fill of shapes
+ * the canvas. This provides the user interface for choosing the colors for drawing
+ */
 public class ColorPickerPanel extends StackPane {
 
     private final ColorPicker hiddenColorPicker;
     private final Rectangle visibleColorSquare;
     private final GridPane checkerboardNode;
 
+    /**
+     * Initialise a StackPane with a ColorPicker inside
+     * @param initialColor The initial color for the ColorPicker interface
+     */
     public ColorPickerPanel(Color initialColor) {
         final String HOVER_STYLE = "-fx-opacity: 0.8;";
         final String NORMAL_STYLE = "-fx-opacity: 1.0;";

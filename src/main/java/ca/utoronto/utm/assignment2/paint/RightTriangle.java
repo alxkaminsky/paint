@@ -1,6 +1,9 @@
 package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.paint.Color;
 
+/**
+ * This class represent a right triangle on the canvas
+ */
 public class RightTriangle extends Triangle {
     public  RightTriangle(Point firstVertex, Point secondVertex, Color fillColour, Color outlineColour, String style) {
         super(firstVertex, secondVertex, fillColour, outlineColour, style);

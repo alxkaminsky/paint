@@ -5,6 +5,9 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
+/**
+ * The event handler for when a user choose a color, triggered by ColorPickerPanel
+ */
 public class ColorPickerPanelHandler implements EventHandler<ActionEvent> {
     PaintModel model;
     boolean isOutline;
@@ -14,6 +17,10 @@ public class ColorPickerPanelHandler implements EventHandler<ActionEvent> {
         this.isOutline = isOutline;
     }
 
+    /**
+     * Extract the value from the color the user selected, set either the outline or the fill color accordingly
+     * @param actionEvent the event is triggered when the user picks a color from the ColorPicker
+     */
     @Override
     public void handle(ActionEvent actionEvent) {
         ColorPicker colorPicker = (ColorPicker) actionEvent.getSource();

@@ -10,9 +10,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Slider;
 
-
+/**
+ * Create the draw setting panel to control the Color of the fill, outline, and outline thickness of the shapes. This
+ * sits on the top panel together with the menu bar and the shape chooser panel
+ */
 public class DrawSettingsPanel extends HBox {
-
+    /**
+     * Create the draw setting model with the shape chooser panel, the color picker for the fill color, the outline,
+     * and the line thickness selector
+     * @param model the paint model
+     */
     public DrawSettingsPanel(PaintModel model) {
         setStyle("-fx-background-color: lightgray; -fx-border-color: #C0C0C0; -fx-border-width: 0 0 1 0;");
         setPadding(new Insets(5));

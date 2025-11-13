@@ -5,6 +5,9 @@ import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * A separate handler class for PaintPanel. This class perform the appropriate actions for every recorded mouse events
+ */
 public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
     private final PaintModel model;
@@ -12,8 +15,17 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private Polyline currentPolyline;
     private Squiggle currentSquiggle;
 
+    /**
+     * The constructor that creates the Handler
+     * @param model
+     */
     public PaintPanelHandler(PaintModel model) {this.model = model;}
 
+    /**
+     * Handles all events MOUSR_PRESSED, MOUSE_CLICKED, and MOUSE_RELEASED and draws appropriately according to the
+     * current selected mode (Squiggle, PolyLine, or all of the shapes)
+     * @param e
+     */
     @Override
     public void handle(MouseEvent e) {
         EventType<? extends MouseEvent> type = e.getEventType();
