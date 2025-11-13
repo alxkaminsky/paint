@@ -61,4 +61,20 @@ public class Squiggle implements Shape{
             g2d.strokeLine(p1.x, p1.y, p2.x, p2.y);
         }
     }
+
+    @Override
+    public boolean intersects(Shape other) {
+        if (other instanceof Rectangle rect) {
+            Point end = rect.getEndPoint();
+            Point start = rect.getStartPoint();
+
+            for(Point p : points) {
+                if((Math.min(start.x, end.x)<=p.x && p.x<=Math.max(start.x, end.x)) && (Math.min(start.y, end.y)<=p.y
+                        && p.y<=Math.max(start.y, end.y))){
+                    return  true;
+                }
+            }
+        }
+        return false;
+    }
 }

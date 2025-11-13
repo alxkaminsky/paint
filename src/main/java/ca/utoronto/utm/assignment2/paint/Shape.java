@@ -6,4 +6,5 @@ public interface Shape {
     public void draw(GraphicsContext g2d);
     public void setEndPoint(Point endPoint);
     public void setFillColour(Color color);
+    public boolean intersects(Shape other);
 }
