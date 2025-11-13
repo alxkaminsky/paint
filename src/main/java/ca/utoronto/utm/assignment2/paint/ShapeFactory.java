@@ -9,11 +9,7 @@ import javafx.scene.paint.Color;
  */
 public final class ShapeFactory {
 
-    private static String norm(String s) {
-        return (s == null) ? "" : s.toLowerCase().replaceAll("\\s+|_", "");
-    }
-
-    private static Color withAlpha(Color c, double a) {
+    static Color withAlpha(Color c, double a) {
         return new Color(c.getRed(), c.getGreen(), c.getBlue(), a);
     }
 
@@ -54,7 +50,7 @@ public final class ShapeFactory {
                                Color outlineColor,
                                String style,
                                double strokeWidth) {
-        String key = norm(shapeType);
+        String key = shapeType.toLowerCase();
         Shape s;
 
         switch(key) {
@@ -90,10 +86,14 @@ public final class ShapeFactory {
                 s = new Squiggle(start, end, fillColor, outlineColor, style);
                 break;
 
+            case "select":
+                s = new Rectangle(start, end, fillColor, outlineColor, style);
+                Rectangle select = (Rectangle) s;
+                select.setSelect(true);
+                break;
             default:
                 throw new IllegalArgumentException("Unknown shape type: " + shapeType);
         }
-
         applyStrokeWidth(s, strokeWidth);
         return s;
     }

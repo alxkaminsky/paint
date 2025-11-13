@@ -67,5 +67,10 @@ public class PaintPanel extends Canvas implements Observer {
         if (preview != null) {
             preview.draw(g);
         }
+
+        Shape select = model.getSelect();
+        if (select != null){
+            select.draw(g);
+        }
     }
 }

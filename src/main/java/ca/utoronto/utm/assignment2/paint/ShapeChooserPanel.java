@@ -31,7 +31,8 @@ public class ShapeChooserPanel extends GridPane {
         this.model = model;
         this.setStyle("-fx-background-color: lightgray; -fx-padding: 10; -fx-hgap: 5; -fx-vgap: 5;");
 
-        String[] shapeNames = {"Circle", "Oval", "Rectangle", "Square", "IsoscelesTriangle", "RightTriangle", "Squiggle", "Polyline"};
+        String[] shapeNames = {"Circle", "Oval", "Rectangle", "Square", "IsoscelesTriangle", "RightTriangle",
+                "Squiggle", "Polyline", "Select"};
         for (int i = 0; i < shapeNames.length; i++) {
             createShapeButton(shapeNames[i], i%2==0? i:i-1, i%2==0? 0:1);
         }
@@ -103,12 +104,18 @@ public class ShapeChooserPanel extends GridPane {
             case "Square" -> "M 5,5 L 20,5 L 20,20 L 5,20 Z";
             case "IsoscelesTriangle" -> "M 12.5,5 L 20,20 L 5,20 Z";
             case "RightTriangle" -> "M 5,5 L 5,20 L 20,20 Z";
+            case "Select" -> "M 4,4 L 21,4 L 21,21 L 4,21 Z";
             default -> "";
         };
         svgPath.setContent(content);
-        svgPath.setStyle("-fx-stroke: black; -fx-stroke-width: 1.5; -fx-fill: transparent;");
 
-        // Wrap in a StackPane to control size and display the SVG
+        // Use dashed stroke for select, normal for others
+        if (shapeName.equals("Select")) {
+            svgPath.setStyle("-fx-stroke: black; -fx-stroke-width: 1.2; -fx-stroke-dash-array: 3 2.5; -fx-fill: transparent;");
+        } else {
+            svgPath.setStyle("-fx-stroke: black; -fx-stroke-width: 1.5; -fx-fill: transparent;");
+        }
+
         StackPane stackPane = new StackPane(svgPath);
         stackPane.setPrefSize(25, 25);
         stackPane.setMinSize(25, 25);

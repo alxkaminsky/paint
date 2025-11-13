@@ -14,8 +14,10 @@ public class PaintModel extends Observable {
     private String mode = "Circle";
     private String style = "Filled";
     private ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
+    private ArrayList<Shape> selected = new ArrayList<Shape>();
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Shape previewShape;
+    private Shape select;
     private Color fillColor = Color.BURLYWOOD;
     private Color outlineColor = Color.BLACK;
 
@@ -80,6 +82,22 @@ public class PaintModel extends Observable {
     /**
      * Add a new point to the current Squiggle line. If the line is not existed, create it
      */
+    public void setSelect(Shape select) {
+        this.select = select;
+        setChanged();
+        notifyObservers();
+    }
+
+    public Shape getSelect(){return select;}
+
+    public void updateSelect(Point end){
+        if (select != null) {
+            select.setEndPoint(end);
+            setChanged();
+            notifyObservers();
+        }
+    }
+
     public void newLine() {
         points.add(new ArrayList<Point>());
         setChanged();
@@ -220,4 +238,6 @@ public class PaintModel extends Observable {
      * @param color the desired color
      */
     public void setOutlineColor(Color color) {this.outlineColor = color;}
+
+    public ArrayList<Shape> getSelected() {return selected;}
 }
