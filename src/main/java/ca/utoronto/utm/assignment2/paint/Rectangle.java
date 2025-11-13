@@ -123,4 +123,26 @@ public class Rectangle implements Shape{
     public double getStrokeWidth() {
         return this.strokeWidth;
     }
+
+    public String getStyle() {return this.style;}
+
+    /**
+     *
+     * @param p
+     * @return true if the point is inside of the shape, false otherwise
+     */
+    @Override
+    public boolean contains(Point p) {
+        double x = p.x;
+        double y = p.y;
+
+        double left   = getLeftCornerX();
+        double top    = getLeftCornerY();
+        double right  = left + getWidth();
+        double bottom = top + getHeight();
+
+        return x >= left && x <= right &&
+                y >= top  && y <= bottom;
+    }
+
 }

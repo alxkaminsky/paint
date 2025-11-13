@@ -92,4 +92,16 @@ public class Squiggle implements Shape{
             g2d.strokeLine(p1.x, p1.y, p2.x, p2.y);
         }
     }
+
+    public String getStyle() {return null;}
+
+    /**
+     * To adhere to Shape factory standard
+     * @param p
+     * @return false
+     */
+    @Override
+    public boolean contains(Point p) {
+        return false;
+    }
 }

@@ -41,6 +41,11 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             return;
         }
 
+        if ("Bucket".equals(mode)) {
+            handleBucket(e);
+            return;
+        }
+
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
             start = new Point(e.getX(), e.getY());
 
@@ -176,6 +181,28 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             model.addShape(currentSquiggle);
             currentSquiggle = null;
             model.setPreviewShape(null);
+        }
+    }
+
+    private void handleBucket(MouseEvent e) {
+        if (e.getEventType() != MouseEvent.MOUSE_CLICKED) return;
+
+        Point click = new Point(e.getX(), e.getY());
+        var shapes = model.getShapes();
+
+        // from topmost to bottom
+        for (int i = shapes.size() - 1; i >= 0; i--) {
+            Shape s = shapes.get(i);
+
+            if (s.contains(click)) {
+
+                // Only fill if shape is actually "Filled"
+                if (!s.getStyle().equals("Outline")) {
+                    s.setFillColour(model.getFillColor());
+                }
+
+                return; // stop after topmost match
+            }
         }
     }
 

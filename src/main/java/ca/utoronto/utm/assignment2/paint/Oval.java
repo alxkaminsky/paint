@@ -128,4 +128,30 @@ public class Oval implements Shape {
     public double getStrokeWidth() {
         return this.strokeWidth;
     }
+
+    public String getStyle() {return this.style;}
+
+    /**
+     *
+     * @param p
+     * @return true if a point is inside of this oval, false otherwise
+     */
+    @Override
+    public boolean contains(Point p) {
+        // Ellipse center
+        double cx = centre.x;
+        double cy = centre.y;
+
+        // Radii
+        double rx = width / 2.0;
+        double ry = height / 2.0;
+
+        if (rx == 0 || ry == 0) return false;
+
+        // Normalized ellipse equation
+        double dx = p.x - cx;
+        double dy = p.y - cy;
+
+        return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1.0;
+    }
 }
