@@ -5,11 +5,16 @@ import java.util.Observer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 public class PaintPanel extends Canvas implements Observer {
 
     private final PaintModel model;
+    private Timeline caretBlink;
 
     public PaintPanel(PaintModel model) {
         this.model = model;
@@ -28,12 +33,54 @@ public class PaintPanel extends Canvas implements Observer {
 
         widthProperty().addListener(evt -> refresh());
         heightProperty().addListener(evt -> refresh());
+
+        this.setFocusTraversable(true);
+
+        this.addEventHandler(KeyEvent.KEY_TYPED, e -> {
+            TextBox tb = model.getActiveTextBox();
+            if (tb == null) return;
+            String ch = e.getCharacter();
+            if ("\r".equals(ch) || "\n".equals(ch)) {
+                tb.insertAtCaret("\n");
+            } else if (ch.length() > 0 && ch.charAt(0) >= 32) {
+                tb.insertAtCaret(ch);
+            }
+            tb.setCaretVisible(true);
+            restartCaretBlink();
+            model.refresh();
+        });
+
+        this.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            TextBox tb = model.getActiveTextBox();
+            if (tb == null) return;
+            switch (e.getCode()) {
+                case BACK_SPACE -> tb.backspaceAtCaret();
+                case LEFT -> tb.moveCaretLeft();
+                case RIGHT -> tb.moveCaretRight();
+                case HOME -> tb.moveCaretHome();
+                case END -> tb.moveCaretEnd();
+                case UP -> tb.moveCaretUp();
+                case DOWN -> tb.moveCaretDown();
+                case ESCAPE -> { model.setActiveTextBox(null); stopCaretBlink(); }
+                default -> { return; }
+            }
+            tb.setCaretVisible(true);
+            restartCaretBlink();
+            model.refresh();
+        });
     }
 
     private void refresh(){update(null, null);}
 
     @Override
     public void update(Observable o, Object arg) {
+        if (model.getActiveTextBox() != null) {
+            requestFocus();
+            restartCaretBlink();
+        } else {
+            stopCaretBlink();
+        }
+
         GraphicsContext g = getGraphicsContext2D();
 
         g.clearRect(0, 0, getWidth(), getHeight());
@@ -49,5 +96,19 @@ public class PaintPanel extends Canvas implements Observer {
         if (preview != null) {
             preview.draw(g);
         }
+    }
+
+    private void restartCaretBlink() {
+        stopCaretBlink();
+        caretBlink = new Timeline(new KeyFrame(Duration.millis(500), ev -> {
+            TextBox tb = model.getActiveTextBox();
+            if (tb != null) { tb.toggleCaret(); model.refresh(); }
+        }));
+        caretBlink.setCycleCount(Timeline.INDEFINITE);
+        caretBlink.play();
+    }
+
+    private void stopCaretBlink() {
+        if (caretBlink != null) { caretBlink.stop(); caretBlink = null; }
     }
 }
