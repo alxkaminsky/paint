@@ -8,11 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextBox implements Shape {
-    private final Point start;
-    private Point end;
+    private final Rectangle boundary;
     private String text = "";
-    private Color outlineColour;
-    private double strokeWidth = 1.5;
 
     private int caretIndex = 0;
     private boolean caretVisible = false;
@@ -22,9 +19,9 @@ public class TextBox implements Shape {
     private final double lineHeight = 14;
 
     public TextBox(Point start, Point end, Color fillColour, Color outlineColour, String style) {
-        this.start = start;
-        this.end = end;
-        this.outlineColour = outlineColour;
+        // Composition: Use a Rectangle to manage the boundary.
+        // The fill and style of the internal rectangle are ignored, as TextBox controls drawing.
+        this.boundary = new Rectangle(start, end, Color.TRANSPARENT, outlineColour, "Outline");
         this.caretIndex = 0;
         this.caretVisible = false;
     }
@@ -62,7 +59,7 @@ public class TextBox implements Shape {
 
     public void moveCaretHome() {
         Font f = Font.getDefault();
-        Layout lay = layout(f, width() - 2 * padX);
+        Layout lay = layout(f, boundary.getWidth() - 2 * padX);
         Pos p = indexToLineCol(lay, caretIndex);
         caretIndex = lineColToIndex(lay, p.line, 0);
         caretPrefColumn = 0;
@@ -70,7 +67,7 @@ public class TextBox implements Shape {
 
     public void moveCaretEnd() {
         Font f = Font.getDefault();
-        Layout lay = layout(f, width() - 2 * padX);
+        Layout lay = layout(f, boundary.getWidth() - 2 * padX);
         Pos p = indexToLineCol(lay, caretIndex);
         caretIndex = lineColToIndex(lay, p.line, lay.lines.get(p.line).length());
         caretPrefColumn = lay.lines.get(p.line).length();
@@ -78,7 +75,7 @@ public class TextBox implements Shape {
 
     public void moveCaretUp() {
         Font f = Font.getDefault();
-        Layout lay = layout(f, width() - 2 * padX);
+        Layout lay = layout(f, boundary.getWidth() - 2 * padX);
         Pos p = indexToLineCol(lay, caretIndex);
         int targetLine = Math.max(0, p.line - 1);
         int col = (caretPrefColumn != null) ? caretPrefColumn : p.col;
@@ -89,7 +86,7 @@ public class TextBox implements Shape {
 
     public void moveCaretDown() {
         Font f = Font.getDefault();
-        Layout lay = layout(f, width() - 2 * padX);
+        Layout lay = layout(f, boundary.getWidth() - 2 * padX);
         Pos p = indexToLineCol(lay, caretIndex);
         int targetLine = Math.min(lay.lines.size() - 1, p.line + 1);
         int col = (caretPrefColumn != null) ? caretPrefColumn : p.col;
@@ -107,47 +104,50 @@ public class TextBox implements Shape {
     }
 
     public void setStrokeWidth(double width) {
-        if (width > 0) this.strokeWidth = width;
+        if (width > 0) this.boundary.setStrokeWidth(width);
     }
-
-    private double left()  { return Math.min(start.x, end.x); }
-    private double top()   { return Math.min(start.y, end.y); }
-    private double width() { return Math.abs(end.x - start.x); }
-    private double height(){ return Math.abs(end.y - start.y); }
 
     @Override
     public void setEndPoint(Point endPoint) {
-        this.end = endPoint;
+        this.boundary.setEndPoint(endPoint);
     }
 
     @Override
-    public void setFillColour(Color color) {}
+    public void setFillColour(Color color) {
+        // A TextBox does not have a fill color in this design.
+    }
+
+    @Override
+    public boolean intersects(Shape other) {
+        return boundary.intersects(other);
+    }
 
     @Override
     public void draw(GraphicsContext g2d) {
-        g2d.setStroke(outlineColour);
-        g2d.setLineWidth(strokeWidth);
-        g2d.strokeRect(left(), top(), width(), height());
+        // 1. Delegate drawing the boundary to the internal rectangle.
+        boundary.draw(g2d);
 
-        if (width() <= 6 || height() <= 8) return;
+        // 2. Draw the text and caret inside the boundary.
+        if (boundary.getWidth() <= 6 || boundary.getHeight() <= 8) return;
 
         Font font = g2d.getFont();
-        Layout lay = layout(font, width() - 2 * padX);
-        g2d.setFill(outlineColour);
+        Layout lay = layout(font, boundary.getWidth() - 2 * padX);
+        g2d.setFill(boundary.outlineColour); // Use the same color as the outline for the text
 
-        double y = top() + lineHeight;
+        double y = boundary.getLeftCornerY() + lineHeight;
         for (int i = 0; i < lay.lines.size(); i++) {
-            if (y > top() + height()) break;
-            g2d.fillText(lay.lines.get(i), left() + padX, y);
+            if (y > boundary.getLeftCornerY() + boundary.getHeight()) break;
+            g2d.fillText(lay.lines.get(i), boundary.getLeftCornerX() + padX, y);
             y += lineHeight;
         }
 
         if (caretVisible) {
             Pos p = indexToLineCol(lay, caretIndex);
-            double cx = left() + padX + measure(lay.lines.get(p.line).substring(0, p.col), font);
-            double cyBottom = Math.min(top() + (p.line + 1) * lineHeight, top() + height());
+            double cx = boundary.getLeftCornerX() + padX + measure(lay.lines.get(p.line).substring(0, p.col), font);
+            double cyBottom = Math.min(boundary.getLeftCornerY() + (p.line + 1) * lineHeight, boundary.getLeftCornerY() + boundary.getHeight());
             double cyTop = cyBottom - (lineHeight - 2);
-            if (cx > left() + width() - 2) cx = left() + width() - 2;
+            if (cx > boundary.getLeftCornerX() + boundary.getWidth() - 2) cx = boundary.getLeftCornerX() + boundary.getWidth() - 2;
+            g2d.setStroke(boundary.outlineColour);
             g2d.strokeLine(cx, cyTop, cx, cyBottom - 2);
         }
     }

@@ -14,6 +14,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 /**
  * The View component for the Paint application, responsible to build the entire user interface. This includes the
  * menu bar and the draw setting panel.
@@ -56,12 +59,22 @@ public class View implements EventHandler<ActionEvent>  {
             stage.setTitle("Paint");
             stage.show();
 
-            // The combination CTRL + Z is used to undo the creation of a shape
+            //God awful architecture MUST be fixed immediately
             scene.setOnKeyPressed(e -> {
                 switch (e.getCode()) {
                     case Z:
                         if (e.isControlDown()) {
-                            model.deleteMostRecentShape();
+                            paintModel.deleteMostRecentShape();
+                        }
+                        break;
+                    case C:
+                        if (e.isControlDown()) {
+                            paintModel.copy();
+                        }
+                        break;
+                    case V:
+                        if (e.isControlDown()) {
+                            paintModel.paste();
                         }
                         break;
                 }
@@ -97,21 +110,20 @@ public class View implements EventHandler<ActionEvent>  {
                 menu.getItems().add(menuItem);
 
                 menuBar.getMenus().add(menu);
-
-                // Another menu for Edit
-
-                menu = new Menu("Edit");
-
                 menuItem = new MenuItem("Cut");
                 menuItem.setOnAction(this);
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Copy");
-                menuItem.setOnAction(this);
+                menuItem.setOnAction(e -> {
+                    paintModel.deleteMostRecentShape();
+                });
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Paste");
-                menuItem.setOnAction(this);
+                menuItem.setOnAction(e -> {
+                    paintModel.deleteMostRecentShape();
+                });
                 menu.getItems().add(menuItem);
 
                 menu.getItems().add(new SeparatorMenuItem());
@@ -121,10 +133,9 @@ public class View implements EventHandler<ActionEvent>  {
                 });
                 menu.getItems().add(menuItem);
 
-                menuItem = new MenuItem("Clear All");
+                menuItem = new MenuItem("Redo");
                 menuItem.setOnAction(e -> {
                     paintModel.deleteAllShapes();
-                    createNewCanvas();
                 });
                 menu.getItems().add(menuItem);
 
@@ -147,11 +158,4 @@ public class View implements EventHandler<ActionEvent>  {
                         Platform.exit();
                 }
         }
-
-    private void createNewCanvas() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        paintModel.draw(gc);
-    }
-
 }

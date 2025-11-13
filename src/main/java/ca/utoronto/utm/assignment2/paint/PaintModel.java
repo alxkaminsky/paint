@@ -13,8 +13,8 @@ import java.util.Observable;
 public class PaintModel extends Observable {
     private String mode = "Circle";
     private String style = "Filled";
-    private ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
     private ArrayList<Shape> selected = new ArrayList<Shape>();
+    private ArrayList<Shape> clipboard = new ArrayList<Shape>();
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Shape previewShape;
     private Shape select;
@@ -23,9 +23,6 @@ public class PaintModel extends Observable {
     private double currStrokeWidth = 2.0;
     private TextBox activeTextBox;
 
-    public PaintModel() {
-        newLine();
-    }
 
     /**
      *
@@ -98,20 +95,6 @@ public class PaintModel extends Observable {
         }
     }
 
-    public void newLine() {
-        points.add(new ArrayList<Point>());
-        setChanged();
-        notifyObservers();
-    }
-
-    /**
-     *
-     * @return the Arraylist of points that make up squiggle lines
-     */
-    public ArrayList<ArrayList<Point>> getPoints() {
-        return points;
-    }
-
     /**
      *
      * @return the list of all created shapes
@@ -147,7 +130,6 @@ public class PaintModel extends Observable {
      */
     public void deleteAllShapes() {
         shapes.clear();
-        points.clear();
         setChanged();
         notifyObservers();
     }
@@ -162,26 +144,6 @@ public class PaintModel extends Observable {
         }
     }
 
-    /**
-     * Creates a finalized shape from the given start and end points,
-     * using the current mode, style, colors, and stroke width.
-     * The created shape is added to the model.
-     *
-     * @param start the starting point of the shape
-     * @param end the ending point of the shape
-     */
-    public void commitShape(Point start, Point end) {
-        Shape s = ShapeFactory.create(
-                this.mode,
-                start,
-                end,
-                this.fillColor,
-                this.outlineColor,
-                this.style,
-                this.currStrokeWidth
-        );
-        addShape(s);
-    }
 
     /**
      *
@@ -255,4 +217,17 @@ public class PaintModel extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    public void copy(){
+        clipboard.clear();
+        clipboard.addAll(selected);
+    }
+
+    public void paste(){
+        shapes.addAll(clipboard);
+        setChanged();
+        notifyObservers();
+    }
+
+    public ArrayList<Shape> getClipboard() {return clipboard;}
 }

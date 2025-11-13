@@ -100,22 +100,12 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         }
 
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
-            if (start == null || mode.equals("Select")) {
-                model.setSelect(null);
-                model.getSelected().clear();
-                return;
-            }
-
             Point end = new Point(e.getX(), e.getY());
 
-            Shape shape = ShapeFactory.create(
-                    mode,
-                    start,
-                    end,
-                    model.getFillColor(),
-                    model.getOutlineColor(),
-                    model.getStyle(),
-                    model.getCurrStrokeWidth());
+            if (start == null || mode.equals("Select")) {
+                model.setSelect(null);
+                return;
+            }
             if ("TextBox".equals(mode)) {
                 TextBox tb = (TextBox) ShapeFactory.create(
                         mode, start, end,
@@ -125,10 +115,17 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 model.addShape(tb);
                 tb.setCaretVisible(true);
                 model.setActiveTextBox(tb);
-            } else {
-                model.commitShape(start, end);
+                return;
             }
 
+            Shape shape = ShapeFactory.create(
+                    mode,
+                    start,
+                    end,
+                    model.getFillColor(),
+                    model.getOutlineColor(),
+                    model.getStyle(),
+                    model.getCurrStrokeWidth());
             model.addShape(shape);
             model.setPreviewShape(null);
             start = null;
