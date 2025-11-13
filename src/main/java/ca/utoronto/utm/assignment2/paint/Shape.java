@@ -12,4 +12,7 @@ public interface Shape {
     public void setOpacity(double fillOpacity, double outlineOpacity);
     public boolean intersects(Shape other);
     public void move(double deltaX, double deltaY);
+    public void setFillColour(Color color);
+    public boolean contains(Point p);
+    public String getStyle();
 }

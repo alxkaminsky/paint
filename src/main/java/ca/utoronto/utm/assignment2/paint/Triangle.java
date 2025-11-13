@@ -220,4 +220,52 @@ public abstract class Triangle implements Shape {
         fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
         outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
+
+    public String getStyle() {return this.style;}
+
+    /**
+     * This is a clever implementation using barycentric properties of triangles. I'm glad I studied Euclidean geometry
+     * back in highschool.
+     * @param p
+     * @return true if the Point is inside of the triangle false otherwise
+     */
+    @Override
+    public boolean contains(Point p) {
+        Point a = getStart();
+        Point b = getEnd();
+        Point c = getThirdVertex();
+
+        double px = p.x;
+        double py = p.y;
+
+        double ax = a.x, ay = a.y;
+        double bx = b.x, by = b.y;
+        double cx = c.x, cy = c.y;
+
+        // Vectors
+        double v0x = cx - ax;
+        double v0y = cy - ay;
+        double v1x = bx - ax;
+        double v1y = by - ay;
+        double v2x = px - ax;
+        double v2y = py - ay;
+
+        // Dot products
+        double dot00 = v0x * v0x + v0y * v0y;
+        double dot01 = v0x * v1x + v0y * v1y;
+        double dot02 = v0x * v2x + v0y * v2y;
+        double dot11 = v1x * v1x + v1y * v1y;
+        double dot12 = v1x * v2x + v1y * v2y;
+
+        // Compute barycentric coordinates
+        double denom = (dot00 * dot11 - dot01 * dot01);
+        if (denom == 0) return false; // degenerate triangle
+
+        double invDenom = 1.0 / denom;
+        double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+
+        return (u >= 0) && (v >= 0) && (u + v <= 1);
+    }
+
 }

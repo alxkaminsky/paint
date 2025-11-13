@@ -160,4 +160,16 @@ public class Polyline implements Shape{
     public void setOpacity(double fillOpacity, double outlineOpacity) {
         outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
+
+    public String getStyle() {return null;}
+
+    /**
+     * To adhere to Shape factory standard
+     * @param p
+     * @return false
+     */
+    @Override
+    public boolean contains(Point p) {
+        return false;
+    }
 }

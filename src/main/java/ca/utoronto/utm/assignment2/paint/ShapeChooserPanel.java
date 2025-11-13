@@ -32,7 +32,7 @@ public class ShapeChooserPanel extends GridPane {
         this.setStyle("-fx-background-color: lightgray; -fx-padding: 10; -fx-hgap: 5; -fx-vgap: 5;");
 
         String[] shapeNames = {"Circle", "Oval", "Rectangle", "Square", "IsoscelesTriangle", "RightTriangle",
-                "Squiggle", "Polyline", "Select", "Move", "TextBox"};
+                "Squiggle", "Polyline", "Select", "Move", "TextBox", "Bucket"};
         for (int i = 0; i < shapeNames.length; i++) {
             createShapeButton(shapeNames[i], i%2==0? i:i-1, i%2==0? 0:1);
         }
@@ -48,7 +48,7 @@ public class ShapeChooserPanel extends GridPane {
         Button button = new Button();
         ShapeChooserPanelHandler handler = new ShapeChooserPanelHandler(this);
 
-        if (shapeName.equals("Squiggle") || shapeName.equals("Polyline")) {
+        if (shapeName.equals("Squiggle") || shapeName.equals("Polyline") || shapeName.equals("Bucket")) {
             String iconPath = "/icons/" + shapeName.toLowerCase() + ".png";
             String imageUrl = getClass().getResource(iconPath).toExternalForm();
             Image image = new Image(imageUrl, 25, 25, true, true);
@@ -68,7 +68,12 @@ public class ShapeChooserPanel extends GridPane {
             tooltipText = "Isosceles\nTriangle";
         } else if (shapeName.equals("RightTriangle")) {
             tooltipText = "Right\nTriangle";
+        } else if (shapeName.equals("TextBox")) {
+            tooltipText = "Text\nBox";
+        } else if (shapeName.equals("Bucket")) {
+            tooltipText = "Bucket\nFill";
         }
+
         Tooltip tooltip = new Tooltip(tooltipText);
 
         PauseTransition pause = new PauseTransition(Duration.millis(100));
@@ -119,6 +124,7 @@ public class ShapeChooserPanel extends GridPane {
             svgPath.setStyle("-fx-stroke: black; -fx-stroke-width: 1.5; -fx-fill: transparent;");
         }
 
+        // Wrap in a StackPane to control size and display the SVG
         StackPane stackPane = new StackPane(svgPath);
         stackPane.setPrefSize(25, 25);
         stackPane.setMinSize(25, 25);

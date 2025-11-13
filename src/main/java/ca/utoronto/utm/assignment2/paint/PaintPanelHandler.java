@@ -5,9 +5,7 @@ import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
-
 import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 
 /**
@@ -48,6 +46,11 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
         if("Move". equals(mode)) {
             handleMove(e);
+            return;
+        }
+
+        if ("Bucket".equals(mode)) {
+            handleBucket(e);
             return;
         }
 
@@ -257,6 +260,26 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             model.addShape(currentSquiggle);
             currentSquiggle = null;
             model.setPreviewShape(null);
+        }
+    }
+
+    private void handleBucket(MouseEvent e) {
+        if (e.getEventType() != MouseEvent.MOUSE_CLICKED) return;
+
+        Point click = new Point(e.getX(), e.getY());
+        var shapes = model.getShapes();
+
+        // from newest (on top layer) shape to bottom
+        for (int i = shapes.size() - 1; i >= 0; i--) {
+            Shape s = shapes.get(i);
+
+            if (s.contains(click)) {
+                if (!s.getStyle().equals("Outline")) {
+                    s.setFillColour(model.getFillColor());
+                }
+                model.triggerRepaint(); // We don't want to add notifier to model.setFillColour()
+                return;
+            }
         }
     }
 

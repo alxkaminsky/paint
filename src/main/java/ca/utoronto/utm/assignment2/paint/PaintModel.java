@@ -264,4 +264,12 @@ public class PaintModel extends Observable {
     }
 
     public ArrayList<Shape> getClipboard() {return clipboard;}
+
+    /**
+     * Trigger a repaint of the canvas by notifying observers
+     */
+    public void triggerRepaint() {
+        setChanged();
+        notifyObservers();
+    }
 }

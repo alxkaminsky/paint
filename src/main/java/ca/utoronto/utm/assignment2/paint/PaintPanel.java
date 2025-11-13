@@ -88,8 +88,7 @@ public class PaintPanel extends Canvas implements Observer {
      * and it wil trigger a redraw.
      *
      * @param o     the observable object.
-     * @param arg   an argument passed to the {@code notifyObservers}
-     *                 method.
+     * @param arg   an argument passed to the {@code notifyObservers} method.
      */
     @Override
     public void update(Observable o, Object arg) {

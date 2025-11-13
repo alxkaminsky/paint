@@ -21,12 +21,11 @@ public class Oval implements Shape {
 
     /**
      * Constructor for Oval
-     *
-     * @param centre        The center point of the Oval
-     * @param end           The end point of the Oval, this is the point which the mouse is released
-     * @param fillColour    The fill color of the Oval
+     * @param centre The center point of the Oval
+     * @param end The end point of the Oval, this is the point which the mouse is released
+     * @param fillColour The fill color of the Oval
      * @param outlineColour The outline color of the Oval
-     * @param style         If the Oval is filled or drawn with outline
+     * @param style If the Oval is filled or drawn with outline
      */
     public Oval(Point centre, Point end, Color fillColour, Color outlineColour, String style) {
         this.centre = centre;
@@ -42,16 +41,12 @@ public class Oval implements Shape {
     /**
      * Calculate the width of the Oval
      */
-    public void calculateWidth() {
-        width = 2 * Math.abs((end.x - centre.x));
-    }
+    public void calculateWidth(){width = 2 * Math.abs((end.x - centre.x));}
 
     /**
      * Calculate the Height of the Oval
      */
-    public void calculateHeight() {
-        height = 2 * Math.abs((end.y - centre.y));
-    }
+    public void calculateHeight(){height = 2 * Math.abs((end.y - centre.y));}
 
     /**
      * Calculate the coordinate upper left point of the bounding box
@@ -77,33 +72,25 @@ public class Oval implements Shape {
      *
      * @return The center of the Oval
      */
-    public Point getCentre() {
-        return centre;
-    }
+    public Point getCentre() {return centre;}
 
     /**
      *
      * @return the width of the Oval
      */
-    public double getWidth() {
-        return width;
-    }
+    public double getWidth() {return width;}
 
     /**
      *
      * @return the height of the Oval
      */
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() {return height;}
 
     /**
      *
      * @return the upper left corner of the bounding box
      */
-    public Point getUpLeftCorner() {
-        return upLeftCorner;
-    }
+    public Point getUpLeftCorner() {return upLeftCorner;}
 
     /**
      * Set the color of the Oval
@@ -169,6 +156,31 @@ public class Oval implements Shape {
         centre.x += deltaX;
         centre.y += deltaY;
     }
+
+    /**
+     *
+     * @param p
+     * @return true if a point is inside of this oval, false otherwise
+     */
+    @Override
+    public boolean contains(Point p) {
+        // Ellipse center
+        double cx = centre.x;
+        double cy = centre.y;
+
+        // Radii
+        double rx = width / 2.0;
+        double ry = height / 2.0;
+
+        if (rx == 0 || ry == 0) return false;
+
+        // Normalized ellipse equation
+        double dx = p.x - cx;
+        double dy = p.y - cy;
+
+        return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1.0;
+    }
+}
 
     @Override
     public void setOpacity(double fillOpacity, double outlineOpacity) {

@@ -118,4 +118,16 @@ public class Squiggle implements Shape{
     public void setOpacity(double fillOpacity, double outlineOpacity) {
         outlineColor = withAlpha(outlineColor, outlineOpacity*outlineColor.getOpacity());
     }
+
+    public String getStyle() {return null;}
+
+    /**
+     * To adhere to Shape factory standard
+     * @param p
+     * @return false
+     */
+    @Override
+    public boolean contains(Point p) {
+        return false;
+    }
 }
