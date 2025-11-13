@@ -15,10 +15,9 @@ public class Square extends Rectangle {
      * @param end the end point, there the user release the mouse
      * @param fillColour the fill color for the square
      * @param outlineColour the outline color for the square
-     * @param style style of the square (filled or outline)
      */
-    public Square(Point start, Point end, Color fillColour, Color outlineColour, String style) {
-        super(start, start, fillColour, outlineColour, style);
+    public Square(Point start, Point end, Color fillColour, Color outlineColour) {
+        super(start, start, fillColour, outlineColour);
         refStartPoint = start;
         setEndPoint(end);
     }

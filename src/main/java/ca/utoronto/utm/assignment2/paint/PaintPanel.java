@@ -44,41 +44,6 @@ public class PaintPanel extends Canvas implements Observer {
         // update() is called to trigger a redraw for consistency
         widthProperty().addListener(evt -> refresh());
         heightProperty().addListener(evt -> refresh());
-
-        this.setFocusTraversable(true);
-
-        this.addEventHandler(KeyEvent.KEY_TYPED, e -> {
-            TextBox tb = model.getActiveTextBox();
-            if (tb == null) return;
-            String ch = e.getCharacter();
-            if ("\r".equals(ch) || "\n".equals(ch)) {
-                tb.insertAtCaret("\n");
-            } else if (ch.length() > 0 && ch.charAt(0) >= 32) {
-                tb.insertAtCaret(ch);
-            }
-            tb.setCaretVisible(true);
-            restartCaretBlink();
-            model.refresh();
-        });
-
-        this.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            TextBox tb = model.getActiveTextBox();
-            if (tb == null) return;
-            switch (e.getCode()) {
-                case BACK_SPACE -> tb.backspaceAtCaret();
-                case LEFT -> tb.moveCaretLeft();
-                case RIGHT -> tb.moveCaretRight();
-                case HOME -> tb.moveCaretHome();
-                case END -> tb.moveCaretEnd();
-                case UP -> tb.moveCaretUp();
-                case DOWN -> tb.moveCaretDown();
-                case ESCAPE -> { model.setActiveTextBox(null); stopCaretBlink(); }
-                default -> { return; }
-            }
-            tb.setCaretVisible(true);
-            restartCaretBlink();
-            model.refresh();
-        });
     }
 
     private void refresh(){update(null, null);}
@@ -92,12 +57,6 @@ public class PaintPanel extends Canvas implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
-        if (model.getActiveTextBox() != null) {
-            requestFocus();
-            restartCaretBlink();
-        } else {
-            stopCaretBlink();
-        }
 
         GraphicsContext g = getGraphicsContext2D();
 
@@ -106,11 +65,11 @@ public class PaintPanel extends Canvas implements Observer {
         double strokeWidth = model.getCurrStrokeWidth();
         g.setLineWidth(strokeWidth);
 
-        for (Shape s : model.getShapes()) {
-            s.draw(g);
+        for (Drawable d : model.getDrawables()) {
+            d.draw(g);
         }
 
-        Shape preview = model.getPreviewShape();
+        Drawable preview = model.getPreviewShape();
         if (preview != null) {
             preview.draw(g);
         }
@@ -120,41 +79,41 @@ public class PaintPanel extends Canvas implements Observer {
             select.draw(g);
         }
 
-        java.util.List<Shape> selected = model.getSelected();
+        ArrayList<Drawable> selected = model.getSelected();
         if (selected != null && !selected.isEmpty()) {
             g.setStroke(Color.BLACK);
             g.setLineWidth(1.0);
             g.setLineDashes(4, 4);
 
-            for (Shape s : selected) {
-                drawSelectionOutline(g, s);
+            for (Drawable d: selected) {
+                drawSelectionOutline(g, d);
             }
 
             g.setLineDashes(0, 0);
         }
     }
 
-    private void drawSelectionOutline(GraphicsContext g, Shape s) {
+    private void drawSelectionOutline(GraphicsContext g, Drawable d) {
         double padding = 3.0;
         double x, y, w, h;
 
-        if (s instanceof Rectangle) {
-            Rectangle r = (Rectangle) s;
+        if (d instanceof Rectangle) {
+            Rectangle r = (Rectangle) d;
             x = r.getLeftCornerX();
             y = r.getLeftCornerY();
             w = r.getWidth();
             h = r.getHeight();
 
-        } else if (s instanceof Oval) {
-            Oval o = (Oval) s;
+        } else if (d instanceof Oval) {
+            Oval o = (Oval) d;
             Point corner = o.getUpLeftCorner();
             x = corner.x;
             y = corner.y;
             w = o.getWidth();
             h = o.getHeight();
 
-        } else if (s instanceof Triangle) {
-            Triangle t = (Triangle) s;
+        } else if (d instanceof Triangle) {
+            Triangle t = (Triangle) d;
 
             double[] xs = t.getXAllVertices();
             double[] ys = t.getYAllVertices();
@@ -173,29 +132,11 @@ public class PaintPanel extends Canvas implements Observer {
             return;
         }
 
-        if (w <= 0 || h <= 0) {
-            return;
-        }
-
         x -= padding;
         y -= padding;
         w += 2 * padding;
         h += 2 * padding;
 
         g.strokeRect(x, y, w, h);
-    }
-
-    private void restartCaretBlink() {
-        stopCaretBlink();
-        caretBlink = new Timeline(new KeyFrame(Duration.millis(500), ev -> {
-            TextBox tb = model.getActiveTextBox();
-            if (tb != null) { tb.toggleCaret(); model.refresh(); }
-        }));
-        caretBlink.setCycleCount(Timeline.INDEFINITE);
-        caretBlink.play();
-    }
-
-    private void stopCaretBlink() {
-        if (caretBlink != null) { caretBlink.stop(); caretBlink = null; }
     }
 }

@@ -8,31 +8,22 @@ import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 /**
  * Represent an Oval on the Canvas
  */
-public class Oval implements Shape {
-    private final Point centre;
-    protected Point end;
+public class Oval extends Shape {
     private Point upLeftCorner;
-    private String style;
     protected double width;
     protected double height;
-    protected Color fillColour;
-    protected Color outlineColour;
-    private double strokeWidth;
 
     /**
      * Constructor for Oval
-     * @param centre The center point of the Oval
-     * @param end The end point of the Oval, this is the point which the mouse is released
-     * @param fillColour The fill color of the Oval
+     *
+     * @param start         The center point of the Oval
+     * @param end           The end point of the Oval, this is the point which the mouse is released
+     * @param fillColour    The fill color of the Oval
      * @param outlineColour The outline color of the Oval
-     * @param style If the Oval is filled or drawn with outline
      */
-    public Oval(Point centre, Point end, Color fillColour, Color outlineColour, String style) {
-        this.centre = centre;
-        this.end = end;
-        this.style = style;
-        this.fillColour = fillColour;
-        this.outlineColour = outlineColour;
+    public Oval(Point start, Point end, Color fillColour, Color outlineColour) {
+        super(start, end, fillColour, outlineColour);
+
         calculateHeight();
         calculateWidth();
         calculateUpLeftPoint();
@@ -41,18 +32,18 @@ public class Oval implements Shape {
     /**
      * Calculate the width of the Oval
      */
-    public void calculateWidth(){width = 2 * Math.abs((end.x - centre.x));}
+    public void calculateWidth(){width = 2 * Math.abs((end.x - start.x));}
 
     /**
      * Calculate the Height of the Oval
      */
-    public void calculateHeight(){height = 2 * Math.abs((end.y - centre.y));}
+    public void calculateHeight(){height = 2 * Math.abs((end.y - start.y));}
 
     /**
      * Calculate the coordinate upper left point of the bounding box
      */
     public void calculateUpLeftPoint() {
-        upLeftCorner = new Point(centre.x - width / 2, centre.y - height / 2);
+        upLeftCorner = new Point(start.x - width / 2, start.y - height / 2);
     }
 
     /**
@@ -67,12 +58,6 @@ public class Oval implements Shape {
         calculateWidth();
         calculateUpLeftPoint();
     }
-
-    /**
-     *
-     * @return The center of the Oval
-     */
-    public Point getCentre() {return centre;}
 
     /**
      *
@@ -92,14 +77,6 @@ public class Oval implements Shape {
      */
     public Point getUpLeftCorner() {return upLeftCorner;}
 
-    /**
-     * Set the color of the Oval
-     *
-     * @param color the color we want to set as
-     */
-    public void setFillColour(Color color) {
-        this.fillColour = color;
-    }
 
     /**
      * Draw the Oval on the canvas
@@ -108,41 +85,21 @@ public class Oval implements Shape {
      */
     @Override
     public void draw(GraphicsContext g2d) {
-        if (style.equals("Filled")) {
-            g2d.setFill(fillColour);
-            g2d.fillOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
-        }
+        g2d.setFill(fillColour);
+        g2d.fillOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
         g2d.setStroke(outlineColour);
         g2d.setLineWidth(getStrokeWidth());
         g2d.strokeOval(getUpLeftCorner().x, getUpLeftCorner().y, getWidth(), getHeight());
     }
 
-    /**
-     * Set the width of the outline
-     *
-     * @param width the desired width
-     */
-    public void setStrokeWidth(double width) {
-        this.strokeWidth = width;
-    }
-
-    /**
-     * Return the stroke width of the shape
-     *
-     * @return the stroke width
-     */
-    public double getStrokeWidth() {
-        return this.strokeWidth;
-    }
-
     @Override
     public boolean intersects(Shape other) {
         if (other instanceof Rectangle rect) {
-            double closestX = Math.max(rect.getLeftCornerX(), Math.min(getCentre().x, rect.getLeftCornerX() + rect.getWidth()));
-            double closestY = Math.max(rect.getLeftCornerY(), Math.min(getCentre().y, rect.getLeftCornerY() + rect.getHeight()));
+            double closestX = Math.max(rect.getLeftCornerX(), Math.min(start.x, rect.getLeftCornerX() + rect.getWidth()));
+            double closestY = Math.max(rect.getLeftCornerY(), Math.min(start.y, rect.getLeftCornerY() + rect.getHeight()));
 
-            double distanceX = getCentre().x - closestX;
-            double distanceY = getCentre().y - closestY;
+            double distanceX = start.x - closestX;
+            double distanceY = start.y - closestY;
 
             return (Math.pow(distanceX / (getWidth() / 2), 2) + Math.pow(distanceY / (getHeight() / 2), 2)) <= 1;
         }
@@ -153,8 +110,8 @@ public class Oval implements Shape {
     public void move(double deltaX, double deltaY) {
         upLeftCorner.x += deltaX;
         upLeftCorner.y += deltaY;
-        centre.x += deltaX;
-        centre.y += deltaY;
+        start.x += deltaX;
+        start.y += deltaY;
     }
 
     /**
@@ -165,8 +122,8 @@ public class Oval implements Shape {
     @Override
     public boolean contains(Point p) {
         // Ellipse center
-        double cx = centre.x;
-        double cy = centre.y;
+        double cx = start.x;
+        double cy = start.y;
 
         // Radii
         double rx = width / 2.0;
@@ -180,7 +137,6 @@ public class Oval implements Shape {
 
         return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1.0;
     }
-}
 
     @Override
     public void setOpacity(double fillOpacity, double outlineOpacity) {

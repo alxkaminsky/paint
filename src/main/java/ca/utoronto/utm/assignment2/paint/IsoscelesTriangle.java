@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
  * Represent an Isosceles Triangle on the canvas.
  */
 public class IsoscelesTriangle extends Triangle {
-    public IsoscelesTriangle(Point firstVertex, Point secondVertex, Color fillColour, Color outlineColor, String style) {
-        super(firstVertex, secondVertex, fillColour, outlineColor, style);
+    public IsoscelesTriangle(Point firstVertex, Point secondVertex, Color fillColour, Color outlineColor) {
+        super(firstVertex, secondVertex, fillColour, outlineColor);
         setThirdVertex();
     }
 

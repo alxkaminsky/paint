@@ -5,7 +5,7 @@ import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import java.util.ArrayList;
+
 import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 
 /**
@@ -55,10 +55,6 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         }
 
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
-            if (!"TextBox".equals(mode) && model.getActiveTextBox() != null) {
-                model.setActiveTextBox(null);
-            }
-
             start = new Point(e.getX(), e.getY());
 
             Color fillColour;
@@ -84,7 +80,6 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     start,
                     fillColour,
                     outlineColour,
-                    style,
                     strokeWidth);
             if (mode.equals("Select")){
                 model.setSelect(curr);
@@ -101,9 +96,9 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 model.updateSelect(new Point(e.getX(), e.getY()));
                 model.getSelected().clear();
 
-                for(Shape s: model.getShapes()){
-                    if (s.intersects(model.getSelect())) {
-                        model.getSelected().add(s);
+                for(Drawable d: model.getDrawables()){
+                    if (d.intersects(model.getSelect())) {
+                        model.getSelected().add(d);
                     }
                 }
             }
@@ -117,17 +112,6 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 model.setSelect(null);
                 return;
             }
-            if ("TextBox".equals(mode)) {
-                TextBox tb = (TextBox) ShapeFactory.create(
-                        mode, start, end,
-                        model.getFillColor(), model.getOutlineColor(),
-                        model.getStyle(), model.getCurrStrokeWidth()
-                );
-                model.addShape(tb);
-                tb.setCaretVisible(true);
-                model.setActiveTextBox(tb);
-                return;
-            }
 
             Shape shape = ShapeFactory.create(
                     mode,
@@ -135,9 +119,8 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     end,
                     model.getFillColor(),
                     model.getOutlineColor(),
-                    model.getStyle(),
                     model.getCurrStrokeWidth());
-            model.addShape(shape);
+            model.addDrawable(shape);
             model.setPreviewShape(null);
             start = null;
         }
@@ -187,15 +170,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             Point p = new Point(e.getX(), e.getY());
 
             if (currentPolyline == null) {
-                currentPolyline = (Polyline) ShapeFactory.create(
-                        "Polyline",
-                        p,
-                        p,
-                        model.getFillColor(),
-                        model.getOutlineColor(),
-                        model.getStyle(),
-                        model.getCurrStrokeWidth()
-                );
+                currentPolyline = new Polyline(start, start, null, model.getOutlineColor(), model.getStyle());
             } else {
                 currentPolyline.setEndPoint(p);
                 currentPolyline.addPoint(p);
@@ -226,7 +201,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         }
 
         if (currentPolyline.getPoints().size() >= 2) {
-            model.addShape(currentPolyline);
+            model.addDrawable(currentPolyline);
         }
 
         currentPolyline = null;
@@ -245,21 +220,18 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     model.getStyle()
             );
             currentSquiggle.setStrokeWidth(model.getCurrStrokeWidth());
-            model.setPreviewShape(currentSquiggle);
             return;
         }
 
         if (type == MouseEvent.MOUSE_DRAGGED && currentSquiggle != null
                 && e.getButton() == MouseButton.PRIMARY) {
             currentSquiggle.addPoint(new Point(e.getX(), e.getY()));
-            model.setPreviewShape(currentSquiggle);
             return;
         }
 
         if (type == MouseEvent.MOUSE_RELEASED && currentSquiggle != null) {
-            model.addShape(currentSquiggle);
+            model.addDrawable(currentSquiggle);
             currentSquiggle = null;
-            model.setPreviewShape(null);
         }
     }
 
@@ -267,19 +239,20 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         if (e.getEventType() != MouseEvent.MOUSE_CLICKED) return;
 
         Point click = new Point(e.getX(), e.getY());
-        var shapes = model.getShapes();
+        var shapes = model.getDrawables();
 
         // from newest (on top layer) shape to bottom
         for (int i = shapes.size() - 1; i >= 0; i--) {
-            Shape s = shapes.get(i);
+            Drawable d = shapes.get(i);
 
-            if (s.contains(click)) {
-                if (!s.getStyle().equals("Outline")) {
-                    s.setFillColour(model.getFillColor());
-                }
+            if ((d instanceof Shape) && (d.contains(click))) {
+                Shape s = (Shape) d;
+                s.setFillColour(model.getFillColor());
+                //TODO fix this code
                 model.triggerRepaint(); // We don't want to add notifier to model.setFillColour()
                 return;
             }
+
         }
     }
 

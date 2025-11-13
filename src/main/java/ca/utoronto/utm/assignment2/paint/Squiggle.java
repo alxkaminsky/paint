@@ -10,7 +10,7 @@ import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 /**
  * This class represent the Squiggle drawn on the canvas
  */
-public class Squiggle implements Shape{
+public class Squiggle implements Drawable{
     private final List<Point> points = new ArrayList<>();
     private Color outlineColor;
     private double strokeWidth = 2.0;

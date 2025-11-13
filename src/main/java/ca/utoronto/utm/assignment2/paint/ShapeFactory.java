@@ -24,12 +24,6 @@ public final class ShapeFactory {
             o.setStrokeWidth(strokeWidth);
         } else if (s instanceof Square sq) {
             sq.setStrokeWidth(strokeWidth);
-        } else if (s instanceof Squiggle squ) {
-            squ.setStrokeWidth(strokeWidth);
-        } else if (s instanceof Polyline po) {
-            po.setStrokeWidth(strokeWidth);
-        } else if (s instanceof TextBox tb) {
-            tb.setStrokeWidth(strokeWidth);
         }
     }
 
@@ -41,7 +35,6 @@ public final class ShapeFactory {
      * @param end the ending point for a drawable
      * @param fillColor the fill color for a drawable (This works for Squiggle and Polyline as well)
      * @param outlineColor the outline color for a drawable
-     * @param style the style for a drawable (This works for Squiggle and Polyline as well)
      * @param strokeWidth the strokewidth for Squiggle and Polyline, also the outline width for shapes
      * @return the created shape
      */
@@ -50,50 +43,37 @@ public final class ShapeFactory {
                                Point end,
                                Color fillColor,
                                Color outlineColor,
-                               String style,
                                double strokeWidth) {
         String key = shapeType.toLowerCase();
         Shape s;
 
         switch(key) {
             case "rectangle":
-                s = new Rectangle(start, end, fillColor, outlineColor, style);
+                s = new Rectangle(start, end, fillColor, outlineColor);
                 break;
 
             case "circle":
-                s = new Circle(start, end, fillColor, outlineColor, style);
+                s = new Circle(start, end, fillColor, outlineColor);
                 break;
 
             case "oval":
-                s = new Oval(start, end, fillColor, outlineColor, style);
+                s = new Oval(start, end, fillColor, outlineColor);
                 break;
 
             case "square":
-                s = new Square(start, end, fillColor, outlineColor, style);
+                s = new Square(start, end, fillColor, outlineColor);
                 break;
 
             case "righttriangle":
-                s = new RightTriangle(start, end, fillColor, outlineColor, style);
+                s = new RightTriangle(start, end, fillColor, outlineColor);
                 break;
 
             case "isoscelestriangle":
-                s = new IsoscelesTriangle(start, end, fillColor, outlineColor, style);
-                break;
-
-            case "polyline":
-                s = new Polyline(start, end, fillColor, outlineColor, style);
-                break;
-
-            case "squiggle":
-                s = new Squiggle(start, end, fillColor, outlineColor, style);
-                break;
-
-            case "textbox":
-                s = new TextBox(start, end, fillColor, outlineColor, style);
+                s = new IsoscelesTriangle(start, end, fillColor, outlineColor);
                 break;
 
             case "select":
-                s = new Rectangle(start, end, fillColor, outlineColor, style);
+                s = new Rectangle(start, end, fillColor, outlineColor);
                 Rectangle select = (Rectangle) s;
                 select.setSelect(true);
                 break;
@@ -113,7 +93,6 @@ public final class ShapeFactory {
      * @param end the ending point for a preview drawable
      * @param fillColor the fill color for a preview drawable (This works for Squiggle and Polyline as well)
      * @param outlineColor the outline color for a preview drawable
-     * @param style the style for a preview drawable (This works for Squiggle and Polyline as well)
      * @param strokeWidth the strokewidth for Squiggle and Polyline, also the outline width for shapes
      * @return the created preview shape
      */
@@ -122,11 +101,10 @@ public final class ShapeFactory {
                                       Point end,
                                       Color fillColor,
                                       Color outlineColor,
-                                      String style,
                                       double strokeWidth) {
         fillColor = withAlpha(fillColor, 0.25*fillColor.getOpacity());
         outlineColor =  withAlpha(outlineColor, 0.5*outlineColor.getOpacity());
 
-        return create(shapeType, start, end, fillColor, outlineColor, style, strokeWidth);
+        return create(shapeType, start, end, fillColor, outlineColor, strokeWidth);
     }
 }

@@ -44,7 +44,7 @@ public class DrawSettingsPanel extends HBox {
         VBox outlineBox = new VBox(5, outlineLabel, outlineColourPicker);
         outlineBox.setAlignment(Pos.CENTER);
 
-        Label thicknessLabel = new Label("Thickness level");
+        Label thicknessLabel = new Label("Line Thickness");
         Slider thicknessSlider = new Slider(0, 50, 2);
         Label thicknessLiveValue = new Label(String.format("%.1f", thicknessSlider.getValue()));
         thicknessSlider.setShowTickLabels(true);

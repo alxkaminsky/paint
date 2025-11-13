@@ -1,18 +1,74 @@
 package ca.utoronto.utm.assignment2.paint;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-/**
- * The shape interface which all of the shapes have to implement. This is to ensure that all shape classes have to have
- * the draw(), setEndPoint(), and setFillColor() methods.
- */
-public interface Shape {
-    public void draw(GraphicsContext g2d);
-    public void setEndPoint(Point endPoint);
-    public void setOpacity(double fillOpacity, double outlineOpacity);
-    public boolean intersects(Shape other);
-    public void move(double deltaX, double deltaY);
-    public void setFillColour(Color color);
-    public boolean contains(Point p);
-    public String getStyle();
+public abstract class Shape implements Drawable {
+    protected Point start;
+    protected Point end;
+    protected Color fillColour;
+    protected Color outlineColour;
+    protected double strokeWidth;
+
+
+    public Shape(Point start, Point end, Color fillColour, Color outlineColour) {
+        this.start = start;
+        this.end = end;
+        this.fillColour = fillColour;
+        this.outlineColour = outlineColour;
+    }
+
+    public void setFillColour(Color fillColour) {
+        this.fillColour = fillColour;
+    }
+
+    public Color getFillColour() {
+        return fillColour;
+    }
+
+    public void setOutlineColour(Color outlineColour) {
+        this.outlineColour = outlineColour;
+    }
+
+    public Color getOutlineColour() {
+        return outlineColour;
+    }
+
+    /**
+     *
+     * @return the start point of the triangle
+     */
+    public Point getStart() {return start;}
+
+    /**
+     *
+     * @return the end point (where the mouse is released)
+     */
+    public Point getEnd() {
+        return end;
+    }
+
+    public void setStart(Point start) {this.start = start;}
+
+    public void setEnd(Point end) {this.end = end;}
+
+    /**
+     *
+     * @return the final point of the triangle which is calculated accordingly for each type of triangle
+     */
+
+    public void setStrokeWidth(double strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public double getStrokeWidth() {
+        return strokeWidth;
+    }
+
+    public abstract void draw(GraphicsContext g);
+    public abstract boolean contains(Point p);
+    public abstract void move(double deltaX, double deltaY);
+    public abstract boolean intersects(Shape other);
+    public abstract void setEndPoint(Point end);
+    public abstract void setOpacity(double fillOpacity, double outlineOpacity);
 }

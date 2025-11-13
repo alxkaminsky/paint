@@ -7,17 +7,12 @@ import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 /**
  * This class represent a rectangle on the canvas.
  */
-public class Rectangle implements Shape{
-    private final Point startPoint;
+public class Rectangle extends Shape{
     private boolean select = false;
-    private Point endPoint;
     private Point upLeftCorner;
     private double width;
-    private String style;
     private double height;
-    protected Color fillColour;
-    protected Color outlineColour;
-    private double strokeWidth;
+
 
     /**
      * Constructor for a rectangle defined by a start and end point
@@ -25,16 +20,13 @@ public class Rectangle implements Shape{
      * @param end the end point, there the user release the mouse
      * @param fillColour the fill color for the rectangle
      * @param outlineColour the outline color for the rectangle
-     * @param style style of the rectangle (filled or outline)
      */
-    public Rectangle(Point start, Point end, Color fillColour, Color outlineColour, String style) {
-        startPoint = start;
-        endPoint = end;
-        width = Math.abs(endPoint.x - startPoint.x);
-        height = Math.abs(endPoint.y - startPoint.y);
-        this.fillColour = fillColour;
-        this.outlineColour = outlineColour;
-        this.style = style;
+    public Rectangle(Point start, Point end, Color fillColour, Color outlineColour) {
+        super(start, end, fillColour, outlineColour);
+        
+        width = Math.abs(end.x - start.x);
+        height = Math.abs(end.y - start.y);
+
         calculateUpLeftCorner();
     }
 
@@ -44,7 +36,7 @@ public class Rectangle implements Shape{
      */
     @Override
     public void setEndPoint(Point end) {
-        endPoint = end;
+        this.end = end;
         calculateUpLeftCorner();
         updateWidth();
         updateHeight();
@@ -53,11 +45,11 @@ public class Rectangle implements Shape{
     public void setSelect(boolean select) {this.select = select;}
 
     private void updateHeight(){
-        height = Math.abs(endPoint.y - startPoint.y);
+        height = Math.abs(end.y - start.y);
     }
 
     private void updateWidth(){
-        width = Math.abs(endPoint.x - startPoint.x);
+        width = Math.abs(end.x - start.x);
     }
 
     /**
@@ -84,11 +76,11 @@ public class Rectangle implements Shape{
      */
     public double getLeftCornerY(){return upLeftCorner.y;}
 
-    public Point getStartPoint(){return startPoint;}
-    public Point getEndPoint(){return endPoint;}
+    public Point getStartPoint(){return start;}
+    public Point getEndPoint(){return end;}
 
     private void calculateUpLeftCorner(){
-        upLeftCorner = new Point(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y));
+        upLeftCorner = new Point(Math.min(start.x, end.x), Math.min(start.y, end.y));
     }
 
 
@@ -98,16 +90,15 @@ public class Rectangle implements Shape{
      */
     @Override
     public void draw(GraphicsContext g2d) {
-        if(style.equals("Filled")) {
-            g2d.setFill(fillColour);
-            g2d.fillRect(upLeftCorner.x, upLeftCorner.y, width, height);
-            g2d.setStroke(Color.BLACK);
-        }
+        g2d.setFill(fillColour);
+        g2d.fillRect(upLeftCorner.x, upLeftCorner.y, width, height);
         g2d.setStroke(outlineColour);
         g2d.setLineWidth(strokeWidth);
+
         if(select){
             g2d.setLineDashes(3, 2.5);
         }
+
         g2d.strokeRect(upLeftCorner.x, upLeftCorner.y, width, height);
         g2d.setLineDashes(0,0);
     }
@@ -142,8 +133,6 @@ public class Rectangle implements Shape{
         fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
         outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
-
-    public String getStyle() {return this.style;}
 
     /**
      *

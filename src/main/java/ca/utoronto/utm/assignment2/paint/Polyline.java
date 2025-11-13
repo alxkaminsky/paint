@@ -11,7 +11,7 @@ import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
  * This class represents the Polyline on the canvas. A polyline is a connected sequence of straight line segments made
  * up from a list of Point
  */
-public class Polyline implements Shape{
+public class Polyline implements Drawable{
     private final List<Point> points = new ArrayList<>();
     private Color outlineColour;
     private double strokeWidth = 2.0;

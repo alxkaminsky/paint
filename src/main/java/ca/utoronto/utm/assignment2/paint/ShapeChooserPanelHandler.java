@@ -36,11 +36,6 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
         PaintModel model = shapeChooserPanel.getModel();
         model.setMode(command);
 
-        // If we switch away from TextBox mode, stop editing any active TextBox.
-        if (!"TextBox".equals(command)) {
-            model.setActiveTextBox(null);
-        }
-
         clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
         System.out.println(command);
     }

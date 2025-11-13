@@ -8,29 +8,18 @@ import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 /**
  * Parent class for the triangle shape. Both isosceles and right triangle extends from this class
  */
-public abstract class Triangle implements Shape {
-    private final Point start;
-    private Point end;
+public abstract class Triangle extends Shape {
     private Point thirdVertex;
-    private String style;
-    protected Color fillColour;
-    protected Color outlineColour;
-    private double strokeWidth;
-
     /**
      * Constructor for the triangle on the canvas
-     * @param start the start point (where the mouse press event is recorded)
-     * @param end the end point (where the mouse release event is recorded)
-     * @param fillColour the fill color for the triangle
+     *
+     * @param start         the start point (where the mouse press event is recorded)
+     * @param end           the end point (where the mouse release event is recorded)
+     * @param fillColour    the fill color for the triangle
      * @param outlineColour the outline color for the triangle
-     * @param style the style of the triangle (filled or outline)
      */
-    public Triangle(Point start, Point end, Color fillColour, Color outlineColour, String style) {
-        this.start = start;
-        this.end = end;
-        this.fillColour = fillColour;
-        this.outlineColour = outlineColour;
-        this.style = style;
+    public Triangle(Point start, Point end, Color fillColour, Color outlineColour) {
+        super(start, end, fillColour, outlineColour);
         setThirdVertex();
     }
 
@@ -41,26 +30,6 @@ public abstract class Triangle implements Shape {
         this.thirdVertex = point;
     }
 
-    /**
-     *
-     * @return the start point of the triangle
-     */
-    public Point getStart() {
-        return start;
-    }
-
-    /**
-     *
-     * @return the end point (where the mouse is released)
-     */
-    public Point getEnd() {
-        return end;
-    }
-
-    /**
-     *
-     * @return the final point of the triangle which is calculated accordingly for each type of triangle
-     */
     public Point getThirdVertex() {
         return thirdVertex;
     }
@@ -93,27 +62,9 @@ public abstract class Triangle implements Shape {
      * Set the end point for the Triangle (when the mouse is released)
      * @param end
      */
-    @Override
     public void setEndPoint(Point end) {
         this.end = end;
         setThirdVertex();
-    }
-
-    /**
-     * Draw the triangle on the canvas
-     * @param g2d
-     */
-    @Override
-    public void draw(GraphicsContext g2d) {
-        if (style.equals("Filled")) {
-            g2d.setFill(fillColour);
-            g2d.fillPolygon(getXAllVertices(), getYAllVertices(), 3);
-            g2d.setStroke(Color.BLACK);
-        }
-        g2d.setStroke(outlineColour);
-        g2d.setLineWidth(getStrokeWidth());
-        g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
-
     }
 
     /**
@@ -205,6 +156,20 @@ public abstract class Triangle implements Shape {
         return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
     }
 
+    /**
+     * Draw the triangle on the canvas
+     * @param g2d
+     */
+    @Override
+    public void draw(GraphicsContext g2d) {
+        g2d.setFill(fillColour);
+        g2d.fillPolygon(getXAllVertices(), getYAllVertices(), 3);
+        g2d.setStroke(outlineColour);
+        g2d.setLineWidth(getStrokeWidth());
+        g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
+
+    }
+
     @Override
     public void move(double deltaX, double deltaY) {
         start.x += deltaX;
@@ -220,8 +185,6 @@ public abstract class Triangle implements Shape {
         fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
         outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
-
-    public String getStyle() {return this.style;}
 
     /**
      * This is a clever implementation using barycentric properties of triangles. I'm glad I studied Euclidean geometry
