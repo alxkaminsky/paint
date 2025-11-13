@@ -28,6 +28,8 @@ public class View implements EventHandler<ActionEvent>  {
             paintPanel = new PaintPanel(this.paintModel);
             drawSettingsPanel = new DrawSettingsPanel(model);
 
+            canvas = new Canvas(800, 600);
+
             VBox vBox = new VBox();
             vBox.getChildren().addAll(createMenuBar(), drawSettingsPanel);
 
@@ -47,7 +49,7 @@ public class View implements EventHandler<ActionEvent>  {
             scene.setOnKeyPressed(e -> {
                 switch (e.getCode()) {
                     case Z:
-                        if (e.isControlDown() || e.isMetaDown()) {
+                        if (e.isControlDown()) {
                             model.deleteMostRecentShape();
                         }
                         break;
@@ -132,7 +134,7 @@ public class View implements EventHandler<ActionEvent>  {
                 }
         }
 
-    public void createNewCanvas() {
+    private void createNewCanvas() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         paintModel.draw(gc);
