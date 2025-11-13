@@ -6,6 +6,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+
 import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 
 /**
@@ -86,9 +88,12 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             }
             if(model.getSelect() != null && mode.equals("Select")){
                 model.updateSelect(new Point(e.getX(), e.getY()));
+                model.getSelected().clear();
 
                 for(Shape s: model.getShapes()){
-                    //intersection logic
+                    if (s.intersects(model.getSelect())) {
+                        model.getSelected().add(s);
+                    }
                 }
             }
             return;
@@ -97,6 +102,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
             if (start == null || mode.equals("Select")) {
                 model.setSelect(null);
+                model.getSelected().clear();
                 return;
             }
 

@@ -128,4 +128,18 @@ public class Oval implements Shape {
     public double getStrokeWidth() {
         return this.strokeWidth;
     }
+
+    @Override
+    public boolean intersects(Shape other) {
+        if (other instanceof Rectangle rect) {
+            double closestX = Math.max(rect.getLeftCornerX(), Math.min(getCentre().x, rect.getLeftCornerX() + rect.getWidth()));
+            double closestY = Math.max(rect.getLeftCornerY(), Math.min(getCentre().y, rect.getLeftCornerY() + rect.getHeight()));
+
+            double distanceX = getCentre().x - closestX;
+            double distanceY = getCentre().y - closestY;
+
+            return (Math.pow(distanceX / (getWidth()/2), 2) + Math.pow(distanceY/(getHeight()/2), 2)) <= 1;
+        }
+        return false;
+    }
 }

@@ -82,6 +82,9 @@ public class Rectangle implements Shape{
      */
     public double getLeftCornerY(){return upLeftCorner.y;}
 
+    public Point getStartPoint(){return startPoint;}
+    public Point getEndPoint(){return endPoint;}
+
     private void calculateUpLeftCorner(){
         upLeftCorner = new Point(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y));
     }
@@ -129,5 +132,17 @@ public class Rectangle implements Shape{
      */
     public double getStrokeWidth() {
         return this.strokeWidth;
+    }
+
+    @Override
+    public boolean intersects(Shape other) {
+        if (other instanceof Rectangle otherRect) {
+            return this.getLeftCornerX() < otherRect.getLeftCornerX() + otherRect.getWidth() &&
+                   this.getLeftCornerX() + this.getWidth() > otherRect.getLeftCornerX() &&
+                   this.getLeftCornerY() < otherRect.getLeftCornerY() + otherRect.getHeight() &&
+                   this.getLeftCornerY() + this.getHeight() > otherRect.getLeftCornerY();
+        }
+        // TODO: Implement intersection logic for other shape types
+        return false;
     }
 }
