@@ -141,8 +141,7 @@ public class Rectangle implements Shape{
         double right  = left + getWidth();
         double bottom = top + getHeight();
 
-        return x >= left && x <= right &&
-                y >= top  && y <= bottom;
+        return x >= left && x <= right && y >= top  && y <= bottom;
     }
 
 }

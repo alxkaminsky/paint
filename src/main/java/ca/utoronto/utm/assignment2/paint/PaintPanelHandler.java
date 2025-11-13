@@ -190,18 +190,16 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         Point click = new Point(e.getX(), e.getY());
         var shapes = model.getShapes();
 
-        // from topmost to bottom
+        // from newest (on top layer) shape to bottom
         for (int i = shapes.size() - 1; i >= 0; i--) {
             Shape s = shapes.get(i);
 
             if (s.contains(click)) {
-
-                // Only fill if shape is actually "Filled"
                 if (!s.getStyle().equals("Outline")) {
                     s.setFillColour(model.getFillColor());
                 }
-
-                return; // stop after topmost match
+                model.triggerRepaint(); // We don't want to add notifier to model.setFillColour()
+                return;
             }
         }
     }

@@ -220,4 +220,12 @@ public class PaintModel extends Observable {
      * @param color the desired color
      */
     public void setOutlineColor(Color color) {this.outlineColor = color;}
+
+    /**
+     * Trigger a repaint of the canvas by notifying observers
+     */
+    public void triggerRepaint() {
+        setChanged();
+        notifyObservers();
+    }
 }
