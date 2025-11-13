@@ -77,6 +77,15 @@ public class View implements EventHandler<ActionEvent>  {
                             paintModel.paste();
                         }
                         break;
+                    case X:
+                        if (e.isControlDown()) {
+                            paintModel.copy();
+                            paintModel.deleteSelected();
+                        }
+                        break;
+                    case BACK_SPACE:
+                        paintModel.deleteSelected();
+                        break;
                 }
             });
         }
@@ -116,13 +125,13 @@ public class View implements EventHandler<ActionEvent>  {
 
                 menuItem = new MenuItem("Copy");
                 menuItem.setOnAction(e -> {
-                    paintModel.deleteMostRecentShape();
+                    paintModel.copy();
                 });
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Paste");
                 menuItem.setOnAction(e -> {
-                    paintModel.deleteMostRecentShape();
+                    paintModel.paste();
                 });
                 menu.getItems().add(menuItem);
 

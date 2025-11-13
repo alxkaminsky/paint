@@ -220,11 +220,24 @@ public class PaintModel extends Observable {
 
     public void copy(){
         clipboard.clear();
+
+        if(selected.isEmpty()){
+            clipboard.addAll(shapes);
+            return;
+        }
+
         clipboard.addAll(selected);
     }
 
     public void paste(){
         shapes.addAll(clipboard);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void deleteSelected(){
+        shapes.removeAll(selected);
+        selected.clear();
         setChanged();
         notifyObservers();
     }
