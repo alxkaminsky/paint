@@ -45,6 +45,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         }
 
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
+            if (model.getActiveTextBox() == null){model.setActiveTextBox(null);}
             start = new Point(e.getX(), e.getY());
 
             Color fillColour;
@@ -109,6 +110,18 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     model.getOutlineColor(),
                     model.getStyle(),
                     model.getCurrStrokeWidth());
+            if ("TextBox".equals(mode)) {
+                TextBox tb = (TextBox) ShapeFactory.create(
+                        mode, start, end,
+                        model.getFillColor(), model.getOutlineColor(),
+                        model.getStyle(), model.getCurrStrokeWidth()
+                );
+                model.addShape(tb);
+                tb.setCaretVisible(true);
+                model.setActiveTextBox(tb);
+            } else {
+                model.commitShape(start, end);
+            }
 
             model.addShape(shape);
             model.setPreviewShape(null);

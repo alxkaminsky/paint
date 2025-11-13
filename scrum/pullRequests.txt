@@ -6,3 +6,4 @@ BUG3.004 author:suleym11 puller:kamins64 status: Complete
 US4.002 author:kamins64 puller:suleym11 status: Complete
 BUG4.002 author:kamins64 puller:suleym11 status: Complete
 US4.001-BUG4.001 author:suleym11 puller? status: Waiting
+US4.007 author:suleym11 puller? status: Waiting

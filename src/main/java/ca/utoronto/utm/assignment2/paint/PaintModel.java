@@ -20,8 +20,8 @@ public class PaintModel extends Observable {
     private Shape select;
     private Color fillColor = Color.BURLYWOOD;
     private Color outlineColor = Color.BLACK;
-
     private double currStrokeWidth = 2.0;
+    private TextBox activeTextBox;
 
     public PaintModel() {
         newLine();
@@ -240,4 +240,19 @@ public class PaintModel extends Observable {
     public void setOutlineColor(Color color) {this.outlineColor = color;}
 
     public ArrayList<Shape> getSelected() {return selected;}
+
+    public TextBox getActiveTextBox(){
+        return activeTextBox;
+    }
+
+    public void setActiveTextBox(TextBox tb){
+        activeTextBox = tb;
+        setChanged();
+        notifyObservers();
+    }
+
+    public void refresh(){
+        setChanged();
+        notifyObservers();
+    }
 }

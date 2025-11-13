@@ -83,77 +83,78 @@ Oct 30,2025
 	Obstacles I face: None. Sprint 2 completed.
 
 Oct 31,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Wrapped Sprint 2 and reviewed Product Backlog items assigned to me (US4.001 Polyline, BUG4.001 Squiggle) to plan next steps.
+	What I will do today: Break down implementation approach and draft test notes for US4.001.
+	Obstacles I face: None.
 
 Nov 1,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Wrote approach notes for US4.001 and checked dependencies with mode switching & preview pipeline.
+	What I will do today: Align US4.001 behavior with existing factory/preview conventions.
+	Obstacles I face: None.
 
 Nov 2,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Validated how preview shape updates/redraws are propagated via PaintModel/Canvas.
+	What I will do today: Finalize interaction spec for finishing the polyline (double-click/right-click).
+	Obstacles I face: Avoiding state leaks when switching tools mid-polyline.
 
 Nov 3,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Confirmed icon/chooser placement and mode naming for upcoming tools.
+	What I will do today: Prepare branch for Sprint 4 work and checklist for US4.001 and BUG4.001.
+	Obstacles I face: None.
 
 Nov 4,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Finished prep notes; ensured drawing order is owned by shapes list for later BUG4.001.
+	What I will do today: Team sync on Sprint 4 scope and personal items.
+	Obstacles I face: None.
 
 Nov 5,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Re-read Product Backlog entries I own; confirmed estimates and priorities.
+	What I will do today: Draft acceptance tests for US4.001 (add points, live preview, finish action).
+	Obstacles I face: None.
 
 Nov 6,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Finalized personal plan for Sprint 4 (US4.001, BUG4.001), ready to start.
+	What I will do today: Create/verify feature branch and environment.
+	Obstacles I face: None.
+
+# Sprint 4 (Nov 7–Nov 13, 2025)
 
 Nov 7,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Set up branch and tests for US4.001.
+	What I will do today: Implement core polyline: click-to-add points, connected segments, live preview; finish on double-click/right-click.
+	Obstacles I face: Handling tool switch/boundary behavior cleanly.
 
 Nov 8,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Implemented polyline model/handler/preview; integrated with ShapeFactory and chooser.
+	What I will do today: Ensure thickness/color apply consistently; refine preview updates and finishing logic.
+	Obstacles I face: None.
 
 Nov 9,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Stabilized polyline interactions; verified redraw and shapes list order for committed lines.
+	What I will do today: Wrap up US4.001 and prepare PR (actual ~2h vs 3h estimate).
+	Obstacles I face: None.
 
-Nov 10,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+Nov 10, 2025
+	What I did yesterday: Completed US4.001 and opened PR.
+	What I will do today: Start BUG4.001—move squiggle to proper Shape so color/stroke apply and drawing order is consistent.
+	Obstacles I face: None.
 
-Nov 11,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+Nov 11, 2025
+	What I did yesterday: Implemented Squiggle as Shape; updated handler to create one squiggle per drag; added to shapes list (order fixed).
+	What I will do today: Regression test all tools with new squiggle + polyline; tidy code paths; prep PR (actual ~2h vs 4h estimate).
+	Obstacles I face: None.
 
-Nov 12,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+Nov 12, 2025
+	What I did yesterday: Finished BUG4.001; verified color/stroke and z-order; updated Sprint 4 actuals.
+	What I will do today: Final polish (icons/tooltip confirmations) and coordinate merges.
+	Obstacles I face: None.
 
-Nov 13,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+Nov 13, 2025
+	What I did yesterday: Polished and documented changes; demo-ready.
+	What I will do today: Demo polyline and squiggle fix; respond to review and merge to main.
+	Obstacles I face: Reviewer availability.
 
-Nov 14,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
-
+Nov 14, 2025
+	What I did yesterday: Addressed review comments and merged fixes.
+	What I will do today: Post-merge cleanup and notes.
+	Obstacles I face: None.

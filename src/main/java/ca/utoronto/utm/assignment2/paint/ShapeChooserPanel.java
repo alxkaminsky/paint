@@ -32,7 +32,7 @@ public class ShapeChooserPanel extends GridPane {
         this.setStyle("-fx-background-color: lightgray; -fx-padding: 10; -fx-hgap: 5; -fx-vgap: 5;");
 
         String[] shapeNames = {"Circle", "Oval", "Rectangle", "Square", "IsoscelesTriangle", "RightTriangle",
-                "Squiggle", "Polyline", "Select"};
+                "Squiggle", "Polyline", "Select", "TextBox"};
         for (int i = 0; i < shapeNames.length; i++) {
             createShapeButton(shapeNames[i], i%2==0? i:i-1, i%2==0? 0:1);
         }
@@ -105,6 +105,7 @@ public class ShapeChooserPanel extends GridPane {
             case "IsoscelesTriangle" -> "M 12.5,5 L 20,20 L 5,20 Z";
             case "RightTriangle" -> "M 5,5 L 5,20 L 20,20 Z";
             case "Select" -> "M 4,4 L 21,4 L 21,21 L 4,21 Z";
+            case "TextBox" -> "M 6,9 L 20,9 M 6,9 L 6,11 M 20,9 L 20,11 M 13,9 L 13,20 M 11,20 L 15,20";
             default -> "";
         };
         svgPath.setContent(content);

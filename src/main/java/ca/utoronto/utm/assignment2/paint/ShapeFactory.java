@@ -28,6 +28,8 @@ public final class ShapeFactory {
             squ.setStrokeWidth(strokeWidth);
         } else if (s instanceof Polyline po) {
             po.setStrokeWidth(strokeWidth);
+        } else if (s instanceof TextBox tb) {
+            tb.setStrokeWidth(strokeWidth);
         }
     }
 
@@ -84,6 +86,10 @@ public final class ShapeFactory {
 
             case "squiggle":
                 s = new Squiggle(start, end, fillColor, outlineColor, style);
+                break;
+
+            case "textbox":
+                s = new TextBox(start, end, fillColor, outlineColor, style);
                 break;
 
             case "select":
