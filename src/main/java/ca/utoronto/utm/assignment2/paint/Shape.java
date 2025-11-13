@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 public interface Shape {
     public void draw(GraphicsContext g2d);
     public void setEndPoint(Point endPoint);
-    public void setFillColour(Color color);
+    public void setOpacity(double fillOpacity, double outlineOpacity);
     public boolean intersects(Shape other);
+    public void move(double deltaX, double deltaY);
 }

@@ -46,6 +46,11 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             return;
         }
 
+        if("Move". equals(mode)) {
+            handleMove(e);
+            return;
+        }
+
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
             if (model.getActiveTextBox() == null){model.setActiveTextBox(null);}
             start = new Point(e.getX(), e.getY());
@@ -131,6 +136,24 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             start = null;
         }
     }
+    private void handleMove(MouseEvent e) {
+        EventType<? extends MouseEvent> type = e.getEventType();
+        Point p = new Point(e.getX(), e.getY());
+
+        if (type == MouseEvent.MOUSE_PRESSED) {
+            start = p;
+            model.setOpacitySelected(0.25, 0.5);
+        } else if (type == MouseEvent.MOUSE_DRAGGED) {
+            if (start != null && !model.getSelected().isEmpty()) {
+               model.moveSelected(start, p);
+               start = p;
+            }
+        } else if (type == MouseEvent.MOUSE_RELEASED) {
+            start = null;
+            model.setOpacitySelected(4,2);
+        }
+    }
+
     private void handlePolyline(MouseEvent e) {
         EventType<? extends MouseEvent> type = e.getEventType();
 

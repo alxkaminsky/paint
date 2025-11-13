@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
+
 /**
  * This class represent the Squiggle drawn on the canvas
  */
@@ -57,13 +59,6 @@ public class Squiggle implements Shape{
     }
 
     /**
-     * Omitted, present to adhere to Shape factory
-     * @param color
-     */
-    @Override
-    public void setFillColour(Color color) {}
-
-    /**
      * Set the stroke width for the squiggle
      * @param strokeWidth
      */
@@ -96,8 +91,6 @@ public class Squiggle implements Shape{
     @Override
     public boolean intersects(Shape other) {
         if (other instanceof Rectangle rect) {
-            Point end = rect.getEndPoint();
-            Point start = rect.getStartPoint();
 
             double x = rect.getLeftCornerX();
             double y = rect.getLeftCornerY();
@@ -111,5 +104,18 @@ public class Squiggle implements Shape{
             }
         }
         return false;
+    }
+
+    @Override
+    public void move(double deltaX, double deltaY) {
+        for (Point p : points) {
+            p.x += deltaX;
+            p.y += deltaY;
+        }
+    }
+
+    @Override
+    public void setOpacity(double fillOpacity, double outlineOpacity) {
+        outlineColor = withAlpha(outlineColor, outlineOpacity*outlineColor.getOpacity());
     }
 }

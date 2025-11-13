@@ -3,6 +3,8 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
+
 /**
  * Parent class for the triangle shape. Both isosceles and right triangle extends from this class
  */
@@ -86,14 +88,6 @@ public abstract class Triangle implements Shape {
         return points;
     }
 
-    /**
-     * Set the fill color
-     * @param color the desired color
-     */
-    @Override
-    public void setFillColour(Color color) {
-        this.fillColour = color;
-    }
 
     /**
      * Set the end point for the Triangle (when the mouse is released)
@@ -209,5 +203,21 @@ public abstract class Triangle implements Shape {
         double lambda = ((p4.y - p3.y) * (p4.x - p1.x) + (p3.x - p4.x) * (p4.y - p1.y)) / det;
         double gamma = ((p1.y - p2.y) * (p4.x - p1.x) + (p2.x - p1.x) * (p4.y - p1.y)) / det;
         return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+    }
+
+    @Override
+    public void move(double deltaX, double deltaY) {
+        start.x += deltaX;
+        start.y += deltaY;
+        end.x += deltaX;
+        end.y += deltaY;
+        thirdVertex.x += deltaX;
+        thirdVertex.y += deltaY;
+    }
+
+    @Override
+    public void setOpacity(double fillOpacity, double outlineOpacity) {
+        fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
+        outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
 }
