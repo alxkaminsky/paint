@@ -36,6 +36,11 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
         PaintModel model = shapeChooserPanel.getModel();
         model.setMode(command);
 
+        if (!"Select".equals(command) && !"Move".equals(command)) {
+            model.getSelected().clear();
+            model.setSelect(null);
+        }
+
         clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
         System.out.println(command);
     }

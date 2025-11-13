@@ -217,6 +217,8 @@ public class PaintModel extends Observable {
 
     public void paste(){
         drawables.addAll(clipboard);
+        selected.clear();
+        selected.addAll(clipboard);
 
         setChanged();
         notifyObservers();
