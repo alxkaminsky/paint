@@ -220,4 +220,20 @@ public class TextBox implements Shape {
         t.setFont(font);
         return t.getLayoutBounds().getWidth();
     }
+
+    public double getLeft() {
+        return boundary.getLeftCornerX();
+    }
+
+    public double getTop() {
+        return boundary.getLeftCornerY();
+    }
+
+    public double getWidth() {
+        return boundary.getWidth();
+    }
+
+    public double getHeight() {
+        return boundary.getHeight();
+    }
 }

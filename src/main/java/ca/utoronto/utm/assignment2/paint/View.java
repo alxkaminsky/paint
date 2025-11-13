@@ -14,9 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.sql.Array;
-import java.util.ArrayList;
-
 /**
  * The View component for the Paint application, responsible to build the entire user interface. This includes the
  * menu bar and the draw setting panel.

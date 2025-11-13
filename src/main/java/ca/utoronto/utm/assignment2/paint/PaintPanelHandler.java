@@ -47,7 +47,10 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         }
 
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
-            if (model.getActiveTextBox() == null){model.setActiveTextBox(null);}
+            if (!"TextBox".equals(mode) && model.getActiveTextBox() != null) {
+                model.setActiveTextBox(null);
+            }
+
             start = new Point(e.getX(), e.getY());
 
             Color fillColour;

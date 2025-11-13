@@ -208,7 +208,10 @@ public class PaintModel extends Observable {
     }
 
     public void setActiveTextBox(TextBox tb){
-        activeTextBox = tb;
+        if (this.activeTextBox != null && this.activeTextBox != tb) {
+            this.activeTextBox.setCaretVisible(false);
+        }
+        this.activeTextBox = tb;
         setChanged();
         notifyObservers();
     }

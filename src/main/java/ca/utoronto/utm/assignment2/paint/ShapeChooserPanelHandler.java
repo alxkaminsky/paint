@@ -33,7 +33,14 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
                 node.setStyle("-fx-background-color: transparent; -fx-background-radius: 5;");
             }
         }
-        shapeChooserPanel.getModel().setMode(command);
+        PaintModel model = shapeChooserPanel.getModel();
+        model.setMode(command);
+
+        // If we switch away from TextBox mode, stop editing any active TextBox.
+        if (!"TextBox".equals(command)) {
+            model.setActiveTextBox(null);
+        }
+
         clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);
         System.out.println(command);
     }

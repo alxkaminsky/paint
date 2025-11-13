@@ -1,5 +1,6 @@
 package ca.utoronto.utm.assignment2.paint;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javafx.scene.canvas.Canvas;
@@ -119,6 +120,70 @@ public class PaintPanel extends Canvas implements Observer {
         if (select != null){
             select.draw(g);
         }
+
+        java.util.List<Shape> selected = model.getSelected();
+        if (selected != null && !selected.isEmpty()) {
+            g.setStroke(Color.BLACK);
+            g.setLineWidth(1.0);
+            g.setLineDashes(4, 4);
+
+            for (Shape s : selected) {
+                drawSelectionOutline(g, s);
+            }
+
+            g.setLineDashes(0, 0);
+        }
+    }
+
+    private void drawSelectionOutline(GraphicsContext g, Shape s) {
+        double padding = 3.0;
+        double x, y, w, h;
+
+        if (s instanceof Rectangle) {
+            Rectangle r = (Rectangle) s;
+            x = r.getLeftCornerX();
+            y = r.getLeftCornerY();
+            w = r.getWidth();
+            h = r.getHeight();
+
+        } else if (s instanceof Oval) {
+            Oval o = (Oval) s;
+            Point corner = o.getUpLeftCorner();
+            x = corner.x;
+            y = corner.y;
+            w = o.getWidth();
+            h = o.getHeight();
+
+        } else if (s instanceof Triangle) {
+            Triangle t = (Triangle) s;
+
+            double[] xs = t.getXAllVertices();
+            double[] ys = t.getYAllVertices();
+
+            double minX = Math.min(xs[0], Math.min(xs[1], xs[2]));
+            double maxX = Math.max(xs[0], Math.max(xs[1], xs[2]));
+            double minY = Math.min(ys[0], Math.min(ys[1], ys[2]));
+            double maxY = Math.max(ys[0], Math.max(ys[1], ys[2]));
+
+            x = minX;
+            y = minY;
+            w = maxX - minX;
+            h = maxY - minY;
+
+        } else {
+            return;
+        }
+
+        if (w <= 0 || h <= 0) {
+            return;
+        }
+
+        x -= padding;
+        y -= padding;
+        w += 2 * padding;
+        h += 2 * padding;
+
+        g.strokeRect(x, y, w, h);
     }
 
     private void restartCaretBlink() {
