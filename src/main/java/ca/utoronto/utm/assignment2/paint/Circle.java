@@ -3,7 +3,6 @@ import javafx.scene.paint.Color;
 
 public class Circle extends Oval{
         private double diameter;
-        public static Color base = Color.GREEN;
 
         public Circle(Point centre, Point end, Color fillColour, Color outlineColor, String style){
             super(centre, end, fillColour, outlineColor, style);

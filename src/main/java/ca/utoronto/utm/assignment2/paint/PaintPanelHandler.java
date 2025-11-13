@@ -4,6 +4,9 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+
+import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
 
 public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
@@ -32,34 +35,70 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
             start = new Point(e.getX(), e.getY());
 
-            Shape preview = ShapeFactory.createPreview(
+            Color fillColour;
+            Color outlineColour;
+            String style;
+            double strokeWidth;
+
+            if(mode.equals("Select")){
+                fillColour = Color.TRANSPARENT;
+                outlineColour = Color.GRAY;
+                style = "Filled";
+                strokeWidth = 1;
+            }
+            else{
+                fillColour = withAlpha(model.getFillColor(), 0.25*model.getFillColor().getOpacity());
+                outlineColour = withAlpha(model.getOutlineColor(), 0.25*model.getOutlineColor().getOpacity());
+                style = model.getStyle();
+                strokeWidth = model.getCurrStrokeWidth();
+            }
+            Shape curr = ShapeFactory.create(
                     mode,
                     start,
                     start,
-                    model.getFillColor(),
-                    model.getOutlineColor(),
-                    model.getStyle(),
-                    model.getCurrStrokeWidth());
-            model.setPreviewShape(preview);
-            return;
+                    fillColour,
+                    outlineColour,
+                    style,
+                    strokeWidth);
+            if (mode.equals("Select")){
+                model.setSelect(curr);
+                return;
+            }
+            model.setPreviewShape(curr);
         }
 
         if (type.equals(MouseEvent.MOUSE_DRAGGED)) {
             if (model.getPreviewShape() != null) {
                 model.updatePreviewShape(new Point(e.getX(), e.getY()));
             }
+            if(model.getSelect() != null && mode.equals("Select")){
+                model.updateSelect(new Point(e.getX(), e.getY()));
+
+                for(Shape s: model.getShapes()){
+                    //intersection logic
+                }
+            }
             return;
         }
 
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
-            if (start == null) {
+            if (start == null || mode.equals("Select")) {
+                model.setSelect(null);
                 return;
             }
 
             Point end = new Point(e.getX(), e.getY());
 
-            model.commitShape(start, end);
+            Shape shape = ShapeFactory.create(
+                    mode,
+                    start,
+                    end,
+                    model.getFillColor(),
+                    model.getOutlineColor(),
+                    model.getStyle(),
+                    model.getCurrStrokeWidth());
 
+            model.addShape(shape);
             model.setPreviewShape(null);
             start = null;
         }

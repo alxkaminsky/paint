@@ -9,8 +9,10 @@ public class PaintModel extends Observable {
     private String mode = "Circle";
     private String style = "Filled";
     private ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
+    private ArrayList<Shape> selected = new ArrayList<Shape>();
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Shape previewShape;
+    private Shape select;
     private Color fillColor = Color.BURLYWOOD;
     private Color outlineColor = Color.BLACK;
 
@@ -48,13 +50,20 @@ public class PaintModel extends Observable {
         return currStrokeWidth;
     }
 
-    public void addPoint(Point p) {
-        if (points.isEmpty()) {
-            newLine();
-        }
-        points.get(points.size() - 1).add(p);
+    public void setSelect(Shape select) {
+        this.select = select;
         setChanged();
         notifyObservers();
+    }
+
+    public Shape getSelect(){return select;}
+
+    public void updateSelect(Point end){
+        if (select != null) {
+            select.setEndPoint(end);
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void newLine() {
@@ -99,19 +108,6 @@ public class PaintModel extends Observable {
         }
     }
 
-    public void commitShape(Point start, Point end) {
-        Shape s = ShapeFactory.create(
-                this.mode,
-                start,
-                end,
-                this.fillColor,
-                this.outlineColor,
-                this.style,
-                this.currStrokeWidth
-        );
-        addShape(s);
-    }
-
     public Shape getPreviewShape() {
         return previewShape;
     }
@@ -137,4 +133,6 @@ public class PaintModel extends Observable {
     public Color getOutlineColor() {return outlineColor;}
 
     public void setOutlineColor(Color color) {this.outlineColor = color;}
+
+    public ArrayList<Shape> getSelected() {return selected;}
 }

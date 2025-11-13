@@ -4,11 +4,7 @@ import javafx.scene.paint.Color;
 
 public final class ShapeFactory {
 
-    private static String norm(String s) {
-        return (s == null) ? "" : s.toLowerCase().replaceAll("\\s+|_", "");
-    }
-
-    private static Color withAlpha(Color c, double a) {
+    static Color withAlpha(Color c, double a) {
         return new Color(c.getRed(), c.getGreen(), c.getBlue(), a);
     }
 
@@ -35,7 +31,7 @@ public final class ShapeFactory {
                                Color outlineColor,
                                String style,
                                double strokeWidth) {
-        String key = norm(shapeType);
+        String key = shapeType.toLowerCase();
         Shape s;
 
         switch(key) {
@@ -71,24 +67,15 @@ public final class ShapeFactory {
                 s = new Squiggle(start, end, fillColor, outlineColor, style);
                 break;
 
+            case "select":
+                s = new Rectangle(start, end, fillColor, outlineColor, style);
+                Rectangle select = (Rectangle) s;
+                select.setSelect(true);
+                break;
             default:
                 throw new IllegalArgumentException("Unknown shape type: " + shapeType);
         }
-
         applyStrokeWidth(s, strokeWidth);
         return s;
-    }
-
-    public static Shape createPreview(String shapeType,
-                                      Point start,
-                                      Point end,
-                                      Color fillColor,
-                                      Color outlineColor,
-                                      String style,
-                                      double strokeWidth) {
-        fillColor = withAlpha(fillColor, 0.25*fillColor.getOpacity());
-        outlineColor =  withAlpha(outlineColor, 0.5*outlineColor.getOpacity());
-
-        return create(shapeType, start, end, fillColor, outlineColor, style, strokeWidth);
     }
 }

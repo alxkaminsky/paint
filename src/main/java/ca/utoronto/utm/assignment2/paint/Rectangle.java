@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 
 public class Rectangle implements Shape{
     private final Point startPoint;
+    private boolean select = false;
     private Point endPoint;
     private Point upLeftCorner;
     private double width;
@@ -31,6 +32,8 @@ public class Rectangle implements Shape{
         updateWidth();
         updateHeight();
     }
+
+    public void setSelect(boolean select) {this.select = select;}
 
     private void updateHeight(){
         height = Math.abs(endPoint.y - startPoint.y);
@@ -63,7 +66,11 @@ public class Rectangle implements Shape{
         }
         g2d.setStroke(outlineColour);
         g2d.setLineWidth(getStrokeWidth());
+        if(select){
+            g2d.setLineDashes(3, 2.5);
+        }
         g2d.strokeRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
+        g2d.setLineDashes(0,0);
     }
 
     public void setStrokeWidth(double width) {
