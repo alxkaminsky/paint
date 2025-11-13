@@ -245,5 +245,23 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    public void moveSelected(Point start, Point end) {
+        double dx = end.x - start.x;
+        double dy = end.y - start.y;
+        for (Shape s : selected) {
+            s.move(dx, dy);
+        }
+        setChanged();
+        notifyObservers();
+    }
+
+    public void setOpacitySelected(double fillOpacity, double outlineOpacity){
+        for (Shape s: selected) {
+            s.setOpacity(fillOpacity, outlineOpacity);
+        }
+        setChanged();
+        notifyObservers();
+    }
+
     public ArrayList<Shape> getClipboard() {return clipboard;}
 }

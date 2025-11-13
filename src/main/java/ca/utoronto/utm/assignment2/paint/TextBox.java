@@ -109,12 +109,12 @@ public class TextBox implements Shape {
 
     @Override
     public void setEndPoint(Point endPoint) {
-        this.boundary.setEndPoint(endPoint);
+        boundary.setEndPoint(endPoint);
     }
 
     @Override
-    public void setFillColour(Color color) {
-        // A TextBox does not have a fill color in this design.
+    public void setOpacity(double fillOpacity, double outlineOpacity) {
+        boundary.setOpacity(fillOpacity, outlineOpacity);
     }
 
     @Override
@@ -236,4 +236,9 @@ public class TextBox implements Shape {
     public double getHeight() {
         return boundary.getHeight();
     }
+    @Override
+    public void move(double deltaX, double deltaY) {
+        boundary.move(deltaX, deltaY);
+    }
+
 }

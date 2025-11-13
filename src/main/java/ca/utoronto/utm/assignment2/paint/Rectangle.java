@@ -2,6 +2,8 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
+
 /**
  * This class represent a rectangle on the canvas.
  */
@@ -89,14 +91,6 @@ public class Rectangle implements Shape{
         upLeftCorner = new Point(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y));
     }
 
-    /**
-     * Set the fill color for the rectangle
-     * @param color the desired color
-     */
-    @Override
-    public void setFillColour(Color color) {
-        this.fillColour = color;
-    }
 
     /**
      * Draw the circle on the canvas
@@ -106,15 +100,15 @@ public class Rectangle implements Shape{
     public void draw(GraphicsContext g2d) {
         if(style.equals("Filled")) {
             g2d.setFill(fillColour);
-            g2d.fillRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
+            g2d.fillRect(upLeftCorner.x, upLeftCorner.y, width, height);
             g2d.setStroke(Color.BLACK);
         }
         g2d.setStroke(outlineColour);
-        g2d.setLineWidth(getStrokeWidth());
+        g2d.setLineWidth(strokeWidth);
         if(select){
             g2d.setLineDashes(3, 2.5);
         }
-        g2d.strokeRect(getLeftCornerX(), getLeftCornerY(), getWidth(), getHeight());
+        g2d.strokeRect(upLeftCorner.x, upLeftCorner.y, width, height);
         g2d.setLineDashes(0,0);
     }
 
@@ -126,14 +120,6 @@ public class Rectangle implements Shape{
         this.strokeWidth = width;
     }
 
-    /**
-     *
-     * @return the stroke width of the outline of the circle
-     */
-    public double getStrokeWidth() {
-        return this.strokeWidth;
-    }
-
     @Override
     public boolean intersects(Shape other) {
         if (other instanceof Rectangle otherRect) {
@@ -143,5 +129,17 @@ public class Rectangle implements Shape{
                    this.getLeftCornerY() + this.getHeight() > otherRect.getLeftCornerY();
         }
         return false;
+    }
+
+    @Override
+    public void move(double deltaX, double deltaY) {
+        upLeftCorner.x += deltaX;
+        upLeftCorner.y += deltaY;
+    }
+
+    @Override
+    public void setOpacity(double fillOpacity, double outlineOpacity) {
+        fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
+        outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
 }

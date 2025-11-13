@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
+
 /**
  * This class represents the Polyline on the canvas. A polyline is a connected sequence of straight line segments made
  * up from a list of Point
@@ -55,10 +57,6 @@ public class Polyline implements Shape{
         } else {
             points.set(points.size() - 1, endPoint);
         }
-    }
-
-    public void setFillColour(Color color) {
-        // Polyline is not filled; ignore.
     }
 
     /**
@@ -141,7 +139,6 @@ public class Polyline implements Shape{
     }
 
     private boolean lineIntersect(Point p1, Point p2, Point p3, Point p4) {
-        // https://stackoverflow.com/a/16725714
         double det = (p2.x - p1.x) * (p4.y - p3.y) - (p4.x - p3.x) * (p2.y - p1.y);
         if (det == 0) {
             return false;
@@ -149,5 +146,18 @@ public class Polyline implements Shape{
         double lambda = ((p4.y - p3.y) * (p4.x - p1.x) + (p3.x - p4.x) * (p4.y - p1.y)) / det;
         double gamma = ((p1.y - p2.y) * (p4.x - p1.x) + (p2.x - p1.x) * (p4.y - p1.y)) / det;
         return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+    }
+
+    @Override
+    public void move(double deltaX, double deltaY){
+        for (Point p : points) {
+            p.x += deltaX;
+            p.y += deltaY;
+        }
+    }
+
+    @Override
+    public void setOpacity(double fillOpacity, double outlineOpacity) {
+        outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
 }
