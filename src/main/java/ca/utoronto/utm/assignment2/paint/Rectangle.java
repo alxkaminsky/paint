@@ -142,7 +142,6 @@ public class Rectangle implements Shape{
                    this.getLeftCornerY() < otherRect.getLeftCornerY() + otherRect.getHeight() &&
                    this.getLeftCornerY() + this.getHeight() > otherRect.getLeftCornerY();
         }
-        // TODO: Implement intersection logic for other shape types
         return false;
     }
 }

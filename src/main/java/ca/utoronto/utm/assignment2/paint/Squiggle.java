@@ -99,10 +99,14 @@ public class Squiggle implements Shape{
             Point end = rect.getEndPoint();
             Point start = rect.getStartPoint();
 
+            double x = rect.getLeftCornerX();
+            double y = rect.getLeftCornerY();
+            double w = rect.getWidth();
+            double h = rect.getHeight();
+
             for(Point p : points) {
-                if((Math.min(start.x, end.x)<=p.x && p.x<=Math.max(start.x, end.x)) && (Math.min(start.y, end.y)<=p.y
-                        && p.y<=Math.max(start.y, end.y))){
-                    return  true;
+                if (x <= p.x && p.x <= x + w && y <= p.y && p.y <= y + h) {
+                    return true;
                 }
             }
         }
