@@ -340,5 +340,15 @@ AS A     : user
 I WANT   : To be able to dynamically resize the drawing canvas
 SO THAT  : I can make the canvas size to my liking
 --------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.015 : phammi36
+NAME     : Bucket fill tool
+PRIORITY : 2
+ESTIMATE : 5 hour   ACTUAL : 5 hours
+AS A     : user
+I WANT   : To be able to use the bucket fill tool to fill enclosed areas with a selected colour
+SO THAT  : I can make fill the enclosed areas with my desired colour without having to redraw the area
+--------------------------------------------------------------------------
+
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
 

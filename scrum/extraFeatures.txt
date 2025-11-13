@@ -54,3 +54,11 @@ Description:
 Reference:
 	US4.007
 --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Bucket Fill Tool
+
+Description:
+    Enables the user to fill an enclosed area with a selected colour.
+
+Reference:
+    US4.015
