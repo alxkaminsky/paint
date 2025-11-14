@@ -21,7 +21,6 @@ public class Circle extends Oval{
         /**
          * Return the height of the circle
          */
-        @Override
         public void calculateHeight(){
                 calculateDiameter();
                 height = diameter;
@@ -30,14 +29,20 @@ public class Circle extends Oval{
     /**
      * Return the width of the circle
      */
-    @Override
     public void calculateWidth(){
             width = height;
         }
-        public double calculateDiameter(){
-                double deltaX = getStart().x - end.x;
-                double deltaY = getStart().y - end.y;
-                diameter = 2*Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-                return diameter;
-            }
+
+    public void calculateDiameter(){
+            double deltaX = getStart().x - end.x;
+            double deltaY = getStart().y - end.y;
+            diameter = 2*Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    }
+
+    @Override
+    public Drawable copy() {
+        return new Circle(start.copy(), end.copy(), fillColour, outlineColour);
+    }
+
+
 }

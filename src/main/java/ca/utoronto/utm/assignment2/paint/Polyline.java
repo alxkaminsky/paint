@@ -20,11 +20,9 @@ public class Polyline implements Drawable{
      * Constructor for the Polyline
      * @param start The first point of the polyline
      * @param end The second point of the polyline
-     * @param fillColour
      * @param outlineColour The color of the Polyline
-     * @param style
      */
-    public Polyline(Point start, Point end, Color fillColour, Color outlineColour, String style) {
+    public Polyline(Point start, Point end, Color outlineColour) {
         // start/end constructor to match the factory signature
         this.outlineColour = outlineColour;
         if (start != null) {
@@ -33,6 +31,11 @@ public class Polyline implements Drawable{
         if (end != null) {
             points.add(end);
         }
+    }
+
+    //Overloading
+    public Polyline(Color outlineColour) {
+        this.outlineColour = outlineColour;
     }
 
     /**
@@ -171,5 +174,15 @@ public class Polyline implements Drawable{
     @Override
     public boolean contains(Point p) {
         return false;
+    }
+
+    @Override
+    public Drawable copy() {
+        Polyline copy  = new Polyline(outlineColour);
+        for (Point p : points) {
+            copy.addPoint(p.copy());
+        }
+        copy.setStrokeWidth(strokeWidth);
+        return copy;
     }
 }

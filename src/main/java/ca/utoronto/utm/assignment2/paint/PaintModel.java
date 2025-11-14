@@ -12,12 +12,11 @@ import java.util.Observable;
  */
 public class PaintModel extends Observable {
     private String mode = "Circle";
-    private String style = "Filled";
     private ArrayList<Drawable> selected = new ArrayList<Drawable>();
     private ArrayList<Drawable> clipboard = new ArrayList<Drawable>();
     private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
-    private Drawable previewShape;
-    private Shape select;
+//  private Drawable previewShape;
+    private Drawable select;
     private Color fillColor = Color.BURLYWOOD;
     private Color outlineColor = Color.BLACK;
     private double currStrokeWidth = 2.0;
@@ -36,22 +35,6 @@ public class PaintModel extends Observable {
      */
     public void setMode(String mode) {
         this.mode = mode;
-    }
-
-    /**
-     *
-     * @return the current style (filled, outline)
-     */
-    public String getStyle() {
-        return style;
-    }
-
-    /**
-     * Set the desired style (filled, outline)
-     * @param style filled or outline
-     */
-    public void setStyle(String style) {
-        this.style = style;
     }
 
     /**
@@ -77,13 +60,13 @@ public class PaintModel extends Observable {
     /**
      * Add a new point to the current Squiggle line. If the line is not existed, create it
      */
-    public void setSelect(Shape select) {
+    public void setSelect(Drawable select) {
         this.select = select;
         setChanged();
         notifyObservers();
     }
 
-    public Shape getSelect(){return select;}
+    public Drawable getSelect(){return select;}
 
     public void updateSelect(Point end){
         if (select != null) {
@@ -140,38 +123,22 @@ public class PaintModel extends Observable {
         }
     }
 
-
-    /**
-     *
-     * @return the preview shape. This is the shape that appears while the user is dragging, and have not yet,
-     * released the mouse
-     */
-    public Drawable getPreviewShape() {
-        return previewShape;
-    }
-
-    /**
-     * Set the preview shape to whichever is currently being drawn
-     * @param s
-     */
-    public void setPreviewShape(Drawable s) {
-        this.previewShape = s;
-        setChanged();
-        notifyObservers();
-    }
-
-    /**
-     * Update the preview shape. This is needed, and is called, as the user is dragging the mouse to create constant
-     * preview of the shape
-     * @param endPoint the current point that the mouse is at
-     */
-    public void updatePreviewShape(Point endPoint) {
-        if (previewShape != null) {
-            previewShape.setEndPoint(endPoint);
+    public void updateDrawable(Drawable d, Point p){
+        if(drawables.contains(d)){
+            d.setEndPoint(p);
             setChanged();
             notifyObservers();
         }
     }
+
+    public void updateDrawableOpacity(Drawable d, double fillOpacity, double outlineOpacity){
+        if(drawables.contains(d)){
+            d.setOpacity(fillOpacity, outlineOpacity);
+            setChanged();
+            notifyObservers();
+        }
+    }
+
 
     /**
      *
@@ -199,11 +166,6 @@ public class PaintModel extends Observable {
 
     public ArrayList<Drawable> getSelected() {return selected;}
 
-    public void refresh(){
-        setChanged();
-        notifyObservers();
-    }
-
     public void copy(){
         clipboard.clear();
 
@@ -216,9 +178,13 @@ public class PaintModel extends Observable {
     }
 
     public void paste(){
-        drawables.addAll(clipboard);
         selected.clear();
-        selected.addAll(clipboard);
+
+        for (Drawable drawable : clipboard) {
+            Drawable copy =  drawable.copy();
+            drawables.add(copy);
+            selected.add(copy);
+        }
 
         setChanged();
         notifyObservers();

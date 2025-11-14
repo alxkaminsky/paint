@@ -139,6 +139,11 @@ public class Oval extends Shape {
     }
 
     @Override
+    public Drawable copy() {
+        return new Oval(start.copy(), end.copy(), fillColour, outlineColour);
+    }
+
+    @Override
     public void setOpacity(double fillOpacity, double outlineOpacity) {
         fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
         outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());

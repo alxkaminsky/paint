@@ -152,4 +152,9 @@ public class Rectangle extends Shape{
         return x >= left && x <= right && y >= top  && y <= bottom;
     }
 
+    @Override
+    public Drawable copy() {
+        return new Rectangle(start.copy(), end.copy(), fillColour, outlineColour);
+    }
+
 }

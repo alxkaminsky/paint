@@ -16,14 +16,11 @@ public final class ShapeFactory {
     private static void applyStrokeWidth(Shape s, double strokeWidth) {
         if (s == null || strokeWidth <= 0) return;
 
-        if(s instanceof Rectangle r) {
-            r.setStrokeWidth(strokeWidth);
-        } else if (s instanceof Triangle t) {
-            t.setStrokeWidth(strokeWidth);
-        } else if (s instanceof Oval o) {
-            o.setStrokeWidth(strokeWidth);
-        } else if (s instanceof Square sq) {
-            sq.setStrokeWidth(strokeWidth);
+        switch (s) {
+            case Rectangle r -> r.setStrokeWidth(strokeWidth);
+            case Triangle t -> t.setStrokeWidth(strokeWidth);
+            case Oval o -> o.setStrokeWidth(strokeWidth);
+            default -> {}
         }
     }
 
@@ -82,29 +79,5 @@ public final class ShapeFactory {
         }
         applyStrokeWidth(s, strokeWidth);
         return s;
-    }
-
-    /**
-     * Create a new shape preview based on a provided shape type. The preview will be partially transparent.
-     * This supports all drawable, meaning all the shapes and Squiggle and Polyline.
-     *
-     * @param shapeType the type of preview to create
-     * @param start the starting point for a preview drawable
-     * @param end the ending point for a preview drawable
-     * @param fillColor the fill color for a preview drawable (This works for Squiggle and Polyline as well)
-     * @param outlineColor the outline color for a preview drawable
-     * @param strokeWidth the strokewidth for Squiggle and Polyline, also the outline width for shapes
-     * @return the created preview shape
-     */
-    public static Shape createPreview(String shapeType,
-                                      Point start,
-                                      Point end,
-                                      Color fillColor,
-                                      Color outlineColor,
-                                      double strokeWidth) {
-        fillColor = withAlpha(fillColor, 0.25*fillColor.getOpacity());
-        outlineColor =  withAlpha(outlineColor, 0.5*outlineColor.getOpacity());
-
-        return create(shapeType, start, end, fillColor, outlineColor, strokeWidth);
     }
 }

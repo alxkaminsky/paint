@@ -17,4 +17,9 @@ public class RightTriangle extends Triangle {
         Point basePoint = new Point(getStart().x, getEnd().y);
         updateThirdVertex(basePoint); 
     }
+
+    @Override
+    public Drawable copy() {
+        return new RightTriangle(start.copy(), end.copy(), fillColour, outlineColour);
+    }
 }

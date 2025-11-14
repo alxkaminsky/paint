@@ -54,4 +54,9 @@ public class Square extends Rectangle {
         Point adjustedEnd = new Point(newX, newY);
         super.setEndPoint(adjustedEnd);
     }
+
+    @Override
+    public Drawable copy() {
+        return new Square(start.copy(), end.copy(), fillColour, outlineColour);
+    }
 }

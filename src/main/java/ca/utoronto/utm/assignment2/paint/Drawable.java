@@ -9,4 +9,5 @@ public interface Drawable {
     public boolean intersects(Shape other);
     public void move(double deltaX, double deltaY);
     public boolean contains(Point p);
+    public Drawable copy(); //returns a deep copy of a given drawable
 }

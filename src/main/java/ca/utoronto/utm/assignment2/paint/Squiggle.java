@@ -19,11 +19,9 @@ public class Squiggle implements Drawable{
      * Constructor for the Squiggle
      * @param start start point of the squiggle (this is where the mouse press is recorded)
      * @param end end point for the squiggle ( this is where a mouse release is recorded)
-     * @param fillColor not needed, present to adhere to Shape factory standard
      * @param outlineColor the color of the line
-     * @param style not needed, present to adhere to Shape factory standard
      */
-    public Squiggle(Point start, Point end, Color fillColor, Color outlineColor, String style) {
+    public Squiggle(Point start, Point end, Color outlineColor) {
         this.outlineColor = outlineColor;
         if (start != null) {
             points.add(start);
@@ -31,6 +29,10 @@ public class Squiggle implements Drawable{
         if (end != null && (end.x != start.x || end.y != start.y)) {
             points.add(end);
         }
+    }
+
+    public Squiggle(Color outlineColor){
+        this.outlineColor = outlineColor;
     }
 
     /**
@@ -119,8 +121,6 @@ public class Squiggle implements Drawable{
         outlineColor = withAlpha(outlineColor, outlineOpacity*outlineColor.getOpacity());
     }
 
-    public String getStyle() {return null;}
-
     /**
      * To adhere to Shape factory standard
      * @param p
@@ -130,4 +130,15 @@ public class Squiggle implements Drawable{
     public boolean contains(Point p) {
         return false;
     }
+
+    @Override
+    public Drawable copy() {
+        Squiggle copy = new Squiggle(outlineColor);
+        for (Point p : points) {
+            copy.addPoint(p.copy());
+        }
+        return copy;
+    }
+
+
 }

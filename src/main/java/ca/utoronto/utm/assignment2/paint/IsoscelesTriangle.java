@@ -22,4 +22,9 @@ public class IsoscelesTriangle extends Triangle {
         Point finalVertex = new Point(xCoorThirdVertex, getEnd().y);
         updateThirdVertex(finalVertex);
     }
+
+    @Override
+    public Drawable copy() {
+        return new IsoscelesTriangle(start.copy(), end.copy(), fillColour, outlineColour);
+    }
 }

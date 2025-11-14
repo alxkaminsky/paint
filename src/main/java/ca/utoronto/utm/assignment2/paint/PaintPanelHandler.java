@@ -17,6 +17,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
     private Point start;
     private Polyline currentPolyline;
     private Squiggle currentSquiggle;
+    private Drawable curr = null;
 
     /**
      * The constructor that creates the Handler
@@ -57,24 +58,19 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         if (type.equals(MouseEvent.MOUSE_PRESSED)) {
             start = new Point(e.getX(), e.getY());
 
-            Color fillColour;
-            Color outlineColour;
-            String style;
+            Color fillColour = model.getFillColor();
+            Color outlineColour = model.getOutlineColor();
             double strokeWidth;
 
             if(mode.equals("Select")){
                 fillColour = Color.TRANSPARENT;
                 outlineColour = Color.GRAY;
-                style = "Filled";
                 strokeWidth = 1;
             }
             else{
-                fillColour = withAlpha(model.getFillColor(), 0.25*model.getFillColor().getOpacity());
-                outlineColour = withAlpha(model.getOutlineColor(), 0.25*model.getOutlineColor().getOpacity());
-                style = model.getStyle();
                 strokeWidth = model.getCurrStrokeWidth();
             }
-            Shape curr = ShapeFactory.create(
+             curr = ShapeFactory.create(
                     mode,
                     start,
                     start,
@@ -85,44 +81,36 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                 model.setSelect(curr);
                 return;
             }
-            model.setPreviewShape(curr);
+            model.addDrawable(curr);
+            model.updateDrawableOpacity(curr, 0.25, 0.5);
         }
 
         if (type.equals(MouseEvent.MOUSE_DRAGGED)) {
-            if (model.getPreviewShape() != null) {
-                model.updatePreviewShape(new Point(e.getX(), e.getY()));
-            }
             if(model.getSelect() != null && mode.equals("Select")){
                 model.updateSelect(new Point(e.getX(), e.getY()));
                 model.getSelected().clear();
 
                 for(Drawable d: model.getDrawables()){
-                    if (d.intersects(model.getSelect())) {
+                    if (d.intersects((Shape) model.getSelect())) {
                         model.getSelected().add(d);
                     }
                 }
             }
+            model.updateDrawable(curr, new Point(e.getX(), e.getY()));
             return;
         }
 
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
-            Point end = new Point(e.getX(), e.getY());
-
             if (start == null || mode.equals("Select")) {
                 model.setSelect(null);
                 return;
             }
 
-            Shape shape = ShapeFactory.create(
-                    mode,
-                    start,
-                    end,
-                    model.getFillColor(),
-                    model.getOutlineColor(),
-                    model.getCurrStrokeWidth());
-            model.addDrawable(shape);
-            model.setPreviewShape(null);
+            if(curr!=null){
+                model.updateDrawableOpacity(curr, 4, 2);
+            }
             start = null;
+            curr = null;
         }
     }
     private void handleMove(MouseEvent e) {
@@ -161,6 +149,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                             || (type == MouseEvent.MOUSE_PRESSED && e.getButton() == MouseButton.SECONDARY);
 
             if (finish) {
+                currentPolyline.setOpacity(4, 2);
                 finishPolyline();
                 return;
             }
@@ -170,21 +159,21 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             Point p = new Point(e.getX(), e.getY());
 
             if (currentPolyline == null) {
-                currentPolyline = new Polyline(start, start, null, model.getOutlineColor(), model.getStyle());
+                currentPolyline = new Polyline(start, start, model.getOutlineColor());
+                currentPolyline.setOpacity(0.25, 0.5);
             } else {
                 currentPolyline.setEndPoint(p);
                 currentPolyline.addPoint(p);
             }
-
-            model.setPreviewShape(currentPolyline);
+            model.addDrawable(currentPolyline);
             return;
         }
 
         if ((type == MouseEvent.MOUSE_MOVED || type == MouseEvent.MOUSE_DRAGGED)
                 && currentPolyline != null) {
 
-            currentPolyline.setEndPoint(new Point(e.getX(), e.getY()));
-            model.setPreviewShape(currentPolyline);
+            model.updateDrawable(currentPolyline, new Point(e.getX(), e.getY()));
+
         }
     }
 
@@ -200,12 +189,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             }
         }
 
-        if (currentPolyline.getPoints().size() >= 2) {
-            model.addDrawable(currentPolyline);
-        }
-
         currentPolyline = null;
-        model.setPreviewShape(null);
     }
 
     private void handleSquiggle(MouseEvent e) {
@@ -215,9 +199,7 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             currentSquiggle = new Squiggle(
                     p,
                     p,
-                    model.getFillColor(),
-                    model.getOutlineColor(),
-                    model.getStyle()
+                    model.getOutlineColor()
             );
             currentSquiggle.setStrokeWidth(model.getCurrStrokeWidth());
             return;
@@ -255,6 +237,4 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
         }
     }
-
-
 }
