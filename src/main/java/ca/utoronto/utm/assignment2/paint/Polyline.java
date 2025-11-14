@@ -161,7 +161,7 @@ public class Polyline implements Drawable{
 
     @Override
     public void setOpacity(double fillOpacity, double outlineOpacity) {
-        outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
+        outlineColour = withAlpha(outlineColour, outlineOpacity);
     }
 
     public String getStyle() {return null;}

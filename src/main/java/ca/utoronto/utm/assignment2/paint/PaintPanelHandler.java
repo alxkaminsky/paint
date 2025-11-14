@@ -161,11 +161,11 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
             if (currentPolyline == null) {
                 currentPolyline = new Polyline(start, start, model.getOutlineColor());
                 currentPolyline.setOpacity(0.25, 0.5);
+                model.addDrawable(currentPolyline);
             } else {
                 currentPolyline.setEndPoint(p);
                 currentPolyline.addPoint(p);
             }
-            model.addDrawable(currentPolyline);
             return;
         }
 
@@ -202,17 +202,18 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     model.getOutlineColor()
             );
             currentSquiggle.setStrokeWidth(model.getCurrStrokeWidth());
+            model.addDrawable(currentSquiggle);
             return;
         }
 
         if (type == MouseEvent.MOUSE_DRAGGED && currentSquiggle != null
                 && e.getButton() == MouseButton.PRIMARY) {
             currentSquiggle.addPoint(new Point(e.getX(), e.getY()));
+            model.triggerRepaint();
             return;
         }
 
         if (type == MouseEvent.MOUSE_RELEASED && currentSquiggle != null) {
-            model.addDrawable(currentSquiggle);
             currentSquiggle = null;
         }
     }

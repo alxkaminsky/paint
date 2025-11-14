@@ -124,6 +124,48 @@ public class PaintPanel extends Canvas implements Observer {
             w = maxX - minX;
             h = maxY - minY;
 
+        } else if (d instanceof Polyline) {
+            Polyline p = (Polyline) d;
+            java.util.List<Point> pts = p.getPoints();
+            if (pts.isEmpty()) {
+                return;
+            }
+            double minX = pts.get(0).x;
+            double maxX = pts.get(0).x;
+            double minY = pts.get(0).y;
+            double maxY = pts.get(0).y;
+            for (Point pt : pts) {
+                if (pt.x < minX) minX = pt.x;
+                if (pt.x > maxX) maxX = pt.x;
+                if (pt.y < minY) minY = pt.y;
+                if (pt.y > maxY) maxY = pt.y;
+            }
+            x = minX;
+            y = minY;
+            w = maxX - minX;
+            h = maxY - minY;
+
+        } else if (d instanceof Squiggle) {
+            Squiggle s = (Squiggle) d;
+            java.util.List<Point> pts = s.getPoints();
+            if (pts.isEmpty()) {
+                return;
+            }
+            double minX = pts.get(0).x;
+            double maxX = pts.get(0).x;
+            double minY = pts.get(0).y;
+            double maxY = pts.get(0).y;
+            for (Point pt : pts) {
+                if (pt.x < minX) minX = pt.x;
+                if (pt.x > maxX) maxX = pt.x;
+                if (pt.y < minY) minY = pt.y;
+                if (pt.y > maxY) maxY = pt.y;
+            }
+            x = minX;
+            y = minY;
+            w = maxX - minX;
+            h = maxY - minY;
+
         } else {
             return;
         }

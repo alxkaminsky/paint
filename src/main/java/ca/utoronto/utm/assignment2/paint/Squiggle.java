@@ -45,6 +45,10 @@ public class Squiggle implements Drawable{
         }
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     /**
      * Set the end point of the squiggle line
      * @param endPoint
