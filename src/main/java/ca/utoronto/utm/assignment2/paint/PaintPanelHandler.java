@@ -6,7 +6,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
+import java.util.ArrayList;
 
 /**
  * A separate handler class for PaintPanel. This class perform the appropriate actions for every recorded mouse events
@@ -15,7 +15,6 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
     private final PaintModel model;
     private Point start;
-    private Polyline currentPolyline;
     private Squiggle currentSquiggle;
     private Drawable curr = null;
 
@@ -96,19 +95,21 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
                     }
                 }
             }
-            model.updateDrawable(curr, new Point(e.getX(), e.getY()));
+            model.updateDrawablePoint(curr, new Point(e.getX(), e.getY()));
             return;
         }
 
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
             if (start == null || mode.equals("Select")) {
                 model.setSelect(null);
+                curr = null;
                 return;
             }
 
             if(curr!=null){
                 model.updateDrawableOpacity(curr, 4, 2);
             }
+            model.addShape((Shape) curr);
             start = null;
             curr = null;
         }
@@ -133,74 +134,39 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
 
     private void handlePolyline(MouseEvent e) {
         EventType<? extends MouseEvent> type = e.getEventType();
+        Point p = new Point(e.getX(), e.getY());
 
-        if (type == MouseEvent.MOUSE_EXITED && currentPolyline != null) {
-            if (e.getY() < 0) {
-                currentPolyline.setEndPoint(currentPolyline.getPoints().get(currentPolyline.getPoints().size() - 2));
-                finishPolyline();
-            }
-            return;
+        if(p.y < 0 && curr != null){
+            Polyline poly = (Polyline) curr;
+            ArrayList<Point> points = poly.getPoints();
+            model.updateDrawablePoint(poly, points.get(points.size()-2));
+            curr = null;
         }
 
-        if (currentPolyline != null) {
-            boolean finish =
-                    (type == MouseEvent.MOUSE_CLICKED &&
-                            (e.getButton() == MouseButton.SECONDARY || e.getClickCount() == 2))
-                            || (type == MouseEvent.MOUSE_PRESSED && e.getButton() == MouseButton.SECONDARY);
-
-            if (finish) {
-                currentPolyline.setOpacity(4, 2);
-                finishPolyline();
-                return;
-            }
+        if (curr == null && MouseEvent.MOUSE_CLICKED == type && MouseButton.PRIMARY == e.getButton()) {
+            curr = new Polyline(p, p, model.getOutlineColor());
+            model.addDrawable(curr);
+        }
+        else  if(curr != null && MouseEvent.MOUSE_MOVED == type){
+            model.updateDrawablePoint(curr, p);
+        }
+        else if(curr != null && MouseEvent.MOUSE_CLICKED == type && MouseButton.PRIMARY == e.getButton()){
+            Polyline poly = (Polyline) curr;
+            poly.getPoints().add(p);
+            model.triggerRepaint();
+        }
+        else if(curr != null && MouseEvent.MOUSE_CLICKED == type && MouseButton.SECONDARY == e.getButton()){
+            model.updateDrawablePoint(curr, p);
+            curr = null;
         }
 
-        if (type == MouseEvent.MOUSE_CLICKED && e.getButton() == MouseButton.PRIMARY) {
-            Point p = new Point(e.getX(), e.getY());
-
-            if (currentPolyline == null) {
-                currentPolyline = new Polyline(start, start, model.getOutlineColor());
-                currentPolyline.setOpacity(0.25, 0.5);
-                model.addDrawable(currentPolyline);
-            } else {
-                currentPolyline.setEndPoint(p);
-                currentPolyline.addPoint(p);
-            }
-            return;
-        }
-
-        if ((type == MouseEvent.MOUSE_MOVED || type == MouseEvent.MOUSE_DRAGGED)
-                && currentPolyline != null) {
-
-            model.updateDrawable(currentPolyline, new Point(e.getX(), e.getY()));
-
-        }
-    }
-
-    private void finishPolyline() {
-        if (currentPolyline == null) return;
-
-        if (currentPolyline.getPoints().size() >= 2) {
-            int last = currentPolyline.getPoints().size() - 1;
-            Point pLast = currentPolyline.getPoints().get(last);
-            Point pPrev = currentPolyline.getPoints().get(last - 1);
-            if (pLast.x == pPrev.x && pLast.y == pPrev.y) {
-                currentPolyline.getPoints().remove(last);
-            }
-        }
-
-        currentPolyline = null;
     }
 
     private void handleSquiggle(MouseEvent e) {
         EventType<? extends MouseEvent> type = e.getEventType();
         if (type == MouseEvent.MOUSE_PRESSED && e.getButton() == MouseButton.PRIMARY) {
             Point p = new Point(e.getX(), e.getY());
-            currentSquiggle = new Squiggle(
-                    p,
-                    p,
-                    model.getOutlineColor()
-            );
+            currentSquiggle = new Squiggle(p, p, model.getOutlineColor());
             currentSquiggle.setStrokeWidth(model.getCurrStrokeWidth());
             model.addDrawable(currentSquiggle);
             return;
@@ -222,20 +188,16 @@ public class PaintPanelHandler implements EventHandler<MouseEvent> {
         if (e.getEventType() != MouseEvent.MOUSE_CLICKED) return;
 
         Point click = new Point(e.getX(), e.getY());
-        var shapes = model.getDrawables();
+        var shapes = model.getShapes();
 
         // from newest (on top layer) shape to bottom
         for (int i = shapes.size() - 1; i >= 0; i--) {
-            Drawable d = shapes.get(i);
+            Shape s = shapes.get(i);
 
-            if ((d instanceof Shape) && (d.contains(click))) {
-                Shape s = (Shape) d;
-                s.setFillColour(model.getFillColor());
-                //TODO fix this code
-                model.triggerRepaint(); // We don't want to add notifier to model.setFillColour()
+            if(s.contains(click)) {
+                model.updateShapeColour(s);
                 return;
             }
-
         }
     }
 }

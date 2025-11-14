@@ -15,7 +15,7 @@ public class PaintModel extends Observable {
     private ArrayList<Drawable> selected = new ArrayList<Drawable>();
     private ArrayList<Drawable> clipboard = new ArrayList<Drawable>();
     private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
-//  private Drawable previewShape;
+    private ArrayList<Shape> shapes = new ArrayList<Shape>();
     private Drawable select;
     private Color fillColor = Color.BURLYWOOD;
     private Color outlineColor = Color.BLACK;
@@ -93,6 +93,13 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    public void addShape(Shape s) {
+        if (s == null) return;
+        shapes.add(s);
+        setChanged();
+        notifyObservers();
+    }
+
     /**
     Delete the most recently added shape in the array. This is useful for redo
      */
@@ -113,22 +120,19 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
-    /**
-     * Draw all of the drawables held in the model onto the Canvas
-     * @param gc
-     */
-    public void draw(GraphicsContext gc) {
-        for (Drawable drawable : drawables) {
-            drawable.draw(gc);
-        }
-    }
 
-    public void updateDrawable(Drawable d, Point p){
+    public void updateDrawablePoint(Drawable d, Point p){
         if(drawables.contains(d)){
             d.setEndPoint(p);
             setChanged();
             notifyObservers();
         }
+    }
+
+    public void updateShapeColour(Shape s){
+        s.setFillColour(fillColor);
+        setChanged();
+        notifyObservers();
     }
 
     public void updateDrawableOpacity(Drawable d, double fillOpacity, double outlineOpacity){
@@ -222,4 +226,12 @@ public class PaintModel extends Observable {
         setChanged();
         notifyObservers();
     }
+
+//    public void removeDrawable(Drawable d) {
+//        drawables.remove(d);
+//        setChanged();
+//        notifyObservers();
+//    }
+
+    public ArrayList<Shape> getShapes() {return shapes;}
 }

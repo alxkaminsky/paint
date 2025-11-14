@@ -12,7 +12,7 @@ import static ca.utoronto.utm.assignment2.paint.ShapeFactory.withAlpha;
  * up from a list of Point
  */
 public class Polyline implements Drawable{
-    private final List<Point> points = new ArrayList<>();
+    private final ArrayList<Point> points = new ArrayList<>();
     private Color outlineColour;
     private double strokeWidth = 2.0;
 
@@ -76,7 +76,7 @@ public class Polyline implements Drawable{
      *
      * @return the list of point that make up the polyline
      */
-    public List<Point> getPoints() {
+    public ArrayList<Point> getPoints() {
         return points;
     }
 
@@ -162,18 +162,6 @@ public class Polyline implements Drawable{
     @Override
     public void setOpacity(double fillOpacity, double outlineOpacity) {
         outlineColour = withAlpha(outlineColour, outlineOpacity);
-    }
-
-    public String getStyle() {return null;}
-
-    /**
-     * To adhere to Shape factory standard
-     * @param p
-     * @return false
-     */
-    @Override
-    public boolean contains(Point p) {
-        return false;
     }
 
     @Override

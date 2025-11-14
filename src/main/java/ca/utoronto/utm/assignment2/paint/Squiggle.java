@@ -125,16 +125,6 @@ public class Squiggle implements Drawable{
         outlineColor = withAlpha(outlineColor, outlineOpacity*outlineColor.getOpacity());
     }
 
-    /**
-     * To adhere to Shape factory standard
-     * @param p
-     * @return false
-     */
-    @Override
-    public boolean contains(Point p) {
-        return false;
-    }
-
     @Override
     public Drawable copy() {
         Squiggle copy = new Squiggle(outlineColor);

@@ -26,14 +26,6 @@ public abstract class Shape implements Drawable {
         return fillColour;
     }
 
-    public void setOutlineColour(Color outlineColour) {
-        this.outlineColour = outlineColour;
-    }
-
-    public Color getOutlineColour() {
-        return outlineColour;
-    }
-
     /**
      *
      * @return the start point of the triangle
@@ -65,8 +57,8 @@ public abstract class Shape implements Drawable {
         return strokeWidth;
     }
 
-    public abstract void draw(GraphicsContext g);
     public abstract boolean contains(Point p);
+    public abstract void draw(GraphicsContext g);
     public abstract void move(double deltaX, double deltaY);
     public abstract boolean intersects(Shape other);
     public abstract void setEndPoint(Point end);
