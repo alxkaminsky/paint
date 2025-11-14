@@ -126,6 +126,10 @@ public class Rectangle extends Shape{
     public void move(double deltaX, double deltaY) {
         upLeftCorner.x += deltaX;
         upLeftCorner.y += deltaY;
+        start.x += deltaX;
+        start.y += deltaY;
+        end.x += deltaX;
+        end.y += deltaY;
     }
 
     @Override

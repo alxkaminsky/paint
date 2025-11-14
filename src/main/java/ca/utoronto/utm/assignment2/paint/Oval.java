@@ -112,6 +112,8 @@ public class Oval extends Shape {
         upLeftCorner.y += deltaY;
         start.x += deltaX;
         start.y += deltaY;
+        end.x += deltaX;
+        end.y += deltaY;
     }
 
     /**
