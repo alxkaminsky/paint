@@ -227,11 +227,5 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
-//    public void removeDrawable(Drawable d) {
-//        drawables.remove(d);
-//        setChanged();
-//        notifyObservers();
-//    }
-
     public ArrayList<Shape> getShapes() {return shapes;}
 }

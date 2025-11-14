@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public interface Drawable {
     public void draw(GraphicsContext g2d);
+    public void drawSelectionOutline(GraphicsContext g);
     public void setEndPoint(Point endPoint);
     public void setOpacity(double fillOpacity, double outlineOpacity);
     public boolean intersects(Shape other);

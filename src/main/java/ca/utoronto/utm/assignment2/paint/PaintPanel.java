@@ -65,115 +65,16 @@ public class PaintPanel extends Canvas implements Observer {
         double strokeWidth = model.getCurrStrokeWidth();
         g.setLineWidth(strokeWidth);
 
+
         for (Drawable d : model.getDrawables()) {
             d.draw(g);
+            if (model.getSelected().contains(d))
+                d.drawSelectionOutline(g);
         }
 
         Drawable select = model.getSelect();
         if (select != null){
             select.draw(g);
         }
-
-        ArrayList<Drawable> selected = model.getSelected();
-        if (selected != null && !selected.isEmpty()) {
-            g.setStroke(Color.BLACK);
-            g.setLineWidth(1.0);
-            g.setLineDashes(4, 4);
-
-            for (Drawable d: selected) {
-                drawSelectionOutline(g, d);
-            }
-
-            g.setLineDashes(0, 0);
-        }
-    }
-
-    private void drawSelectionOutline(GraphicsContext g, Drawable d) {
-        double padding = 3.0;
-        double x, y, w, h;
-
-        if (d instanceof Rectangle) {
-            Rectangle r = (Rectangle) d;
-            x = r.getLeftCornerX();
-            y = r.getLeftCornerY();
-            w = r.getWidth();
-            h = r.getHeight();
-
-        } else if (d instanceof Oval) {
-            Oval o = (Oval) d;
-            Point corner = o.getUpLeftCorner();
-            x = corner.x;
-            y = corner.y;
-            w = o.getWidth();
-            h = o.getHeight();
-
-        } else if (d instanceof Triangle) {
-            Triangle t = (Triangle) d;
-
-            double[] xs = t.getXAllVertices();
-            double[] ys = t.getYAllVertices();
-
-            double minX = Math.min(xs[0], Math.min(xs[1], xs[2]));
-            double maxX = Math.max(xs[0], Math.max(xs[1], xs[2]));
-            double minY = Math.min(ys[0], Math.min(ys[1], ys[2]));
-            double maxY = Math.max(ys[0], Math.max(ys[1], ys[2]));
-
-            x = minX;
-            y = minY;
-            w = maxX - minX;
-            h = maxY - minY;
-
-        } else if (d instanceof Polyline) {
-            Polyline p = (Polyline) d;
-            java.util.List<Point> pts = p.getPoints();
-            if (pts.isEmpty()) {
-                return;
-            }
-            double minX = pts.get(0).x;
-            double maxX = pts.get(0).x;
-            double minY = pts.get(0).y;
-            double maxY = pts.get(0).y;
-            for (Point pt : pts) {
-                if (pt.x < minX) minX = pt.x;
-                if (pt.x > maxX) maxX = pt.x;
-                if (pt.y < minY) minY = pt.y;
-                if (pt.y > maxY) maxY = pt.y;
-            }
-            x = minX;
-            y = minY;
-            w = maxX - minX;
-            h = maxY - minY;
-
-        } else if (d instanceof Squiggle) {
-            Squiggle s = (Squiggle) d;
-            java.util.List<Point> pts = s.getPoints();
-            if (pts.isEmpty()) {
-                return;
-            }
-            double minX = pts.get(0).x;
-            double maxX = pts.get(0).x;
-            double minY = pts.get(0).y;
-            double maxY = pts.get(0).y;
-            for (Point pt : pts) {
-                if (pt.x < minX) minX = pt.x;
-                if (pt.x > maxX) maxX = pt.x;
-                if (pt.y < minY) minY = pt.y;
-                if (pt.y > maxY) maxY = pt.y;
-            }
-            x = minX;
-            y = minY;
-            w = maxX - minX;
-            h = maxY - minY;
-
-        } else {
-            return;
-        }
-
-        x -= padding;
-        y -= padding;
-        w += 2 * padding;
-        h += 2 * padding;
-
-        g.strokeRect(x, y, w, h);
     }
 }

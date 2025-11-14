@@ -134,5 +134,36 @@ public class Squiggle implements Drawable{
         return copy;
     }
 
+    @Override
+    public void drawSelectionOutline(GraphicsContext g) {
+        g.setStroke(Color.DODGERBLUE);
+        g.setLineWidth(1.0);
+        g.setLineDashes(4, 4);
 
+        if (points.isEmpty()) {
+            return;
+        }
+
+        double padding = 3.0;
+        double minX = points.getFirst().x;
+        double maxX = points.getFirst().x;
+        double minY = points.getFirst().y;
+        double maxY = points.getFirst().y;
+
+        for (Point pt : points) {
+            if (pt.x < minX) minX = pt.x;
+            if (pt.x > maxX) maxX = pt.x;
+            if (pt.y < minY) minY = pt.y;
+            if (pt.y > maxY) maxY = pt.y;
+        }
+
+        double x = minX - padding;
+        double y = minY - padding;
+        double w = (maxX - minX) + (2 * padding);
+        double h = (maxY - minY) + (2 * padding);
+
+        g.strokeRect(x, y, w, h);
+
+        g.setLineDashes(0, 0);
+    }
 }

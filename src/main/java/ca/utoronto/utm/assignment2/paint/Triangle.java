@@ -167,7 +167,6 @@ public abstract class Triangle extends Shape {
         g2d.setStroke(outlineColour);
         g2d.setLineWidth(getStrokeWidth());
         g2d.strokePolygon(getXAllVertices(), getYAllVertices(), 3);
-
     }
 
     @Override
@@ -231,4 +230,28 @@ public abstract class Triangle extends Shape {
         return (u >= 0) && (v >= 0) && (u + v <= 1);
     }
 
+    @Override
+    public void drawSelectionOutline(GraphicsContext g) {
+        g.setStroke(Color.DODGERBLUE);
+        g.setLineWidth(1.0);
+        g.setLineDashes(4, 4);
+
+        double padding = 3.0;
+        double[] xs = getXAllVertices();
+        double[] ys = getYAllVertices();
+
+        double minX = Math.min(xs[0], Math.min(xs[1], xs[2]));
+        double maxX = Math.max(xs[0], Math.max(xs[1], xs[2]));
+        double minY = Math.min(ys[0], Math.min(ys[1], ys[2]));
+        double maxY = Math.max(ys[0], Math.max(ys[1], ys[2]));
+
+        double x = minX - padding;
+        double y = minY - padding;
+        double w = (maxX - minX) + (2 * padding);
+        double h = (maxY - minY) + (2 * padding);
+
+        g.strokeRect(x, y, w, h);
+
+        g.setLineDashes(0, 0);
+    }
 }

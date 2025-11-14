@@ -149,4 +149,21 @@ public class Oval extends Shape {
         fillColour = withAlpha(fillColour, fillOpacity*fillColour.getOpacity());
         outlineColour = withAlpha(outlineColour, outlineOpacity*outlineColour.getOpacity());
     }
+
+    @Override
+    public void drawSelectionOutline(GraphicsContext g) {
+        g.setStroke(Color.DODGERBLUE);
+        g.setLineWidth(1.0);
+        g.setLineDashes(4, 4);
+
+        double padding = 3.0;
+        Point corner = getUpLeftCorner();
+        double x = corner.x - padding;
+        double y = corner.y - padding;
+        double w = getWidth() + (2 * padding);
+        double h = getHeight() + (2 * padding);
+        g.strokeRect(x, y, w, h);
+
+        g.setLineDashes(0, 0);
+    }
 }

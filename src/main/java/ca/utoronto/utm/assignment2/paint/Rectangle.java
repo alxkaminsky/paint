@@ -160,4 +160,19 @@ public class Rectangle extends Shape{
         return new Rectangle(start.copy(), end.copy(), fillColour, outlineColour);
     }
 
+    @Override
+    public void drawSelectionOutline(GraphicsContext g) {
+        g.setStroke(Color.DODGERBLUE);
+        g.setLineWidth(1.0);
+        g.setLineDashes(4, 4);
+
+        double padding = 3.0;
+        double x = getLeftCornerX() - padding;
+        double y = getLeftCornerY() - padding;
+        double w = getWidth() + (2 * padding);
+        double h = getHeight() + (2 * padding);
+        g.strokeRect(x, y, w, h);
+
+        g.setLineDashes(0, 0);
+    }
 }

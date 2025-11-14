@@ -59,6 +59,7 @@ public abstract class Shape implements Drawable {
 
     public abstract boolean contains(Point p);
     public abstract void draw(GraphicsContext g);
+    public abstract void drawSelectionOutline(GraphicsContext g);
     public abstract void move(double deltaX, double deltaY);
     public abstract boolean intersects(Shape other);
     public abstract void setEndPoint(Point end);
