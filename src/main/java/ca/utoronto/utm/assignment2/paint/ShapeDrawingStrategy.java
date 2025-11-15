@@ -59,15 +59,9 @@ public class ShapeDrawingStrategy implements ToolStrategy {
         }
 
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
-            if (start == null || mode.equals("Select")) {
-                model.setSelect(null);
-                currentShape = null;
-                return;
-            }
-
             if(currentShape !=null){
                 currentShape.setOpacity(4, 2);
-                model.setSelect(null);
+                model.triggerRepaint();
             }
             start = null;
             currentShape = null;

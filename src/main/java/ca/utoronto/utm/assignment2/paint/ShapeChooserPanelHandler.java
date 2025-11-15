@@ -38,7 +38,7 @@ public class ShapeChooserPanelHandler implements EventHandler<ActionEvent> {
 
         if (!"Select".equals(command) && !"Move".equals(command)) {
             model.getSelected().clear();
-            model.setSelect(null);
+            model.triggerRepaint();
         }
 
         clicked.setStyle(shapeChooserPanel.HIGHLIGHT_STYLE);

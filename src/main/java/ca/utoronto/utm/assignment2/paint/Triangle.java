@@ -127,7 +127,6 @@ public abstract class Triangle extends Shape {
     }
 
     private boolean isInside(Point p) {
-        // https://stackoverflow.com/a/2049593
         double d1, d2, d3;
         boolean has_neg, has_pos;
 
@@ -146,7 +145,6 @@ public abstract class Triangle extends Shape {
     }
 
     private boolean lineIntersect(Point p1, Point p2, Point p3, Point p4) {
-        // https://stackoverflow.com/a/16725714
         double det = (p2.x - p1.x) * (p4.y - p3.y) - (p4.x - p3.x) * (p2.y - p1.y);
         if (det == 0) {
             return false;
@@ -193,41 +191,16 @@ public abstract class Triangle extends Shape {
      */
     @Override
     public boolean contains(Point p) {
-        Point a = getStart();
-        Point b = getEnd();
-        Point c = getThirdVertex();
+        Point a = getStart(); // 1
+        Point b = getEnd(); // 2
+        Point c = getThirdVertex(); // 3
 
-        double px = p.x;
-        double py = p.y;
+        double deno = (b.y - c.y)*(a.x - c.x) + (c.x - b.x)*(a.y - c.y);
+        double u = ((b.y - c.y)*(p.x - c.x) + (c.x - b.x)*(p.y - c.y))/deno;
+        double v = ((c.y - a.y)*(p.x - c.x) + (a.x - c.x)*(p.y - c.y))/deno;
+        double z = 1-u-v;
 
-        double ax = a.x, ay = a.y;
-        double bx = b.x, by = b.y;
-        double cx = c.x, cy = c.y;
-
-        // Vectors
-        double v0x = cx - ax;
-        double v0y = cy - ay;
-        double v1x = bx - ax;
-        double v1y = by - ay;
-        double v2x = px - ax;
-        double v2y = py - ay;
-
-        // Dot products
-        double dot00 = v0x * v0x + v0y * v0y;
-        double dot01 = v0x * v1x + v0y * v1y;
-        double dot02 = v0x * v2x + v0y * v2y;
-        double dot11 = v1x * v1x + v1y * v1y;
-        double dot12 = v1x * v2x + v1y * v2y;
-
-        // Compute barycentric coordinates
-        double denom = (dot00 * dot11 - dot01 * dot01);
-        if (denom == 0) return false; // degenerate triangle
-
-        double invDenom = 1.0 / denom;
-        double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-        double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
-
-        return (u >= 0) && (v >= 0) && (u + v <= 1);
+        return 0 <= u && u <= 1 && 0 <= v && v <= 1 && 0 <= z && z <= 1;
     }
 
     @Override
