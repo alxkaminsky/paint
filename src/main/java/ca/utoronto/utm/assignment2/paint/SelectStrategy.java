@@ -3,6 +3,12 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+/**
+ * Strategy for selecting drawables on the canvas.
+ * Allows users to drag a selection rectangle to select multiple items.
+ *
+ * @author kamins64
+ */
 public class SelectStrategy implements ToolStrategy{
     private Point start;
     private Drawable curr = null;

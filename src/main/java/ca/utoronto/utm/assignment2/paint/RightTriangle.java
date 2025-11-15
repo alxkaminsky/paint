@@ -20,6 +20,8 @@ public class RightTriangle extends Triangle {
 
     @Override
     public Drawable copy() {
-        return new RightTriangle(start.copy(), end.copy(), fillColour, outlineColour);
+        RightTriangle copy = new RightTriangle(start.copy(), end.copy(), fillColour, outlineColour);
+        copy.setStrokeWidth(this.strokeWidth);
+        return copy;
     }
 }

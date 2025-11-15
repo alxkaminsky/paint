@@ -157,7 +157,9 @@ public class Rectangle extends Shape{
 
     @Override
     public Drawable copy() {
-        return new Rectangle(start.copy(), end.copy(), fillColour, outlineColour);
+        Rectangle copy = new Rectangle(start.copy(), end.copy(), fillColour, outlineColour);
+        copy.setStrokeWidth(this.strokeWidth);
+        return copy;
     }
 
     @Override

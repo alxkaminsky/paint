@@ -5,10 +5,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox; // Import VBox
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.control.Slider;
 
 /**
  * Create the draw setting panel to control the Color of the fill, outline, and outline thickness of the shapes. This
@@ -30,7 +29,6 @@ public class DrawSettingsPanel extends HBox {
 
         Label fillLabel = new Label("Fill");
         ColorPickerPanel fillColourPicker = new ColorPickerPanel(model.getFillColor());
-
         fillColourPicker.setOnAction(new ColorPickerPanelHandler(model, false));
 
         VBox fillBox = new VBox(5, fillLabel, fillColourPicker);
@@ -38,29 +36,12 @@ public class DrawSettingsPanel extends HBox {
 
         Label outlineLabel = new Label("Outline");
         ColorPickerPanel outlineColourPicker = new ColorPickerPanel(model.getOutlineColor());
-
         outlineColourPicker.setOnAction(new ColorPickerPanelHandler(model, true));
 
         VBox outlineBox = new VBox(5, outlineLabel, outlineColourPicker);
         outlineBox.setAlignment(Pos.CENTER);
 
-        Label thicknessLabel = new Label("Line Thickness");
-        Slider thicknessSlider = new Slider(0, 50, 2);
-        Label thicknessLiveValue = new Label(String.format("%.1f", thicknessSlider.getValue()));
-        thicknessSlider.setShowTickLabels(true);
-        thicknessSlider.setMajorTickUnit(5);
-        thicknessSlider.setMinorTickCount(4);
-        thicknessSlider.setBlockIncrement(1);
-        thicknessSlider.setPrefWidth(450); // adjust width as needed
-        thicknessSlider.setPadding(new Insets(0, 10, 0, 10));
-
-        thicknessSlider.valueProperty().addListener((obs, oldVal, currVal) -> {
-            model.setCurrStrokeWidth(currVal.doubleValue());
-            thicknessLiveValue.setText(String.format("%.1f", currVal.doubleValue()));
-        });
-
-        VBox thicknessBox = new VBox(5, thicknessLabel, thicknessSlider, thicknessLiveValue);
-        thicknessBox.setAlignment(Pos.CENTER);
+        LineThicknessPanel thicknessPanel = new LineThicknessPanel(model);
 
         getChildren().addAll(panel,
                 createCustomSeparator(),
@@ -68,7 +49,7 @@ public class DrawSettingsPanel extends HBox {
                 createCustomSeparator(),
                 outlineBox,
                 createCustomSeparator(),
-                thicknessBox,
+                thicknessPanel,
                 createCustomSeparator());
     }
 

@@ -3,10 +3,16 @@ import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+/**
+ * Strategy for drawing shapes (Circle, Rectangle, Square, Oval, Triangles).
+ * Handles mouse events for creating and previewing shapes with visual feedback.
+ *
+ * @author kamins64
+ */
 public class ShapeDrawingStrategy implements ToolStrategy {
     String mode;
     Point start;
-    Shape curr;
+    Shape currentShape;
 
     public ShapeDrawingStrategy(String mode) {
         this.mode = mode;
@@ -19,9 +25,9 @@ public class ShapeDrawingStrategy implements ToolStrategy {
 
             Color fillColour = model.getFillColor();
             Color outlineColour = model.getOutlineColor();
-            double strokeWidth = model.getCurrStrokeWidth();
+            double strokeWidth = model.getStrokeWidth();
 
-             curr = ShapeFactory.create(
+             currentShape = ShapeFactory.create(
                     mode,
                     start,
                     start,
@@ -29,28 +35,32 @@ public class ShapeDrawingStrategy implements ToolStrategy {
                     outlineColour,
                     strokeWidth);
 
-            model.addDrawable(curr);
-            model.updateDrawableOpacity(curr, 0.25, 0.5);
+            // Use command pattern to add the shape
+            Command drawCmd = new DrawCommand(model, currentShape);
+            model.getCommandHistory().executeCommand(drawCmd);
+            model.addShape(currentShape);
+
+            model.updateDrawableOpacity(currentShape, 0.25, 0.5);
         }
 
         if (type.equals(MouseEvent.MOUSE_DRAGGED)) {
-            model.updateDrawablePoint(curr, new Point(e.getX(), e.getY()));
+            model.updateDrawablePoint(currentShape, new Point(e.getX(), e.getY()));
             return;
         }
 
         if (type.equals(MouseEvent.MOUSE_RELEASED)) {
             if (start == null || mode.equals("Select")) {
                 model.setSelect(null);
-                curr = null;
+                currentShape = null;
                 return;
             }
 
-            if(curr!=null){
-                model.updateDrawableOpacity(curr, 4, 2);
+            if(currentShape !=null){
+                currentShape.setOpacity(4, 2);
+                model.setSelect(null);
             }
-            model.addShape(curr);
             start = null;
-            curr = null;
+            currentShape = null;
         }
     }
 }

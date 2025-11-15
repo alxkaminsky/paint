@@ -6,33 +6,44 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
+/**
+ * Strategy for drawing polylines (multi-segment lines).
+ * Allows users to click multiple points to create connected line segments.
+ * Right-click to finish the polyline.
+ *
+ * @author kamins64
+ */
 public class PolylineStrategy implements ToolStrategy {
-    private Polyline polyline;
+    private Polyline currentPolyline;
+
     @Override
     public void handle(MouseEvent e, PaintModel model) {
         EventType<? extends MouseEvent> type = e.getEventType();
         Point p = new Point(e.getX(), e.getY());
 
-        if(p.y < 0 && polyline != null){
-            ArrayList<Point> points = polyline.getPoints();
-            model.updateDrawablePoint(polyline, points.get(points.size()-2));
-            polyline = null;
+        if(p.y < 0 && currentPolyline != null){
+            ArrayList<Point> points = currentPolyline.getPoints();
+            model.updateDrawablePoint(currentPolyline, points.get(points.size()-2));
+            currentPolyline = null;
         }
 
-        if (polyline == null && MouseEvent.MOUSE_CLICKED == type && MouseButton.PRIMARY == e.getButton()) {
-            polyline = new Polyline(p, p, model.getOutlineColor());
-            model.addDrawable(polyline);
+        if (currentPolyline == null && MouseEvent.MOUSE_CLICKED == type && MouseButton.PRIMARY == e.getButton()) {
+            currentPolyline = new Polyline(p, p, model.getOutlineColor());
+            currentPolyline.setStrokeWidth(model.getStrokeWidth());
+
+            Command drawCmd = new DrawCommand(model, currentPolyline);
+            model.getCommandHistory().executeCommand(drawCmd);
         }
-        else  if(polyline != null && MouseEvent.MOUSE_MOVED == type){
-            model.updateDrawablePoint(polyline, p);
+        else  if(currentPolyline != null && MouseEvent.MOUSE_MOVED == type){
+            model.updateDrawablePoint(currentPolyline, p);
         }
-        else if(polyline != null && MouseEvent.MOUSE_CLICKED == type && MouseButton.PRIMARY == e.getButton()){
-            polyline.getPoints().add(p);
+        else if(currentPolyline != null && MouseEvent.MOUSE_CLICKED == type && MouseButton.PRIMARY == e.getButton()){
+            currentPolyline.getPoints().add(p);
             model.triggerRepaint();
         }
-        else if(polyline != null && MouseEvent.MOUSE_CLICKED == type && MouseButton.SECONDARY == e.getButton()){
-            model.updateDrawablePoint(polyline, p);
-            polyline = null;
+        else if(currentPolyline != null && MouseEvent.MOUSE_CLICKED == type && MouseButton.SECONDARY == e.getButton()){
+            model.updateDrawablePoint(currentPolyline, p);
+            currentPolyline = null;
         }
     }
 }

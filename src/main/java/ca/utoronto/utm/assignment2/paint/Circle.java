@@ -41,7 +41,9 @@ public class Circle extends Oval{
 
     @Override
     public Drawable copy() {
-        return new Circle(start.copy(), end.copy(), fillColour, outlineColour);
+        Circle copy = new Circle(start.copy(), end.copy(), fillColour, outlineColour);
+        copy.setStrokeWidth(this.strokeWidth);
+        return copy;
     }
 
 

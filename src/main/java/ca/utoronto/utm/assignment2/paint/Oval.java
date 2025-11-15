@@ -141,7 +141,9 @@ public class Oval extends Shape {
 
     @Override
     public Drawable copy() {
-        return new Oval(start.copy(), end.copy(), fillColour, outlineColour);
+        Oval copy = new Oval(start.copy(), end.copy(), fillColour, outlineColour);
+        copy.setStrokeWidth(this.strokeWidth);
+        return copy;
     }
 
     @Override

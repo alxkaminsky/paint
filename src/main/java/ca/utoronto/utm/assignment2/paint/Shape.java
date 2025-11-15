@@ -3,6 +3,12 @@ package ca.utoronto.utm.assignment2.paint;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * Abstract base class for all shapes in the paint application.
+ * Defines common properties and behaviors for geometric shapes.
+ *
+ * @author kamins64
+ */
 public abstract class Shape implements Drawable {
     protected Point start;
     protected Point end;

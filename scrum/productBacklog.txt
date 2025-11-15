@@ -15,53 +15,6 @@
 #     NotStarted,InProgress, Incomplete,Complete
 # as appropriate.
 
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US4.001 : suleym11
-NAME     : Draw Polyline
-PRIORITY : 2
-ESTIMATE : 3 hours   ACTUAL :
-AS A     : user
-I WANT   : To click a series of sequential points on the screen, connected by a line.
-SO THAT  : I can create a custom, multi-segmented line to represent a path, boundary, or feature.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US4.003 : nguy3971
-NAME     : Line thickness selection
-PRIORITY : 2
-ESTIMATE : 2 hours   ACTUAL :
-AS A     : user
-I WANT   : Select the thickness of outlines/line segments on the canvas
-           on a scale
-SO THAT  : I can draw outlines/segments with my selected line thickness.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US4.004 : nguy3971
-NAME     : Undo
-PRIORITY : 2
-ESTIMATE : 1 hour   ACTUAL :
-AS A     : user
-I WANT   : To be able to undo the most recent drawing
-SO THAT  : I can easily correct mistakes or revert changes without having to start over.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US4.005 : nguy3971
-NAME     : Clear
-PRIORITY : 2
-ESTIMATE : 1 hour   ACTUAL :
-AS A     : user
-I WANT   : To be able to clear all drawings from the canvas at once
-SO THAT  : I can start over with a blank slate without having to undo each item individually.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG4.001 : UTORID : suleym11
-NAME     : Squiggle is broken
-PRIORITY : 1
-ESTIMATE : 4 hours   ACTUAL :
-ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
-           Squiggle is constantly drawn above other shapes no matter
-           the order in which the shapes were placed.
---------------------------------------------------------------------------
 # COMPLETED USER STORIES/BUGS BELOW ###########################################
 --------------------------------------------------------------------------
 TYPE     : USER STORY US1.001 : rosenbl6
@@ -105,87 +58,6 @@ ESTIMATE : 4 hours    ACTUAL : 2 hours
 AS A     : user
 I WANT   : Similarly to Draw Circle Feedback, display the rectangle in mid construction.
 SO THAT  : I can see the rectangle I am about to build on release of the mouse button.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US3.006 : kamins64
-NAME     : Fill style selector
-PRIORITY : 3
-ESTIMATE : 1 day  ACTUAL : 3 hours
-AS A     : user
-I WANT   : To be able to select the current drawing style (filled or outline), to be applied
-           to subsequent shapes. Example:
-           		selects fill style solid
-           		mode circle
-           		draw a circle
-           		draw a circle
-           		mode rectangle
-           		draw a rectangle
-           		select fill style outline
-           		draw a rectangle
-           		draw a rectangle
-           		select mode squiggle
-           		draw a squiggle
-           	results in two solid circles and a solid rectangle as well as
-           	two outlined rectangles and a squiggle
-SO THAT  : I can control whether shapes I draw on the canvas are filled
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US3.007 : nguy3971 :
-NAME     : Line thickness selector
-PRIORITY : 3
-ESTIMATE : 1 day    ACTUAL : 4 hours
-AS A     : user
-I WANT   : To be able to select the current line thickness, to be applied
-           to subsequent shapes. Example:
-           		select fill style outline
-           		selects line thickness 1
-           		mode circle
-           		draw a circle
-           		draw a circle
-           		mode rectangle
-           		draw a rectangle
-           		select line thickness 9
-           		draw a rectangle
-           		draw a rectangle
-           		select mode squiggle
-           		draw a squiggle
-           	results in two thinly outlined circles and a thinly outlined
-           	rectangle as well as two thickly outlined rectangles and a thick squiggle
-SO THAT  :
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG1.001 : UTORID : nguy3971
-NAME     : Icons instead of text for drawing mode selection
-PRIORITY : 1
-ESTIMATE : 4 hours   ACTUAL : 4 hours
-ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG1.002 : UTORID : suleym11
-NAME     : Drawing selection mode not indicated
-PRIORITY : 1
-ESTIMATE : 1 hour   ACTUAL : 1 hour
-ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
-           is currently selected. Is there a way
-           to highlight the currently selected mode?
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG1.005 : UTORID : kamins64
-NAME     : Squiggle is broken
-PRIORITY : 1
-ESTIMATE : 6 hours    ACTUAL : 2 hours
-ISSUE    : Squiggles are connected to each other by a straight line. Each drag
-                   of the mouse should be a separate squiggle. Possibly
-           the issue is with the representation of the squiggles in the Model.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : BUG BUG1.006 : UTORID : kamins64
-NAME     : Circle drawing is broken
-PRIORITY : 1
-ESTIMATE : 4 hours    ACTUAL : 40 mins
-ISSUE    : The first click should specify the center of the circle, with
-           a drag for the radius. This is not the case in the current
-           implementation.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : USER STORY US2.001 : nguy3971 :
@@ -242,6 +114,16 @@ I WANT   : Similar to US2.004, a 'current' triangle should be drawn concurrent
 SO THAT  : I can see the triangle I am about to build on release of the mouse button.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
+TYPE     : USER STORY US2.006 : suleym11
+NAME     : Draw Oval Feedback
+PRIORITY : 2
+ESTIMATE : 3 hours ACTUAL : 1 hour
+AS A     : user
+I WANT   : Similar to US2.004, a 'current' oval should be drawn concurrent
+           in real time to input
+SO THAT  : I can see the oval I am about to build on release of the mouse button.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 TYPE     : USER STORY US3.005 : phammi36 :
 NAME     : Color selector
 PRIORITY : 3
@@ -265,14 +147,186 @@ I WANT   : To be able to select the current drawing color, to be applied
 SO THAT  :
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US2.006 : suleym11
-NAME     : Draw Oval Feedback
-PRIORITY : 2
-ESTIMATE : 3 hours ACTUAL : 1 hour
+TYPE     : USER STORY US3.006 : kamins64
+NAME     : Fill style selector
+PRIORITY : 3
+ESTIMATE : 1 day  ACTUAL : 3 hours
 AS A     : user
-I WANT   : Similar to US2.004, a 'current' oval should be drawn concurrent
-           in real time to input
-SO THAT  : I can see the oval I am about to build on release of the mouse button.
+I WANT   : To be able to select the current drawing style (filled or outline), to be applied
+           to subsequent shapes. Example:
+           		selects fill style solid
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select fill style outline
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two solid circles and a solid rectangle as well as
+           	two outlined rectangles and a squiggle
+SO THAT  : I can control whether shapes I draw on the canvas are filled
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY US3.007 : nguy3971 :
+NAME     : Line thickness selector
+PRIORITY : 3
+ESTIMATE : 1 day    ACTUAL : 4 hours
+AS A     : user
+I WANT   : To be able to select the current line thickness, to be applied
+           to subsequent shapes. Example:
+           		select fill style outline
+           		selects line thickness 1
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select line thickness 9
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two thinly outlined circles and a thinly outlined
+           	rectangle as well as two thickly outlined rectangles and a thick squiggle
+SO THAT  :
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.001 : suleym11
+NAME     : Draw Polyline
+PRIORITY : 2
+ESTIMATE : 3 hours   ACTUAL :
+AS A     : user
+I WANT   : To click a series of sequential points on the screen, connected by a line.
+SO THAT  : I can create a custom, multi-segmented line to represent a path, boundary, or feature.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.002 : kamins64
+NAME     : Custom Colour Selection
+PRIORITY : 2
+ESTIMATE : 2 hours   ACTUAL : 1 hour
+AS A     : user
+I WANT   : Select a custom RGB fillColour on a fillColour wheel.
+SO THAT  : I can draw shapes\segments using the fillColour I picked.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.003 : nguy3971
+NAME     : Line thickness selection
+PRIORITY : 2
+ESTIMATE : 2 hours   ACTUAL :
+AS A     : user
+I WANT   : Select the thickness of outlines/line segments on the canvas
+           on a scale
+SO THAT  : I can draw outlines/segments with my selected line thickness.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.004 : nguy3971
+NAME     : Undo
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+AS A     : user
+I WANT   : To be able to undo the most recent drawing
+SO THAT  : I can easily correct mistakes or revert changes without having to start over.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.005 : nguy3971
+NAME     : New
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL :
+AS A     : user
+I WANT   : To be able to clear all drawings from the canvas at once
+SO THAT  : I can start over with a blank slate without having to undo each item individually.
+--------------------------------------------------------------------------
+------------------------------------------------------------
+TYPE     : USER STORY US4.006_2 : phammi36
+NAME     : Resizable Canvas
+PRIORITY : 2
+ESTIMATE : 1 hour   ACTUAL : 3 days
+AS A     : user
+I WANT   : To be able to dynamically resize the drawing canvas
+SO THAT  : I can make the canvas size to my liking
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.009 :
+NAME     : Copy and Paste Drawables
+PRIORITY : 2
+ESTIMATE : 3 hours   ACTUAL : 3 hours
+AS A     : user
+I WANT   : To be able to copy selected drawables and paste them onto the canvas
+SO THAT  : I can duplicate shapes, lines, or groups of elements without having to
+           redraw them manually, improving my workflow efficiency
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.011 :
+NAME     : Cut and Delete Drawables
+PRIORITY : 2
+ESTIMATE : 2 hours   ACTUAL : 2 hours
+AS A     : user
+I WANT   : To be able to cut or delete selected drawables from the canvas
+SO THAT  : I can remove unwanted elements or move them to a different location
+           (via cut/paste), maintaining a clean and organized canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.013 :
+NAME     : Move Tool
+PRIORITY : 2
+ESTIMATE : 3 hours   ACTUAL : 2 hours
+AS A     : user
+I WANT   : To be able to drag and reposition selected drawables to different
+           locations on the canvas
+SO THAT  : I can rearrange elements in my drawing to achieve the desired layout
+           and composition without having to redraw them
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.015 : phammi36
+NAME     : Bucket fill tool and Select tool
+PRIORITY : 2
+ESTIMATE : 5 hour   ACTUAL : 5 hours
+AS A     : user
+I WANT   : To be able to use the bucket fill tool to fill enclosed areas with a selected colour,
+           and use the select tool to select any desired drawables on the canvas
+SO THAT  : I can fill the enclosed areas with my desired colour without having to redraw the area,
+           and I can select specific elements to perform operations on them
+--------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.001 : UTORID : nguy3971
+NAME     : Icons instead of text for drawing mode selection
+PRIORITY : 1
+ESTIMATE : 4 hours   ACTUAL : 4 hours
+ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.002 : UTORID : suleym11
+NAME     : Drawing selection mode not indicated
+PRIORITY : 1
+ESTIMATE : 1 hour   ACTUAL : 1 hour
+ISSUE    : Currently, you can't tell which mode "Circle", "Rectangle", ...
+           is currently selected. Is there a way
+           to highlight the currently selected mode?
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.005 : UTORID : kamins64
+NAME     : Squiggle is broken
+PRIORITY : 1
+ESTIMATE : 6 hours    ACTUAL : 2 hours
+ISSUE    : Squiggles are connected to each other by a straight line. Each drag
+                   of the mouse should be a separate squiggle. Possibly
+           the issue is with the representation of the squiggles in the Model.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : BUG BUG1.006 : UTORID : kamins64
+NAME     : Circle drawing is broken
+PRIORITY : 1
+ESTIMATE : 4 hours    ACTUAL : 40 mins
+ISSUE    : The first click should specify the center of the circle, with
+           a drag for the radius. This is not the case in the current
+           implementation.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : BUG BUG2.001 : phammi36
@@ -315,13 +369,14 @@ ISSUE    : Need to re-architect the PaintModel
            	5.Factory
            	6.Builder
 --------------------------------------------------------------------------
-TYPE     : USER STORY US4.002 : kamins64
-NAME     : Custom Colour Selection
-PRIORITY : 2
-ESTIMATE : 2 hours   ACTUAL : 1 hour
-AS A     : user
-I WANT   : Select a custom RGB fillColour on a fillColour wheel.
-SO THAT  : I can draw shapes\segments using the fillColour I picked.
+--------------------------------------------------------------------------
+TYPE     : BUG BUG4.001 : UTORID : suleym11
+NAME     : Squiggle is broken
+PRIORITY : 1
+ESTIMATE : 4 hours   ACTUAL :
+ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
+           Squiggle is constantly drawn above other shapes no matter
+           the order in which the shapes were placed.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : BUG BUG4.002 : UTORID : kamins64
@@ -332,23 +387,13 @@ ISSUE    : UI is currently crowded and unintuitive. The buttons and draw setting
            should all be in one place.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY US4.006_2 : phammi36
-NAME     : Resizable Canvas
-PRIORITY : 2
-ESTIMATE : 1 hour   ACTUAL : 3 days
-AS A     : user
-I WANT   : To be able to dynamically resize the drawing canvas
-SO THAT  : I can make the canvas size to my liking
+TYPE     : BUG BUG4.003 : UTORID : kamins64
+NAME     : Move doesnt work
+PRIORITY : 1
+ESTIMATE : 2 hours   ACTUAL : 1 hour
+ISSUE    : Move does a bunch of weird things when moving a copied shape.
 --------------------------------------------------------------------------
---------------------------------------------------------------------------
-TYPE     : USER STORY US4.015 : phammi36
-NAME     : Bucket fill tool
-PRIORITY : 2
-ESTIMATE : 5 hour   ACTUAL : 5 hours
-AS A     : user
-I WANT   : To be able to use the bucket fill tool to fill enclosed areas with a selected colour
-SO THAT  : I can make fill the enclosed areas with my desired colour without having to redraw the area
---------------------------------------------------------------------------
+
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
 

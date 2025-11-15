@@ -8,7 +8,7 @@
 TYPE     : USER STORY US4.001 : suleym11
 NAME     : Draw Polyline
 PRIORITY : 2
-ESTIMATE : 3 hours   ACTUAL : 2 hours
+ESTIMATE : 3 hours   ACTUAL :
 AS A     : user
 I WANT   : To click a series of sequential points on the screen, connected by a line.
 SO THAT  : I can create a custom, multi-segmented line to represent a path, boundary, or feature.
@@ -43,14 +43,14 @@ SO THAT  : I can easily correct mistakes or revert changes without having to sta
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : USER STORY US4.005 : nguy3971
-NAME     : Clear
+NAME     : New
 PRIORITY : 2
 ESTIMATE : 1 hour   ACTUAL :
 AS A     : user
 I WANT   : To be able to clear all drawings from the canvas at once
 SO THAT  : I can start over with a blank slate without having to undo each item individually.
 --------------------------------------------------------------------------
---------------------------------------------------------------------------
+------------------------------------------------------------
 TYPE     : USER STORY US4.006_2 : phammi36
 NAME     : Resizable Canvas
 PRIORITY : 2
@@ -60,10 +60,52 @@ I WANT   : To be able to dynamically resize the drawing canvas
 SO THAT  : I can make the canvas size to my liking
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
+TYPE     : USER STORY US4.009 :
+NAME     : Copy and Paste Drawables
+PRIORITY : 2
+ESTIMATE : 3 hours   ACTUAL : 3 hours
+AS A     : user
+I WANT   : To be able to copy selected drawables and paste them onto the canvas
+SO THAT  : I can duplicate shapes, lines, or groups of elements without having to
+           redraw them manually, improving my workflow efficiency
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.011 :
+NAME     : Cut and Delete Drawables
+PRIORITY : 2
+ESTIMATE : 2 hours   ACTUAL : 2 hours
+AS A     : user
+I WANT   : To be able to cut or delete selected drawables from the canvas
+SO THAT  : I can remove unwanted elements or move them to a different location
+           (via cut/paste), maintaining a clean and organized canvas
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.013 :
+NAME     : Move Tool
+PRIORITY : 2
+ESTIMATE : 3 hours   ACTUAL : 2 hours
+AS A     : user
+I WANT   : To be able to drag and reposition selected drawables to different
+           locations on the canvas
+SO THAT  : I can rearrange elements in my drawing to achieve the desired layout
+           and composition without having to redraw them
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY US4.015 : phammi36
+NAME     : Bucket fill tool and Select tool
+PRIORITY : 2
+ESTIMATE : 5 hour   ACTUAL : 5 hours
+AS A     : user
+I WANT   : To be able to use the bucket fill tool to fill enclosed areas with a selected colour,
+           and use the select tool to select any desired drawables on the canvas
+SO THAT  : I can fill the enclosed areas with my desired colour without having to redraw the area,
+           and I can select specific elements to perform operations on them
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 TYPE     : BUG BUG4.001 : UTORID : suleym11
 NAME     : Squiggle is broken
 PRIORITY : 1
-ESTIMATE : 4 hours   ACTUAL : 2 hours
+ESTIMATE : 4 hours   ACTUAL :
 ISSUE    : Colour and line thickness does not apply to squiggle. Moreover,
            Squiggle is constantly drawn above other shapes no matter
            the order in which the shapes were placed.
@@ -76,4 +118,10 @@ ESTIMATE : 4 hours   ACTUAL : 6 hours
 ISSUE    : UI is currently crowded and unintuitive. The buttons and draw settings
            should all be in one place.
 --------------------------------------------------------------------------
-
+--------------------------------------------------------------------------
+TYPE     : BUG BUG4.003 : UTORID : kamins64
+NAME     : Move doesnt work
+PRIORITY : 1
+ESTIMATE : 2 hours   ACTUAL : 1 hour
+ISSUE    : Move does a bunch of weird things when moving a copied shape.
+--------------------------------------------------------------------------

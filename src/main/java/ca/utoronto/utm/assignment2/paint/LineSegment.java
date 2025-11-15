@@ -53,11 +53,11 @@ public abstract class LineSegment implements Drawable{
     public void setEndPoint(Point endPoint) {
         if (endPoint == null) return;
 
-        if (points.isEmpty()) {
+        if (points.size() < 2) {
             points.add(endPoint);
-        } else {
-            points.set(points.size() - 1, endPoint);
+            return;
         }
+        points.set(points.size() - 1, endPoint);
     }
 
     /**

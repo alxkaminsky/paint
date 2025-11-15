@@ -2,6 +2,12 @@ package ca.utoronto.utm.assignment2.paint;
 
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Strategy for bucket fill tool.
+ * Allows users to click on a shape to fill it with the selected color.
+ *
+ * @author kamins64
+ */
 public class BucketStrategy implements ToolStrategy{
     @Override
     public void handle(MouseEvent e, PaintModel model) {
@@ -15,7 +21,9 @@ public class BucketStrategy implements ToolStrategy{
             Shape s = shapes.get(i);
 
             if(s.contains(click)) {
-                model.updateShapeColour(s);
+                // Use command pattern for bucket fill
+                Command bucketCmd = new BucketFillCommand(model, s, model.getFillColor());
+                model.getCommandHistory().executeCommand(bucketCmd);
                 return;
             }
         }

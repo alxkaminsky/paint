@@ -57,6 +57,8 @@ public class Square extends Rectangle {
 
     @Override
     public Drawable copy() {
-        return new Square(start.copy(), end.copy(), fillColour, outlineColour);
+        Square copy = new Square(start.copy(), end.copy(), fillColour, outlineColour);
+        copy.setStrokeWidth(this.strokeWidth);
+        return copy;
     }
 }

@@ -26,24 +26,87 @@ High Level Architecture:
 	buttons are clicked, resulting in a mode change in the PaintPanel.
 	
 ---------------------------------------------------------------------
-TODO!!! Add in more architecture and discussion. For example, 
-do you do something interesting to fix the association between the 
+do you do something interesting to fix the association between the
 ShapeChooser and the PaintPanel? How about the PaintModel, something
 is clearly wrong with it. Can you come up with a better architecture?
 ---------------------------------------------------------------------
 
 DESIGN PATTERNS USED
-	TODO!!! If you introduce a Design Pattern to solve a problem, 
-	discuss it below. Only add design patterns if they simplify and improve
-	the code. I see at least two that would greatly improve code. 
-		
+    All architecture work completed by kamins64.
+
 	Strategy:
-	Command: 
-	Singleton:
-	Composite:
+		Problem: The original PaintPanelHandler contained large if/else blocks to handle
+		different drawing modes (circle, rectangle, squiggle, polyline, select, move, bucket).
+		This violated the Open/Closed Principle and made the code difficult to extend.
+
+		Solution: Implemented the Strategy pattern with a ToolStrategy interface and concrete
+		strategy classes (ShapeDrawingStrategy, SquiggleStrategy, PolylineStrategy, SelectStrategy,
+		MoveStrategy, BucketStrategy). Each strategy encapsulates the behavior for a specific tool.
+
+		Benefits:
+		- Eliminated conditional logic in PaintPanelHandler (reduced from ~250 lines to 24 lines)
+		- Easy to add new tools by creating new strategy classes
+		- Each strategy is independently testable
+		- Clear separation of concerns
+
+		Implementation: PaintPanelHandler delegates mouse events to the current ToolStrategy,
+		which is created by ToolStrategyFactory based on the selected mode.
+
+	Command:
+		Problem: The original undo/redo implementation only removed the most recent drawable,
+		and redo was completely broken (it cleared all shapes). There was no way to undo
+		operations like move, delete, paste, or bucket fill.
+
+		Solution: Implemented the Command pattern with a Command interface and concrete command
+		classes (DrawCommand, DeleteCommand, MoveCommand, PasteCommand, BucketFillCommand).
+		Each command encapsulates an action and its inverse operation. CommandHistory manages
+		two stacks (undo and redo) to track command execution.
+
+		Benefits:
+		- Proper undo/redo for all operations (not just drawing)
+		- Multiple levels of undo/redo (limited only by memory)
+		- Easy to add new undoable operations
+		- Memento pattern integration - commands store what they need to undo
+		- Clean separation between action execution and history management
+
+		Implementation: Each tool strategy creates and executes commands through
+		CommandHistory.executeCommand(). For operations already performed (like move during
+		drag), we use CommandHistory.addExecutedCommand() to add them to history without
+		re-executing.
+
 	Factory:
-	Builder:
+		Problem: Object creation logic was scattered throughout the codebase, and creating
+		different types of shapes/strategies required repetitive code.
+
+		Solution: Implemented two factory classes:
+		1. ShapeFactory - Creates shape instances (Circle, Rectangle, Square, Oval, Triangles)
+		   with appropriate parameters including stroke width
+		2. ToolStrategyFactory - Creates appropriate ToolStrategy instances based on mode string
+
+		Benefits:
+		- Centralized object creation logic
+		- Easier to modify creation parameters (e.g., adding stroke width to all shapes)
+		- Reduces code duplication
+		- Makes it easier to add new shapes or tools
+
+		Implementation: Both factories use static factory methods. ShapeFactory uses pattern
+		matching switch expressions (Java 22 feature) for clean, type-safe object creation.
+
 	Observer/Observable:
-	... (any others you find useful) ...
+		Problem: The view needs to update whenever the model changes, but we want to avoid
+		tight coupling between model and view components.
+
+		Solution: PaintModel extends Observable and notifies observers whenever its state
+		changes. PaintPanel implements Observer and automatically redraws when notified.
+
+		Benefits:
+		- Loose coupling between model and view
+		- Multiple views can observe the same model
+		- Automatic synchronization between model state and visual representation
+		- Model doesn't need to know about specific view implementations
+
+		Implementation: PaintModel calls setChanged() and notifyObservers() after state
+		modifications. PaintPanel's update() method clears the canvas and redraws all
+		drawables whenever the model changes.
 
 OTHER ARCHITECTURE DISCUSSIONS

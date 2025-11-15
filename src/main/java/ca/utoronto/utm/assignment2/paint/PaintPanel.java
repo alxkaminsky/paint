@@ -1,16 +1,11 @@
 package ca.utoronto.utm.assignment2.paint;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.util.Duration;
 
 /**
  * This class is responsible for handling user's interaction (Controller) of the paint program
@@ -62,7 +57,7 @@ public class PaintPanel extends Canvas implements Observer {
 
         g.clearRect(0, 0, getWidth(), getHeight());
 
-        double strokeWidth = model.getCurrStrokeWidth();
+        double strokeWidth = model.getStrokeWidth();
         g.setLineWidth(strokeWidth);
 
 

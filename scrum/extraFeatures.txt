@@ -9,7 +9,48 @@ Description:
 Reference:
 	US4.004
 --------------------------------------------------------------------------------
-FeatureName: Clear
+--------------------------------------------------------------------------------
+FeatureName: Redo
+
+Description:
+	Allows the user to reverse the last undo action performed.
+Reference:
+	US4.004
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Cut
+
+Description:
+	Allows the user to cut drawables
+Reference:
+	US4.011
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Copy
+
+Description:
+	Allows the user to copy drawables
+Reference:
+	US4.009
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Paste
+
+Description:
+	Allows the user to paste drawables
+Reference:
+	US4.009
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Delete
+
+Description:
+	Allows the user to delete the selected drawables.
+Reference:
+	US4.011
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: New
 
 Description:
 	Allows the user to remove all content from the current canvas or working area,
@@ -47,12 +88,13 @@ Reference:
 	US4.001
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-FeatureName: TextBox
+FeatureName: Bucket Fill Tool
 
 Description:
-	Allows used to create textboxes and write in them
+    Enables the user to fill an enclosed area with a selected colour.
+
 Reference:
-	US4.007
+    US4.015
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 FeatureName: Bucket Fill Tool
@@ -62,3 +104,38 @@ Description:
 
 Reference:
     US4.015
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Select Tool
+
+Description:
+    Enables the user to select any desired drawables on the canvas.
+
+Reference:
+    US4.015
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Move Tool
+
+Description:
+    Enables the user to move any selected drawables on the canvas.
+
+Reference:
+    US4.013
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Line Thickness Scale
+
+Description:
+    Allows the user to more precisely choose the line thickness.
+Reference:
+    US4.003
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+FeatureName: Custom Colour Picker
+
+Description:
+    Allows the user to choose any colour to their liking
+Reference:
+    US4.002
+--------------------------------------------------------------------------------

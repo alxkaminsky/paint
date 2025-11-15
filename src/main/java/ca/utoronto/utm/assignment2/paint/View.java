@@ -22,7 +22,7 @@ public class View implements EventHandler<ActionEvent>  {
         private PaintModel paintModel;
         private PaintPanel paintPanel;
         private DrawSettingsPanel drawSettingsPanel;
-        private Canvas canvas;
+        private ActionHandler actionHandler;
 
     /**
      * Construct the full UI for the application and display it in the given stage
@@ -31,11 +31,10 @@ public class View implements EventHandler<ActionEvent>  {
      */
     public View(PaintModel model, Stage stage) {
             this.paintModel = model;
+            this.actionHandler = new ActionHandler(model);
 
             paintPanel = new PaintPanel(this.paintModel);
             drawSettingsPanel = new DrawSettingsPanel(model);
-
-            canvas = new Canvas(800, 600);
 
             VBox vBox = new VBox();
             vBox.getChildren().addAll(createMenuBar(), drawSettingsPanel);
@@ -55,35 +54,8 @@ public class View implements EventHandler<ActionEvent>  {
             stage.setTitle("Paint");
             stage.show();
 
-            //God awful architecture MUST be fixed immediately
-            scene.setOnKeyPressed(e -> {
-                switch (e.getCode()) {
-                    case Z:
-                        if (e.isControlDown()) {
-                            paintModel.deleteMostRecentShape();
-                        }
-                        break;
-                    case C:
-                        if (e.isControlDown()) {
-                            paintModel.copy();
-                        }
-                        break;
-                    case V:
-                        if (e.isControlDown()) {
-                            paintModel.paste();
-                        }
-                        break;
-                    case X:
-                        if (e.isControlDown()) {
-                            paintModel.copy();
-                            paintModel.deleteSelected();
-                        }
-                        break;
-                    case BACK_SPACE:
-                        paintModel.deleteSelected();
-                        break;
-                }
-            });
+            // Set up keyboard handler
+            scene.setOnKeyPressed(actionHandler);
         }
 
         private MenuBar createMenuBar() {
@@ -97,51 +69,38 @@ public class View implements EventHandler<ActionEvent>  {
                 menu = new Menu("File");
 
                 menuItem = new MenuItem("New");
-                menuItem.setOnAction(this);
+                menuItem.setOnAction(e -> actionHandler.clear());
                 menu.getItems().add(menuItem);
-
-                menuItem = new MenuItem("Open");
-                menuItem.setOnAction(this);
-                menu.getItems().add(menuItem);
-
-                menuItem = new MenuItem("Save");
-                menuItem.setOnAction(this);
-                menu.getItems().add(menuItem);
-
-                menu.getItems().add(new SeparatorMenuItem());
 
                 menuItem = new MenuItem("Exit");
                 menuItem.setOnAction(this);
                 menu.getItems().add(menuItem);
 
                 menuBar.getMenus().add(menu);
+
+
+                menu = new Menu("Edit");
+
                 menuItem = new MenuItem("Cut");
-                menuItem.setOnAction(this);
+                menuItem.setOnAction(e -> actionHandler.cut());
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Copy");
-                menuItem.setOnAction(e -> {
-                    paintModel.copy();
-                });
+                menuItem.setOnAction(e -> actionHandler.copy());
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Paste");
-                menuItem.setOnAction(e -> {
-                    paintModel.paste();
-                });
+                menuItem.setOnAction(e -> actionHandler.paste());
                 menu.getItems().add(menuItem);
 
                 menu.getItems().add(new SeparatorMenuItem());
+
                 menuItem = new MenuItem("Undo");
-                menuItem.setOnAction(e -> {
-                    paintModel.deleteMostRecentShape();
-                });
+                menuItem.setOnAction(e -> actionHandler.undo());
                 menu.getItems().add(menuItem);
 
                 menuItem = new MenuItem("Redo");
-                menuItem.setOnAction(e -> {
-                    paintModel.deleteAllShapes();
-                });
+                menuItem.setOnAction(e -> actionHandler.redo());
                 menu.getItems().add(menuItem);
 
                 menuBar.getMenus().add(menu);

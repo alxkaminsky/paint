@@ -25,6 +25,8 @@ public class IsoscelesTriangle extends Triangle {
 
     @Override
     public Drawable copy() {
-        return new IsoscelesTriangle(start.copy(), end.copy(), fillColour, outlineColour);
+        IsoscelesTriangle copy = new IsoscelesTriangle(start.copy(), end.copy(), fillColour, outlineColour);
+        copy.setStrokeWidth(this.strokeWidth);
+        return copy;
     }
 }

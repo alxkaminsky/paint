@@ -1,6 +1,5 @@
 package ca.utoronto.utm.assignment2.paint;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -19,7 +18,8 @@ public class PaintModel extends Observable {
     private Drawable select;
     private Color fillColor = Color.BURLYWOOD;
     private Color outlineColor = Color.BLACK;
-    private double currStrokeWidth = 2.0;
+    private double strokeWidth = 2.0;
+    private CommandHistory commandHistory = new CommandHistory();
 
     /**
      *
@@ -41,9 +41,9 @@ public class PaintModel extends Observable {
      * Set the strokeWidth of the outline
      * @param width desired width thickness
      */
-    public void setCurrStrokeWidth(double width) {
+    public void setStrokeWidth(double width) {
         if (width > 0) {
-            this.currStrokeWidth = width;
+            this.strokeWidth = width;
             setChanged();
             notifyObservers();
         }
@@ -53,8 +53,8 @@ public class PaintModel extends Observable {
      *
      * @return the stroke width
      */
-    public double getCurrStrokeWidth() {
-        return currStrokeWidth;
+    public double getStrokeWidth() {
+        return strokeWidth;
     }
 
     /**
@@ -100,26 +100,6 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
-    /**
-    Delete the most recently added shape in the array. This is useful for redo
-     */
-    public void deleteMostRecentShape() {
-        if (!drawables.isEmpty()) {
-            drawables.removeLast();
-            setChanged();
-            notifyObservers();
-        }
-    }
-
-    /**
-     * Delete all drawables and lines on the canvas. This is for clear all feature
-     */
-    public void deleteAllShapes() {
-        drawables.clear();
-        setChanged();
-        notifyObservers();
-    }
-
 
     public void updateDrawablePoint(Drawable d, Point p){
         if(drawables.contains(d)){
@@ -129,12 +109,6 @@ public class PaintModel extends Observable {
         }
     }
 
-    public void updateShapeColour(Shape s){
-        s.setFillColour(fillColor);
-        setChanged();
-        notifyObservers();
-    }
-
     public void updateDrawableOpacity(Drawable d, double fillOpacity, double outlineOpacity){
         if(drawables.contains(d)){
             d.setOpacity(fillOpacity, outlineOpacity);
@@ -142,7 +116,6 @@ public class PaintModel extends Observable {
             notifyObservers();
         }
     }
-
 
     /**
      *
@@ -201,10 +174,10 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
-    public void moveSelected(Point start, Point end) {
+    public void move(ArrayList<Drawable> toMove, Point start, Point end) {
         double dx = end.x - start.x;
         double dy = end.y - start.y;
-        for (Drawable d : selected) {
+        for (Drawable d : toMove) {
             d.move(dx, dy);
         }
         setChanged();
@@ -228,4 +201,16 @@ public class PaintModel extends Observable {
     }
 
     public ArrayList<Shape> getShapes() {return shapes;}
+
+    /**
+     * Get the command history for undo/redo operations
+     * @return the CommandHistory instance
+     */
+    public CommandHistory getCommandHistory() {return commandHistory;}
+
+    /**
+     * Get the clipboard containing copied drawables
+     * @return the clipboard ArrayList
+     */
+    public ArrayList<Drawable> getClipboard() {return clipboard;}
 }
