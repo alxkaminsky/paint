@@ -26,7 +26,10 @@ public abstract class LineSegment implements Drawable{
         }
     }
 
-    //Overloading used to help with the copy method
+    /**
+     * Constructor for creating a LineSegment with only a color
+     * @param outlineColor the color of the line
+     */
     public LineSegment(Color outlineColor){
         this.outlineColour = outlineColor;
     }
@@ -41,6 +44,10 @@ public abstract class LineSegment implements Drawable{
         }
     }
 
+    /**
+     * Get the list of points making up this line segment
+     * @return the list of points
+     */
     public ArrayList<Point> getPoints() {
         return points;
     }
@@ -89,6 +96,11 @@ public abstract class LineSegment implements Drawable{
         }
     }
 
+    /**
+     * Check if this line segment intersects with another shape
+     * @param other the shape to check intersection with
+     * @return true if they intersect, false otherwise
+     */
     public boolean intersects(Shape other) {
         if (!(other instanceof Rectangle rect)) {
             return false;
@@ -155,6 +167,11 @@ public abstract class LineSegment implements Drawable{
         return t >= 0 && t <= 1 && u >= 0 && u <= 1;
     }
 
+    /**
+     * Move this line segment by the specified deltas
+     * @param deltaX the amount to move in the x direction
+     * @param deltaY the amount to move in the y direction
+     */
     public void move(double deltaX, double deltaY) {
         for (Point p : points) {
             p.x += deltaX;
@@ -162,10 +179,19 @@ public abstract class LineSegment implements Drawable{
         }
     }
 
+    /**
+     * Set the opacity of the outline color
+     * @param fillOpacity the fill opacity value (unused for line segments)
+     * @param outlineOpacity the outline opacity value
+     */
     public void setOpacity(double fillOpacity, double outlineOpacity) {
         outlineColour = withAlpha(outlineColour, outlineOpacity* outlineColour.getOpacity());
     }
 
+    /**
+     * Draw a selection outline around this line segment
+     * @param g the graphics context to draw on
+     */
     public void drawSelectionOutline(GraphicsContext g) {
         g.setStroke(Color.DODGERBLUE);
         g.setLineWidth(1.0);
@@ -198,6 +224,10 @@ public abstract class LineSegment implements Drawable{
         g.setLineDashes(0, 0);
     }
 
+    /**
+     * Create a deep copy of this line segment
+     * @return a new line segment with the same properties
+     */
     @Override
     public Drawable copy() {
         LineSegment copy = createInstance(outlineColour);
@@ -209,5 +239,10 @@ public abstract class LineSegment implements Drawable{
         return copy;
     }
 
+    /**
+     * Factory method to create a new instance of the specific line segment type
+     * @param outlineColour the color for the new instance
+     * @return a new line segment instance
+     */
     public abstract LineSegment createInstance(Color outlineColour);
 }

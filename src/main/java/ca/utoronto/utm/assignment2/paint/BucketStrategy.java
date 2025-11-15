@@ -9,6 +9,11 @@ import javafx.scene.input.MouseEvent;
  * @author kamins64
  */
 public class BucketStrategy implements ToolStrategy{
+    /**
+     * Handle mouse events for bucket fill tool. Part of the Strategy pattern.
+     * @param e the mouse event
+     * @param model the paint model
+     */
     @Override
     public void handle(MouseEvent e, PaintModel model) {
         if (e.getEventType() != MouseEvent.MOUSE_CLICKED) return;

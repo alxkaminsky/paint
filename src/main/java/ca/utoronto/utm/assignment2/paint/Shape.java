@@ -24,10 +24,18 @@ public abstract class Shape implements Drawable {
         this.outlineColour = outlineColour;
     }
 
+    /**
+     * Set the fill color of this shape
+     * @param fillColour the new fill color
+     */
     public void setFillColour(Color fillColour) {
         this.fillColour = fillColour;
     }
 
+    /**
+     * Get the fill color of this shape
+     * @return the fill color
+     */
     public Color getFillColour() {
         return fillColour;
     }
@@ -46,8 +54,16 @@ public abstract class Shape implements Drawable {
         return end;
     }
 
+    /**
+     * Set the start point of this shape
+     * @param start the new start point
+     */
     public void setStart(Point start) {this.start = start;}
 
+    /**
+     * Set the end point of this shape
+     * @param end the new end point
+     */
     public void setEnd(Point end) {this.end = end;}
 
     /**
@@ -55,19 +71,65 @@ public abstract class Shape implements Drawable {
      * @return the final point of the triangle which is calculated accordingly for each type of triangle
      */
 
+    /**
+     * Set the stroke width of this shape's outline
+     * @param strokeWidth the new stroke width
+     */
     public void setStrokeWidth(double strokeWidth) {
         this.strokeWidth = strokeWidth;
     }
 
+    /**
+     * Get the stroke width of this shape's outline
+     * @return the stroke width
+     */
     public double getStrokeWidth() {
         return strokeWidth;
     }
 
+    /**
+     * Check if this shape contains the given point
+     * @param p the point to check
+     * @return true if the point is inside this shape
+     */
     public abstract boolean contains(Point p);
+
+    /**
+     * Draw this shape on the canvas
+     * @param g the graphics context to draw on
+     */
     public abstract void draw(GraphicsContext g);
+
+    /**
+     * Draw a selection outline around this shape
+     * @param g the graphics context to draw on
+     */
     public abstract void drawSelectionOutline(GraphicsContext g);
+
+    /**
+     * Move this shape by the specified deltas
+     * @param deltaX the amount to move in the x direction
+     * @param deltaY the amount to move in the y direction
+     */
     public abstract void move(double deltaX, double deltaY);
+
+    /**
+     * Check if this shape intersects with another shape
+     * @param other the shape to check intersection with
+     * @return true if they intersect, false otherwise
+     */
     public abstract boolean intersects(Shape other);
+
+    /**
+     * Set the end point of this shape
+     * @param end the new end point
+     */
     public abstract void setEndPoint(Point end);
+
+    /**
+     * Set the opacity of fill and outline colors
+     * @param fillOpacity the fill opacity value
+     * @param outlineOpacity the outline opacity value
+     */
     public abstract void setOpacity(double fillOpacity, double outlineOpacity);
 }

@@ -66,8 +66,16 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Get the currently selected drawable
+     * @return the current selection
+     */
     public Drawable getSelect(){return select;}
 
+    /**
+     * Update the end point of the current selection
+     * @param end the new end point
+     */
     public void updateSelect(Point end){
         if (select != null) {
             select.setEndPoint(end);
@@ -93,6 +101,10 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Add a shape to the model
+     * @param s the shape to add
+     */
     public void addShape(Shape s) {
         if (s == null) return;
         shapes.add(s);
@@ -100,7 +112,11 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
-
+    /**
+     * Update the end point of a drawable
+     * @param d the drawable to update
+     * @param p the new end point
+     */
     public void updateDrawablePoint(Drawable d, Point p){
         if(drawables.contains(d)){
             d.setEndPoint(p);
@@ -109,6 +125,12 @@ public class PaintModel extends Observable {
         }
     }
 
+    /**
+     * Update the opacity of a drawable
+     * @param d the drawable to update
+     * @param fillOpacity the fill opacity value
+     * @param outlineOpacity the outline opacity value
+     */
     public void updateDrawableOpacity(Drawable d, double fillOpacity, double outlineOpacity){
         if(drawables.contains(d)){
             d.setOpacity(fillOpacity, outlineOpacity);
@@ -141,8 +163,15 @@ public class PaintModel extends Observable {
      */
     public void setOutlineColor(Color color) {this.outlineColor = color;}
 
+    /**
+     * Get the list of currently selected drawables
+     * @return the list of selected drawables
+     */
     public ArrayList<Drawable> getSelected() {return selected;}
 
+    /**
+     * Copy selected drawables to the clipboard
+     */
     public void copy(){
         clipboard.clear();
 
@@ -154,6 +183,9 @@ public class PaintModel extends Observable {
         clipboard.addAll(selected);
     }
 
+    /**
+     * Paste clipboard contents as new drawables
+     */
     public void paste(){
         selected.clear();
 
@@ -167,6 +199,9 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Delete all currently selected drawables
+     */
     public void deleteSelected(){
         drawables.removeAll(selected);
         selected.clear();
@@ -174,6 +209,12 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Move drawables from start point to end point
+     * @param toMove the list of drawables to move
+     * @param start the starting point
+     * @param end the ending point
+     */
     public void move(ArrayList<Drawable> toMove, Point start, Point end) {
         double dx = end.x - start.x;
         double dy = end.y - start.y;
@@ -184,6 +225,11 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Set the opacity of all selected drawables
+     * @param fillOpacity the fill opacity value
+     * @param outlineOpacity the outline opacity value
+     */
     public void setOpacitySelected(double fillOpacity, double outlineOpacity){
         for (Drawable d: selected) {
             d.setOpacity(fillOpacity, outlineOpacity);
@@ -200,6 +246,10 @@ public class PaintModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Get the list of all shapes
+     * @return the list of shapes
+     */
     public ArrayList<Shape> getShapes() {return shapes;}
 
     /**

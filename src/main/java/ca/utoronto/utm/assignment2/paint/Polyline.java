@@ -18,11 +18,19 @@ public class Polyline extends LineSegment{
         super(start, end, outlineColour);
     }
 
-    //Overloading
+    /**
+     * Constructor for creating a Polyline with only a color
+     * @param outlineColour The color of the Polyline
+     */
     public Polyline(Color outlineColour) {
         super(outlineColour);
     }
 
+    /**
+     * Factory method to create a new Polyline instance
+     * @param outlineColour The color for the new Polyline
+     * @return a new Polyline instance
+     */
     @Override
     public LineSegment createInstance(Color outlineColour) {
         return new Polyline(outlineColour);

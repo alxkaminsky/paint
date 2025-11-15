@@ -13,6 +13,11 @@ import javafx.scene.input.MouseEvent;
 public class SquiggleStrategy implements ToolStrategy {
     private Squiggle currentSquiggle;
 
+    /**
+     * Handle mouse events for freehand squiggle drawing. Part of the Strategy pattern.
+     * @param e the mouse event
+     * @param model the paint model
+     */
     @Override
     public void handle(MouseEvent e, PaintModel model) {
         EventType<? extends MouseEvent> type = e.getEventType();

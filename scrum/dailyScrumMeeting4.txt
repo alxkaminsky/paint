@@ -33,127 +33,127 @@ Oct 20,2025
 	Obstacles I face: Finding the optimal, clean, solutions
 
 Oct 21,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Code cleanup
+	What I will do today:Nothing, I completed my work early
+	Obstacles I face:Nothing, I completed my work early
 
 Oct 22,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Nothing, I completed my work early
+	What I will do today:Nothing, I completed my work early
+	Obstacles I face: Nothing, I completed my work early
 
 Oct 23,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work early
+	What I will do today:Nothing, I completed my work early
+	Obstacles I face:Nothing, I completed my work early
 
 Oct 24,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work early
+	What I will do today:Nothing, I completed my work early
+	Obstacles I face:Nothing, I completed my work early
 
 Oct 25,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work early
+	What I will do today:Nothing, I completed my work early
+	Obstacles I face:Nothing, I completed my work early
 
 Oct 26,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work early
+	What I will do today: Conduct meeting for sprint2 planning
+	Obstacles I face: Figuring out how to approach BUG2.003
 
 Oct 27,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Conducted a meeting for sprint2 planning
+	What I will do today: Work on BUG2.003
+	Obstacles I face: Merging my completed work
 
 Oct 28,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Work on BUG2.003
+	What I will do today: Complete BUG2.003
+	Obstacles I face: Figuring out how to optimize my solution...i.e clean efficient code
 
 Oct 29,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Complete BUG2.003
+	What I will do today: Nothing, I completed my work for this sprint
+	Obstacles I face:Nothing, I completed my work for this sprint
 
 Oct 30,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work for this sprint
+	What I will do today:Nothing, I completed my work for this sprint
+	Obstacles I face:Nothing, I completed my work for this sprint
 
 Oct 31,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work for this sprint
+	What I will do today: Conduct sprint3 meeting
+	Obstacles I face: dividing the tasks evenly
 
 Nov 1,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Conducted sprint3 meeting
+	What I will do today: Work on BUG3.005
+	Obstacles I face: Completing BUG3.005
 
 Nov 2,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Completed BUG3.005
+	What I will do today: Work on US3.006
+	Obstacles I face: Figuring out how to approach US3.006
 
 Nov 3,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Worked on US3.006
+	What I will do today: Continue working on US3.006 and create pull request
+	Obstacles I face: Making sure the pull request goes smoothly
 
 Nov 4,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Continued working on US3.006 and created pull request
+	What I will do today: Complete US3.006
+	Obstacles I face: Refining the buggy codebase from my US
 
 Nov 5,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Completed US3.006
+	What I will do today: Nothing, I completed my work for this sprint
+	Obstacles I face:Nothing, I completed my work for this sprint
 
 Nov 6,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work for this sprint
+	What I will do today:Nothing, I completed my work for this sprint
+	Obstacles I face:Nothing, I completed my work for this sprint
 
 Nov 7,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work for this sprint
+	What I will do today:Nothing, I completed my work for this sprint
+	Obstacles I face:Nothing, I completed my work for this sprint
 
 Nov 8,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work for this sprint
+	What I will do today:Nothing, I completed my work for this sprint
+	Obstacles I face:Nothing, I completed my work for this sprint
 
 Nov 9,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday:Nothing, I completed my work for this sprint
+	What I will do today: Complete planning for sprint 4
+	Obstacles I face: Figuring out what features make a great paint application...not just a good one
 
 Nov 10,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Conducted planning for architecture
+	What I will do today: BUG4.002, and US4.002
+	Obstacles I face: figuring out how to make UI intuitive
 
 Nov 11,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Completed BUG4.002, and US4.002
+	What I will do today: Merging changes from groupmates
+	Obstacles I face: Figuring out restructuring
 
 Nov 12,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Fixed various bugs across the code base
+	What I will do today: Implement Factory
+	Obstacles I face: Figuring out how to use Strategy
 
 Nov 13,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Implement Factory
+	What I will do today: Implement Strategy
+	Obstacles I face: Figuring out how to use Command
 
 Nov 14,2025
-	What I did yesterday:
-	What I will do today:
-	Obstacles I face:
+	What I did yesterday: Code refactoring
+	What I will do today: Code refactoring
+	Obstacles I face: Nothing, assignment is complete
 

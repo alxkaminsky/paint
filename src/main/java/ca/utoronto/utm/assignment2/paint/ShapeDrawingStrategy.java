@@ -14,9 +14,19 @@ public class ShapeDrawingStrategy implements ToolStrategy {
     Point start;
     Shape currentShape;
 
+    /**
+     * Create a new ShapeDrawingStrategy for the specified shape type
+     * @param mode the type of shape to draw (Circle, Rectangle, Square, etc.)
+     */
     public ShapeDrawingStrategy(String mode) {
         this.mode = mode;
     }
+
+    /**
+     * Handle mouse events for shape drawing. Part of the Strategy pattern.
+     * @param e the mouse event
+     * @param model the paint model
+     */
     public void handle(MouseEvent e, PaintModel model) {
          EventType<? extends MouseEvent> type = e.getEventType();
 

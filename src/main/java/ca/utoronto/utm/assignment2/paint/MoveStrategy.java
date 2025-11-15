@@ -15,6 +15,11 @@ public class MoveStrategy implements ToolStrategy {
     private Point originalStart;
     private Point lastDragPoint;
 
+    /**
+     * Handle mouse events for moving selected drawables. Part of the Strategy pattern.
+     * @param e the mouse event
+     * @param model the paint model
+     */
     @Override
     public void handle(MouseEvent e, PaintModel model) {
         EventType<? extends MouseEvent> type = e.getEventType();

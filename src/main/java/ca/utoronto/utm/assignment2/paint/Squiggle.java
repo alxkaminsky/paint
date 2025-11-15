@@ -21,11 +21,19 @@ public class Squiggle extends LineSegment{
         super(start, end, outlineColour);
     }
 
-    //Overloading
+    /**
+     * Constructor for creating a Squiggle with only a color
+     * @param outlineColour The color of the Squiggle
+     */
     public Squiggle(Color outlineColour) {
         super(outlineColour);
     }
 
+    /**
+     * Factory method to create a new Squiggle instance
+     * @param outlineColour The color for the new Squiggle
+     * @return a new Squiggle instance
+     */
     @Override
     public LineSegment createInstance(Color outlineColour) {
         return new Squiggle(outlineColour);

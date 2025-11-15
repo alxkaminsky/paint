@@ -76,11 +76,18 @@ public class ActionHandler implements EventHandler<KeyEvent> {
         }
     }
 
+    /**
+     * Clear all drawables from the canvas
+     */
     public void clear() {
         model.getDrawables().clear();
         model.triggerRepaint();
     }
 
+    /**
+     * Handle keyboard events for shortcuts
+     * @param e the keyboard event
+     */
     @Override
     public void handle(KeyEvent e) {
         switch (e.getCode()) {

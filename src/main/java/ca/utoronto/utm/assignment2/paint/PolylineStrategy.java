@@ -16,6 +16,11 @@ import java.util.ArrayList;
 public class PolylineStrategy implements ToolStrategy {
     private Polyline currentPolyline;
 
+    /**
+     * Handle mouse events for polyline drawing. Part of the Strategy pattern.
+     * @param e the mouse event
+     * @param model the paint model
+     */
     @Override
     public void handle(MouseEvent e, PaintModel model) {
         EventType<? extends MouseEvent> type = e.getEventType();

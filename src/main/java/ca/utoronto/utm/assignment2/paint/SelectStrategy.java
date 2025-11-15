@@ -13,6 +13,11 @@ public class SelectStrategy implements ToolStrategy{
     private Point start;
     private Drawable curr = null;
 
+    /**
+     * Handle mouse events for selecting drawables. Part of the Strategy pattern.
+     * @param e the mouse event
+     * @param model the paint model
+     */
     @Override
     public void handle(MouseEvent e, PaintModel model) {
         if (e.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {

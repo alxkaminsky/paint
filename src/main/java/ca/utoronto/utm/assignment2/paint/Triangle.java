@@ -186,8 +186,8 @@ public abstract class Triangle extends Shape {
     }
 
     /**
-     * This is a clever implementation using barycentric properties of triangles. I'm glad I studied Euclidean geometry
-     * back in highschool.
+     * Figure out if a Triangle contains a point using barycentric properties of triangles.
+     *
      * @param p
      * @return true if the Point is inside of the triangle false otherwise
      */
