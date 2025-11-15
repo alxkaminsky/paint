@@ -182,33 +182,6 @@ public class PaintModel extends Observable {
 
         clipboard.addAll(selected);
     }
-
-    /**
-     * Paste clipboard contents as new drawables
-     */
-    public void paste(){
-        selected.clear();
-
-        for (Drawable drawable : clipboard) {
-            Drawable copy =  drawable.copy();
-            drawables.add(copy);
-            selected.add(copy);
-        }
-
-        setChanged();
-        notifyObservers();
-    }
-
-    /**
-     * Delete all currently selected drawables
-     */
-    public void deleteSelected(){
-        drawables.removeAll(selected);
-        selected.clear();
-        setChanged();
-        notifyObservers();
-    }
-
     /**
      * Move drawables from start point to end point
      * @param toMove the list of drawables to move
